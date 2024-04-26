@@ -199,20 +199,20 @@ class flosmc_transformer mpfr_funcs_names = object (self)
 
   method queueOneInstr i = self#queueInstr [i]
 
-  method make_block_stmt () =
+  (* method make_block_stmt () =
     match self#make_instr_list_from_queue (Option.get self#current_kf) with
      | Either.Left (ilist, q) -> Cil.mkBlock ilist
-     | Either.Right () -> Cil.mkBlock []
+     | Either.Right () -> Cil.mkBlock [] *)
 
   (*Convert the expr into an mpfr one, and returns a block of all the
   statements that need to be added before the expression*)
-  method convert_expr_and_mkblock e =
+  (* method convert_expr_and_mkblock e =
     let e' = Visitor.visitFramacExpr (self :> Visitor.frama_c_copy) e in
-    (self#make_block_stmt (), e')
+    (self#make_block_stmt (), e') *)
 
-  method visit_block_and_mkblock b =
+  (* method visit_block_and_mkblock b =
     let _ = Visitor.visitFramacBlock (self :> Visitor.frama_c_refresh) b in
-    self#make_block_stmt ()
+    self#make_block_stmt () *)
 
   method get_res_vi kf =
     match Hashtbl.find_opt res_vars kf with
@@ -247,14 +247,14 @@ class flosmc_transformer mpfr_funcs_names = object (self)
     Glob vi *)
 
 
-  method get_mpfr_from_id id =
+  (* method get_mpfr_from_id id =
     match Hashtbl.find_opt tmp_var_map id with
       | Some v -> v
       | None -> let v = Cil.makeVarinfo false false
                           ("tmp" ^ (string_of_int id) ^ "_mpfr") mpfr_type
                 in
                 Hashtbl.add tmp_var_map id (Tmp v);
-                Tmp v
+                Tmp v *)
 
 
 
@@ -265,12 +265,12 @@ class flosmc_transformer mpfr_funcs_names = object (self)
     in
     Stack.push v stack *)
 
-  method get_or_make_instr_queue kf =
+  (* method get_or_make_instr_queue kf =
     match Hashtbl.find_opt new_instrs kf with
       | Some q -> q
       | None ->
           let q = Queue.create () in
-          Hashtbl.add new_instrs kf q; q
+          Hashtbl.add new_instrs kf q; q *)
 
 
   method fetch_tmp_var kf =
@@ -300,7 +300,7 @@ class flosmc_transformer mpfr_funcs_names = object (self)
       id *)
 
   (*Returns Left (block,q) if queue exists and has some stmts, otherwise Right ()*)
-  method make_instr_list_from_queue kf =
+  (* method make_instr_list_from_queue kf =
     match Hashtbl.find_opt new_instrs kf with
       | None -> Either.Right ()
       | Some q ->
@@ -309,7 +309,7 @@ class flosmc_transformer mpfr_funcs_names = object (self)
           (* let blk = Cil.mkBlock (List.of_seq (Queue.to_seq q)) in *)
           let ilist = (List.of_seq (Queue.to_seq q)) in
           Queue.clear q;
-          Either.Left (ilist, q)
+          Either.Left (ilist, q) *)
 
   method current_kf_name () =
     match self#current_kf with
@@ -338,6 +338,15 @@ class flosmc_transformer mpfr_funcs_names = object (self)
               f
     in
     ()
+
+  method! vfile f =
+     let fun' = (fun f' ->
+      f'.globals <- math_include_global::mpfr_include_global::f'.globals;
+      Ast.mark_as_grown ();
+      f'
+    )
+    in
+    Cil.DoChildrenPost fun'
 
   method! vvrbl vi =
     let kf = Option.get self#current_kf in

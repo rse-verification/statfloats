@@ -6,13 +6,19 @@ module IntMap = Map.Make(Int)
 
 let unknown_loc = Cil_datatype.Location.unknown
 let zero_exp = Cil.integer ~loc:unknown_loc 0
+let null_exp = Cil.mkCast
+
+
+let mpfr_include_global = GText "#include \"mpfr.h\""
+let math_include_global = GText "#include \"math.h\""
+
 
 let trans_func_names =
   Hashtbl.of_seq (List.to_seq [("sinf", "mpfr_sin");
                                ("cosf", "mpfr_cos")])
+
 let is_transendental_fun vi = Hashtbl.mem trans_func_names vi.vorig_name
 let mpfr_trans_func_name = Hashtbl.find trans_func_names
-
 
 
 let make_fun_call_instr fn_vi args =
@@ -44,6 +50,7 @@ let mpfr_type =
     treferenced = false;
   }, [])
 
+let mpfr_ptr_type = 
 
 type mpfr_var =
     | Tmp of Cil_types.varinfo

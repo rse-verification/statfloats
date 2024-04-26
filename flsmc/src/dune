@@ -1,7 +1,7 @@
 (library
 (name Flosmc)
 (public_name frama-c-flosmc.core)
-(flags -open Frama_c_kernel :standard -w -27-21-26)
+(flags -open Frama_c_kernel :standard -w -27-21-26-33)
 (libraries frama-c.kernel)
 )
 (plugin
