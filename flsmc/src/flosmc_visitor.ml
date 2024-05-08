@@ -5,8 +5,14 @@ open Mpfr_utils
 
 module Build = Cil_builder.Pure
 
-
-
+let print_chr_chr_arr e =
+  match e.enode with
+    | AddrOf _-> Self.feedback "addrOf"
+    | StartOf _-> Self.feedback "StartOf"
+    | Lval _-> Self.feedback "Lval"
+    | CastE _-> Self.feedback "cast"
+    | UnOp _-> Self.feedback "Unop"
+    | _ -> Self.feedback "otherwise"
 
 (*id is the highest id of the variable currently in use*)
 class tmpVarQueue = object (self)
@@ -136,6 +142,124 @@ let float_to_mpfr_vi fl_vi =
   m_vi
 
 
+let extract_from_flt_eq p =
+    match p with
+      | Papp ({l_var_info={lv_name="flteq";_}; _}, _, [e; r; d]) ->
+        Some (e,r)
+      (* | Prel (Rle, t1, t2) ->
+          (Self.feedback "found rel";
+            match t1.term_node with
+            | Tapp ({l_var_info={lv_name="\\abs";_}; _}, _, [e]) ->
+                Self.feedback "FOund \\abs";
+
+            | _ -> Self.feedback "no \\abs"
+          )
+      | Papp _ ->
+        Self.feedback "dound app"
+        | Prel _ ->
+          Self.feedback "dound rel 2" *)
+      | _ -> Self.feedback "dound nothing";
+          None
+
+
+
+let is_int vi = Cil.isIntegralType vi.vtype
+let is_char_ptr_ptr vi = match vi.vtype with
+  | TPtr (t, _) -> Cil.isAnyCharPtrType t
+  | _ -> false
+
+(* let setInstr =
+  Set () *)
+
+class mpfr_spec_adder entry_name = object (self)
+  inherit Visitor.frama_c_inplace
+  val mutable entry_point_spec = None
+  val mutable input_vars = []
+
+  val mutable main_argc = None
+  val mutable main_argv = None
+
+  method add_spec f =
+    input_vars <-
+      List.filter_map
+        ( fun g ->
+            match g with
+              | GVar (vi, _, _) -> Some vi
+              | _ -> None
+        )
+        f.globals;
+    Visitor.visitFramacFileCopy
+              ((self) :> Visitor.frama_c_copy)
+              f
+  method queueOneInstr i = self#queueInstr [i]
+
+
+  (* method get_read_input_instrs () =
+    match (main_argc, main_argv) with
+      | (Some argc, Some argv) ->
+        List.mapi
+          (fun i vi ->
+            (* input_var[i] = argv[i]; *)
+            mpfr_set_str_instr
+            "a"
+          )
+          input_vars
+
+      | _ -> Kernel.fatal "get_read_input_instrs called with args not set" *)
+
+  method! vfile f =
+    List.iter
+      (fun g -> match g with
+        | GFun (fd, _) when fd.svar.vorig_name = entry_name ->
+            entry_point_spec <- Some fd.sspec
+        | _ -> ()
+      )
+     f.globals;
+     if not (Option.is_some entry_point_spec)
+     then Kernel.fatal "no entry point spec found"
+     else Cil.DoChildren
+
+  method ensures_help (_,id_pred) =
+    let _ = extract_from_flt_eq id_pred.ip_content.tp_statement.pred_content in
+    id_pred
+
+  method! vfunc f =
+    if not (Kernel_function.is_main (Option.get self#current_kf))
+    then Cil.SkipChildren
+    else
+      (
+        let () = match f.sformals with
+          | [argc; argv] when (is_int argc && is_char_ptr_ptr argv) ->
+              main_argc <- Some argc;
+              main_argv <- Some argv;
+          | _ -> Kernel.fatal "main does not have argc, **argv as params"
+        in
+        Cil.DoChildren
+      )
+  (* method! vstmt_aux s =
+    if not (s = Cil.dummyStmt)
+    then Cil.SkipChildren
+    else
+      let read_inputs_instrs = self#get_read_input_instrs () in
+      (self#queueOneInstr Cil.dummyInstr;
+      self#queueOneInstr Cil.dummyInstr;
+      Cil.SkipChildren) *)
+
+
+  method! vbehavior be =
+    if Kernel_function.is_entry_point (Option.get self#current_kf) then
+      (match be.b_post_cond with
+        | [] ->
+          Self.feedback "spec has no post condition";
+          Cil.DoChildren
+        | post_li ->
+          let new_post = List.map self#ensures_help post_li in
+          Cil.DoChildren)
+    else
+      Cil.DoChildren
+end
+
+
 (*Gatheres info on how many mpfr vars to create*)
 class mpfr_functions_adder = object (self)
   inherit Visitor.frama_c_inplace
@@ -148,6 +272,15 @@ class mpfr_functions_adder = object (self)
     Visitor.visitFramacFile
               ((self) :> Visitor.frama_c_inplace)
               f
+
+  method! vinst i =
+    if not (Kernel_function.is_main (Option.get self#current_kf)) then
+      Cil.SkipChildren
+    else
+      let () = match i with
+        | Set (_, e, _) -> print_chr_chr_arr e
+        | _ -> ()
+      in Cil.SkipChildren
 
   method! vfile f =
     let fun' = (fun f' ->
@@ -162,10 +295,14 @@ class mpfr_functions_adder = object (self)
 
   method! vfunc fnc =
     let kf = Option.get self#current_kf in
-    let old_name = Kernel_function.get_name kf in
-    let new_name = mk_new_name old_name in
-    Hashtbl.add mpfr_funcs_map kf new_name;
-    Cil.SkipChildren
+    let () = if Kernel_function.is_main kf |> not then
+      let old_name = Kernel_function.get_name kf in
+      let new_name = mk_new_name old_name in
+      Hashtbl.add mpfr_funcs_map kf new_name
+    else
+      ()
+    in
+    Cil.DoChildren
 end
 
 
@@ -178,6 +315,8 @@ let exp_to_vi e = match e.enode with
 
 class flosmc_transformer mpfr_funcs_names = object (self)
   inherit Visitor.frama_c_inplace (*(Project.current ())*)
+
+  val mutable global_vars = ViHashtbl.create 10
 
   val mutable var_stack = Hashtbl.create 10
   val mutable tmp_var_id = Hashtbl.create 10
@@ -195,7 +334,6 @@ class flosmc_transformer mpfr_funcs_names = object (self)
   val mutable fn_mpfr_names_to_vis = Hashtbl.create 10
 
   (*Hack until it breaks, should be an enum of type mpfr_rnd_t*)
-  val rnd_exp = Cil.integer ~loc:unknown_loc 0
 
   method queueOneInstr i = self#queueInstr [i]
 
@@ -222,10 +360,10 @@ class flosmc_transformer mpfr_funcs_names = object (self)
                 vi
 
   method get_local_or_glob_mpfr vi kf =
-    let fnc = if vi.vglob then self#get_global_mpfr else self#get_local_mpfr in
-    fnc vi kf
+    let f = if vi.vglob then self#get_global_mpfr else self#get_local_mpfr kf in
+    f vi
 
-  method get_local_mpfr vi kf =
+  method get_local_mpfr kf vi =
     let locs = match Hashtbl.find_opt loc_mpfr_vars kf with
       | Some locs' -> locs'
       | None -> let locs' = Hashtbl.create 5 in
@@ -242,7 +380,11 @@ class flosmc_transformer mpfr_funcs_names = object (self)
     l_m_vi
 
   method get_global_mpfr vi =
-    Kernel.fatal "global vars not implemented"
+    Self.feedback "len: %d" (ViHashtbl.length global_vars);
+    Self.feedback "glob vi: %a" Printer.pp_varinfo vi;
+    match ViHashtbl.find_opt global_vars vi with
+      | Some m_vi -> m_vi
+      | None -> Kernel.fatal "global var not found"
     (* assert false; (*Not yet implemented*)
     Glob vi *)
 
@@ -311,10 +453,26 @@ class flosmc_transformer mpfr_funcs_names = object (self)
           Queue.clear q;
           Either.Left (ilist, q) *)
 
+  method! vglob_aux g =
+            match g with
+              | GFun(f, _) ->
+                let fun' = (fun g' ->
+                let () = match g' with
+                    | [GFun(f', loc)] ->
+                      if f'.sformals != [] then Self.feedback "global f: %a" Printer.pp_typ f'.svar.vtype else ()
+                    | _ -> ()
+                in
+                  g'
+                )
+                in Cil.DoChildrenPost fun'
+              | _ -> Cil.DoChildren
+
   method current_kf_name () =
     match self#current_kf with
         | Some kf -> Kernel_function.get_name kf
         | None ->  assert false; "dummy"
+
+
 
   method push_float_constant fl kf =
     let mpfr_var = self#fetch_tmp_var kf in
@@ -331,39 +489,64 @@ class flosmc_transformer mpfr_funcs_names = object (self)
       | Some m_name -> Some (Hashtbl.find fn_mpfr_names_to_vis m_name)
       | None -> None
 
+  method add_init_clear_stmt locs =
+    let init_stmt = Cil.mkStmtOneInstr (get_mpfr_inits_instr locs) in
+    let clear_stmt = Cil.mkStmtOneInstr (get_mpfr_clears_instr locs) in
+    (init_stmt, clear_stmt)
 
-  method translate f=
-    let _ = Visitor.visitFramacFileCopy
-              ((self) :> Visitor.frama_c_copy)
+  method translate f =
+    let f' = Visitor.visitFramacFileCopy
+              ((self) :> Visitor.frama_c_inplace)
               f
     in
-    ()
+    f'
 
   method! vfile f =
      let fun' = (fun f' ->
-      f'.globals <- math_include_global::mpfr_include_global::f'.globals;
-      Ast.mark_as_grown ();
+      let new_globs =
+        List.map (fun vi -> GVarDecl (vi, unknown_loc))
+        (List.of_seq (ViHashtbl.to_seq_values global_vars))
+      in
+        (* Updates the list of globals *)
+      f'.globals <- (math_include_global::mpfr_include_global::new_globs) @ f'.globals;
+      (* Self.feedback "%a" Printer.pp_file f'; *)
       f'
     )
     in
+    let filter_fl_vars g =
+      match g with
+        | GVar (vi, _, _) ->
+          if Cil.isFloatingType vi.vtype then Some vi else None
+        | _ -> None
+    in
+    let fl_vars = List.filter_map filter_fl_vars f.globals in
+    global_vars <-
+      ViHashtbl.of_seq
+      (List.to_seq
+      (List.map (fun vi -> (vi, float_to_mpfr_vi vi)) fl_vars));
+    ViHashtbl.iter
+      (fun k v -> Self.feedback "k: %a, v: %a" Printer.pp_varinfo k Printer.pp_varinfo v) global_vars;
     Cil.DoChildrenPost fun'
 
   method! vvrbl vi =
-    let kf = Option.get self#current_kf in
-    let fun' = (fun vi' ->
-      match vi.vtype with
-        |  TFloat(_,_) ->
-          let m_v = self#get_local_or_glob_mpfr vi' kf in
-          (* self#push_var m_v kf; *)
-          m_v
-        | TFun(t, maybe_args, variable, attrs) ->
-          (match self#get_mpfr_fn_vi vi'.vorig_name with
-            | Some m_v -> m_v
-            | None -> vi')
-        | _ -> vi'
-    )
-    in
-    Cil.DoChildrenPost fun'
+    match self#current_kf with
+      | None -> Cil.DoChildren
+      | Some(kf) ->
+        let kf = Option.get self#current_kf in
+        let fun' = (fun vi' ->
+          match vi.vtype with
+            |  TFloat(_,_) ->
+              let m_v = self#get_local_or_glob_mpfr vi' kf in
+              (* self#push_var m_v kf; *)
+              m_v
+            | TFun(t, maybe_args, variable, attrs) ->
+              (match self#get_mpfr_fn_vi vi'.vorig_name with
+                | Some m_v -> m_v
+                | None -> vi')
+            | _ -> vi'
+          )
+      in
+      Cil.DoChildrenPost fun'
 
 
   method! vinst i =
@@ -442,13 +625,13 @@ class flosmc_transformer mpfr_funcs_names = object (self)
       | _ -> Cil.DoChildren
 
 
-  method! vfunc _ =
+  method! vfunc f =
     (* let new_f = Cil.emptyFunction ("m_" ^ f.svar.vname) in *)
     match self#current_kf with
       | Some(kf) ->
         let name = (Kernel_function.get_name kf) in
         if Seq.exists (fun n -> n == name) (Hashtbl.to_seq_values mpfr_funcs_names) then
-          let fun' = ( fun fnc  ->
+          let fun' = ( fun f' ->
             Self.feedback "%s" (Kernel_function.get_name kf);
             (*Fix locals*)
             let tmp_m_locs =
@@ -456,46 +639,58 @@ class flosmc_transformer mpfr_funcs_names = object (self)
             in
             let loc_ht = hashtbl_get_default loc_mpfr_vars kf (Hashtbl.create 1) in
             let og_locs_top_keep =
-              List.filter (fun x -> (Hashtbl.mem loc_ht x) |> not) fnc.slocals in
+              List.filter (fun x -> (Hashtbl.mem loc_ht x) |> not) f'.slocals in
             let loc_m_locs =
               List.filter (fun x -> not x.vformal)
                 (List.of_seq (Hashtbl.to_seq_values loc_ht)) in
             (* let stmts_to_add = List.of_seq (Queue.to_seq stmts) in *)
             let all_m_locs = (tmp_m_locs @ loc_m_locs) in
-            (*Add init stmts for all locals*)
             let all_locs = og_locs_top_keep @ all_m_locs in
-            let init_stmt = Cil.mkStmtOneInstr (get_mpfr_inits_instr all_m_locs) in
-            let clear_stmt = Cil.mkStmtOneInstr (get_mpfr_clears_instr all_m_locs) in
-            fnc.sbody.bstmts <-
-              add_snd_last clear_stmt ([init_stmt] @ fnc.sbody.bstmts);
-            fnc.slocals <- all_locs;
-            fnc.sbody.blocals <- all_locs;
+            let (init_stmt, clear_stmt) = self#add_init_clear_stmt all_m_locs in
+            f'.slocals <- all_locs;
+            f'.sbody.blocals <- all_locs;
+            f'.sbody.bstmts <-
+              add_snd_last clear_stmt ([init_stmt] @ f'.sbody.bstmts);
             let formals = List.map
                             (fun vi'->
-                              (self#get_local_mpfr vi' kf))
+                              (self#get_local_or_glob_mpfr vi' kf))
                             (Kernel_function.get_formals kf)
             in
             let res_vi = self#get_res_vi kf in
             let all_formals = formals @ [res_vi] in
-            Cil.setFormals fnc all_formals;
-            fnc.sformals <- all_formals;
+            let () = Cil.setFormals f' all_formals in
+            f'.sformals <- all_formals;
             let forms_unrolled =
               (List.map (fun a -> (a.vname, a.vtype, a.vattr)) all_formals)
+            in            (* Cil.update_var_type *)
+            let () = match f'.svar.vtype with
+                | TFun(_, args, fa, aa) ->
+                  Cil.setFunctionType f'
+                    (TFun(Cil.voidType, Some forms_unrolled, fa, aa));
+                | _ -> Kernel.fatal ~current:true "not a function type"
             in
-            let _ = match fnc.svar.vtype with
-              | TFun(_, _, fa, aa) ->
-                Cil.setFunctionType fnc
-                  (TFun(Cil.voidType, Some forms_unrolled, fa, aa));
-              | _ -> Kernel.fatal ~current:true "not a function type"
-            Ast.mark_as_grown ();
-            in
-            Hashtbl.add fn_mpfr_names_to_vis name fnc.svar;
-            fnc
-            )
+            Self.feedback "typ: %a" Printer.pp_typ f'.svar.vtype;
+            Hashtbl.add fn_mpfr_names_to_vis name f'.svar;
+            Self.feedback "fdec: %a" Cil_printer.pp_fundec f';
+            f'
+          )
           in
           Cil.DoChildrenPost fun'
         else
-          Cil.SkipChildren
+          if Kernel_function.is_main kf then
+              (let (init_stmt, clear_stmt) =
+                self#add_init_clear_stmt (List.of_seq
+                    (ViHashtbl.to_seq_values global_vars))
+              in
+              f.sbody.bstmts <-
+                add_snd_last clear_stmt
+                  (*Adding dummy stmt, which shall be used by next spec visitor
+                    to insert the specification in mpfr mode
+                  *)
+                  ([mpfr_set_prec_stmt 256;init_stmt;Cil.dummyStmt] @ f.sbody.bstmts);
+              Cil.ChangeTo f)
+          else
+            Cil.SkipChildren
       | _ ->  Cil.SkipChildren
 
   (* method! vinit vi offs it ->

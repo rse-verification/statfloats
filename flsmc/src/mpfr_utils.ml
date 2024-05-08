@@ -4,9 +4,21 @@ module StringMap = Map.Make(String)
 module StringSet = Set.Make(String)
 module IntMap = Map.Make(Int)
 
+module ViHashtbl = Hashtbl.Make(struct
+        type t = varinfo
+        let equal = (fun x y -> x.vorig_name = y.vorig_name)
+        let hash = Hashtbl.hash
+      end)
+
 let unknown_loc = Cil_datatype.Location.unknown
 let zero_exp = Cil.integer ~loc:unknown_loc 0
 let null_exp = Cil.mkCast
+let rnd_exp = Cil.integer ~loc:unknown_loc 0
+
+
+
+
+
 
 
 let mpfr_include_global = GText "#include \"mpfr.h\""
@@ -50,7 +62,9 @@ let mpfr_type =
     treferenced = false;
   }, [])
 
-let mpfr_ptr_type = 
+let mpfr_ptr_type = TPtr (mpfr_type, [])
+
+let mpfr_void_ptr_exp = Cil.mkCast ~newt:mpfr_ptr_type zero_exp
 
 type mpfr_var =
     | Tmp of Cil_types.varinfo
@@ -113,6 +127,14 @@ let mpfr_trans_fn_vi vi =
     let t = (TFun(Cil.intType, Some args, false, [])) in
     make_fn_vi t (mpfr_trans_func_name vi.vorig_name)
 
+
+let mpfr_set_prec_stmt n =
+  let args = [("prec",Cil.intType,[])] in
+  let t = (TFun(Cil.intType, Some args, true, [])) in
+  let fn_vi = make_fn_vi t "mpfr_set_prec" in
+  Cil.mkStmtOneInstr (make_fun_call_instr fn_vi [Cil.integer ~loc:unknown_loc n])
+
+
 let get_mpfr_clears_instr vars =
       let args =
         (List.mapi (fun i _ -> ("v" ^ (string_of_int i), mpfr_type, [])) vars)
@@ -120,7 +142,7 @@ let get_mpfr_clears_instr vars =
       in
       let t = (TFun(Cil.intType, Some args, true, [])) in
       let fn_vi = make_fn_vi t "mpfr_clears" in
-      make_fun_call_instr fn_vi ((varinfos_to_exps vars) @ [zero_exp])
+      make_fun_call_instr fn_vi ((varinfos_to_exps vars) @ [mpfr_void_ptr_exp])
 
 let get_mpfr_inits_instr vars =
     let args =
@@ -129,7 +151,20 @@ let get_mpfr_inits_instr vars =
     in
     let t = (TFun(Cil.intType, Some args, true, [])) in
     let fn_vi = make_fn_vi t "mpfr_inits" in
-    make_fun_call_instr fn_vi ((varinfos_to_exps vars) @ [zero_exp])
+    make_fun_call_instr fn_vi ((varinfos_to_exps vars) @ [mpfr_void_ptr_exp])
+
+let mpfr_set_str_instr ?(base = 10) ?(rnd=rnd_exp) rop str  =
+  let args = [
+    ("rop", mpfr_type, []);
+    ("rop", Cil.charPtrType, []);
+    ("base", Cil.intType, []);
+    ("rnd", mpfr_rnd_type, [])
+  ]
+  in
+  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let fn_vi = make_fn_vi t "mpfr_set_str" in
+  make_fun_call_instr fn_vi [var_to_exp rop; str; rnd]
+
 
 let mpfr_set_instr to' from rnd =
   (* let (m_to, m_from) = (mpfr_var_to_vi to', mpfr_var_to_vi from) in *)
