@@ -136,16 +136,7 @@ let mpfr_ti =
 
 
 
-let float_to_mpfr_vi fl_vi =
-  let m_vi = (Cil.copyVarinfo fl_vi (fl_vi.vname ^ "_mpfr")) in
-  Cil.update_var_type m_vi mpfr_type;
-  m_vi
 
-
-let extract_from_flt_eq p =
-    match p with
-      | Papp ({l_var_info={lv_name="flteq";_}; _}, _, [e; r; d]) ->
-        Some (e,r)
       (* | Prel (Rle, t1, t2) ->
           (Self.feedback "found rel";
             match t1.term_node with
@@ -158,106 +149,16 @@ let extract_from_flt_eq p =
         Self.feedback "dound app"
         | Prel _ ->
           Self.feedback "dound rel 2" *)
-      | _ -> Self.feedback "dound nothing";
-          None
+      (* | _ -> Self.feedback "dound nothing";
+          None *)
 
 
 
-let is_int vi = Cil.isIntegralType vi.vtype
-let is_char_ptr_ptr vi = match vi.vtype with
-  | TPtr (t, _) -> Cil.isAnyCharPtrType t
-  | _ -> false
 
 (* let setInstr =
   Set () *)
 
-class mpfr_spec_adder entry_name = object (self)
-  inherit Visitor.frama_c_inplace
-  val mutable entry_point_spec = None
-  val mutable input_vars = []
 
-  val mutable main_argc = None
-  val mutable main_argv = None
-
-  method add_spec f =
-    input_vars <-
-      List.filter_map
-        ( fun g ->
-            match g with
-              | GVar (vi, _, _) -> Some vi
-              | _ -> None
-        )
-        f.globals;
-    Visitor.visitFramacFileCopy
-              ((self) :> Visitor.frama_c_copy)
-              f
-  method queueOneInstr i = self#queueInstr [i]
-
-
-  (* method get_read_input_instrs () =
-    match (main_argc, main_argv) with
-      | (Some argc, Some argv) ->
-        List.mapi
-          (fun i vi ->
-            (* input_var[i] = argv[i]; *)
-            mpfr_set_str_instr
-            "a"
-          )
-          input_vars
-
-      | _ -> Kernel.fatal "get_read_input_instrs called with args not set" *)
-
-  method! vfile f =
-    List.iter
-      (fun g -> match g with
-        | GFun (fd, _) when fd.svar.vorig_name = entry_name ->
-            entry_point_spec <- Some fd.sspec
-        | _ -> ()
-      )
-     f.globals;
-     if not (Option.is_some entry_point_spec)
-     then Kernel.fatal "no entry point spec found"
-     else Cil.DoChildren
-
-  method ensures_help (_,id_pred) =
-    let _ = extract_from_flt_eq id_pred.ip_content.tp_statement.pred_content in
-    id_pred
-
-  method! vfunc f =
-    if not (Kernel_function.is_main (Option.get self#current_kf))
-    then Cil.SkipChildren
-    else
-      (
-        let () = match f.sformals with
-          | [argc; argv] when (is_int argc && is_char_ptr_ptr argv) ->
-              main_argc <- Some argc;
-              main_argv <- Some argv;
-          | _ -> Kernel.fatal "main does not have argc, **argv as params"
-        in
-        Cil.DoChildren
-      )
-  (* method! vstmt_aux s =
-    if not (s = Cil.dummyStmt)
-    then Cil.SkipChildren
-    else
-      let read_inputs_instrs = self#get_read_input_instrs () in
-      (self#queueOneInstr Cil.dummyInstr;
-      self#queueOneInstr Cil.dummyInstr;
-      Cil.SkipChildren) *)
-
-
-  method! vbehavior be =
-    if Kernel_function.is_entry_point (Option.get self#current_kf) then
-      (match be.b_post_cond with
-        | [] ->
-          Self.feedback "spec has no post condition";
-          Cil.DoChildren
-        | post_li ->
-          let new_post = List.map self#ensures_help post_li in
-          Cil.DoChildren)
-    else
-      Cil.DoChildren
-end
 
 
 (*Gatheres info on how many mpfr vars to create*)

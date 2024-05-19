@@ -24,7 +24,9 @@ let run () =
           (Hashtbl.to_seq myvis2#get_funcs_map))
     in
     let myvis = new flosmc_transformer mpfr_fns in
+    let specparser = new mpfr_contracts_parser "entry" in
     let specvis = new mpfr_spec_adder "entry" in
+
     (* let _ = myvis#translate (Ast.get ()) in *)
 
     (* File.create_project_from_visitor "new_prj"
@@ -32,8 +34,9 @@ let run () =
     (* File.pretty_ast
       ~fmt:(Format.formatter_of_out_channel (open_out "tmp_out.c")) (); *)
     let new_file = myvis#translate (Ast.get ()) in
-    let new_file' = specvis#add_spec new_file in
-    Printer.pp_file (Format.formatter_of_out_channel (open_out "tmp_out.c")) new_file';
+    let new_file2 = specparser#parse_spec new_file in
+    let new_file3 = specvis#add_spec new_file2 in
+    Printer.pp_file (Format.formatter_of_out_channel (open_out "tmp_out.c")) new_file3;
 
 
 
@@ -45,5 +48,9 @@ let run () =
 (*    let () = Hashtbl.iter (fun x y -> Self.feedback "%s: %d" x y) vars_per_func in*)
     ()
 
-let () = Acsl_extension.register_behavior "prob_ensures" type_probContract false
-let () = Db.Main.extend run
+(* let () = Acsl_extension.register_behavior "prob_dist" type_probDist false ~plugin:"flsmc" *)
+let () = Acsl_extension.register_behavior "probPred" type_probPred false ~plugin:"flsmc"
+let () = Acsl_extension.register_behavior "prob" type_prob false ~plugin:"flsmc"
+let () = Acsl_extension.register_behavior "confLevel" type_conf false ~plugin:"flsmc"
+let () = Acsl_extension.register_behavior "prob_ensures" type_probContract false ~plugin:"flsmc"
+let () = Boot.Main.extend run

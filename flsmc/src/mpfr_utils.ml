@@ -195,3 +195,22 @@ let mpfr_set_const_instr fl vi rnd =
   let fl_exp = Cil.new_exp ~loc:unknown_loc fl_enode in
   let vi_exp = var_to_exp vi in
   make_fun_call_instr fn_vi [vi_exp; fl_exp; rnd]
+
+
+
+let float_to_mpfr_vi fl_vi =
+  let m_vi = (Cil.copyVarinfo fl_vi (fl_vi.vname ^ "_mpfr")) in
+  Cil.update_var_type m_vi mpfr_type;
+  m_vi
+
+
+let extract_from_flt_eq p =
+    match p with
+      | Papp ({l_var_info={lv_name="flteq";_}; _}, _, [e; r; d]) ->
+        Some (e,r)
+      | _ -> None
+
+let is_int vi = Cil.isIntegralType vi.vtype
+let is_char_ptr_ptr vi = match vi.vtype with
+  | TPtr (t, _) -> Cil.isAnyCharPtrType t
+  | _ -> false
