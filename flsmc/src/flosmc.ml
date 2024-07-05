@@ -1,6 +1,7 @@
 open Flosmc_visitor
 open Selfplugin
 open Prob_contract
+open Mpfr_utils
 
 
 module Enabled = Self.False
@@ -16,10 +17,18 @@ module MPFRFile = Self.String(struct
   let help = "file where the mpfr code is stored."
 end)
 
-module AnalyzeEnabled = Self.False
+module StatisticalAnalysisEnabled = Self.True
   (struct
-  let option_name = "-flosmc-analyse"
-  let help = "when on (off by default), " ^ help_msg
+  let option_name = "-flosmc-statistical-analysis"
+  let short_name = "-flosmc-stat"
+  let help = "when on (on by default), performs statistical analysis of the rounding error"
+end)
+
+module RealVerificationEnabled = Self.True
+  (struct
+  let option_name = "-flosmc-real-verification"
+  let short_name = "-flosmc-real"
+  let help = "when on (on by default), verifies the contract wrp real semantics"
 end)
 
 module MpfrForExtern = Self.True
@@ -31,37 +40,50 @@ end)
 let generate () =
   Self.feedback "Starting FloSMC, the statistical model checker for floats";
   Self.feedback "Please note that implicit type casting may not be correctly supported";
-  (* Self.feedback "1. %a" Printer.pp_file (Ast.get ()); *)
   let new_prj = Project.create_by_copy ~last:true "new_prj" in
   Project.set_current new_prj;
+  (*Add new empty main function*)
+  let main_adder = new main_name_fixer in
+  let _ = Visitor.visitFramacFileCopy (main_adder :> Visitor.frama_c_copy) (Ast.get ()) in
+  Self.feedback "Done with adding main (0th step)";
+
+  (* Add structs/union defs for mpfr *)
   let struct_vis = new struct_and_union_copier in
   struct_vis#copy_structs (Ast.get ());
+  let structs_map = struct_vis#get_mpfr_strct_union_map () in
+  Self.feedback "Done with adding structs (0.5th step)";
+
+  (*Add function defs for mpfr (not yet rewriting statements)*)
   let myvis2 = new mpfr_functions_adder in
-  (* Self.feedback "%a" Printer.pp_file (Ast.get ()); *)
   let _ = myvis2#add_fns (Ast.get ()) in
   Self.feedback "Done with adding funcs (first step)";
-  (* Self.feedback "%a" Printer.pp_file (Ast.get ()); *)
   let mpfr_fns =
     Hashtbl.of_seq
       (Seq.map (fun (kf, new_name) -> (Kernel_function.get_name kf, new_name))
         (Hashtbl.to_seq myvis2#get_funcs_map))
   in
-  let structs_map = struct_vis#get_mpfr_strct_union_map () in
+
+  (*Rewrite all statements in mpfr_funcs into mpfr_mode. Also changes
+   all variables into mpfr at appropriate places*)
   let myvis = new flosmc_transformer mpfr_fns structs_map in
-  let specparser = new mpfr_contracts_parser mpfr_fns structs_map "entry" in
   let new_file = myvis#translate (Ast.get ()) in
   Self.feedback "done with transforming functions";
+
+  (*Parse the spec into what can be used for statistical analysis*)
+  let specparser = new mpfr_contracts_parser mpfr_fns structs_map "entry" in
   specparser#init_from_transformer myvis;
   let new_file2 = specparser#parse_spec new_file in
   Self.feedback "done with parsing spec";
+
+  (*Print resulting transformed file*)
   Printer.without_annot
     Printer.pp_file
       (Format.formatter_of_out_channel (open_out (MPFRFile.get ()))) new_file2;
+
+  (*Extract user-specified confidence level, probability and diff*)
   let prob, conf = (specparser#get_prob (), specparser#get_conf_level ()) in
   let diff = specparser#get_diff () in
   (prob, conf, diff)
-
-
 
 (*returns out file name*)
 let make_c_file () =

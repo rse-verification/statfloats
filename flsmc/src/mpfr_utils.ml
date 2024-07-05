@@ -1,5 +1,32 @@
 open Cil_types
 
+let unknown_loc = Cil_datatype.Location.unknown
+let zero_exp = Cil.integer ~loc:unknown_loc 0
+let null_exp = Cil.mkCast
+let rnd_exp = Cil.integer ~loc:unknown_loc 0
+
+
+let add_fundec_to_cfg ?(loc=unknown_loc) ?(funspec=Cil.empty_funspec ())
+      new_fundec new_name =
+  let visitor = new Visitor.frama_c_refresh (Project.current()) in
+  Cfg.clearCFGinfo ~clear_id:false new_fundec;
+  Cfg.cfgFun new_fundec;
+  let new_vi = new_fundec.svar in
+  new_vi.vname <- new_name;
+  let new_funspec =
+    Visitor.visitFramacFunspec visitor funspec
+  in
+  (* Creates the kernel function for the clone function. *)
+  let new_kf =
+    (* NOTE: it would be better if the replace function would
+             return the associated kernel function that is new here *)
+    Globals.Functions.replace_by_definition new_funspec new_fundec loc;
+    try Globals.Functions.get new_fundec.svar
+    with Not_found ->
+      Kernel.fatal "No clone kernel function for %s(%d)"
+        new_fundec.svar.vname new_fundec.svar.vid
+  in
+  new_kf
 
 
 module StringMap = Map.Make(String)
@@ -12,10 +39,6 @@ module ViHashtbl = Hashtbl.Make(struct
         let hash = Hashtbl.hash
       end)
 
-let unknown_loc = Cil_datatype.Location.unknown
-let zero_exp = Cil.integer ~loc:unknown_loc 0
-let null_exp = Cil.mkCast
-let rnd_exp = Cil.integer ~loc:unknown_loc 0
 
 
 
@@ -30,7 +53,8 @@ let include_flsmc = GText "#include \"../flsmc.h\""
 let trans_func_names =
   Hashtbl.of_seq (List.to_seq [("sinf", "mpfr_sin");
                                ("cosf", "mpfr_cos");
-                               ("sqrtf", "mpfr_sqrt")])
+                               ("sqrtf", "mpfr_sqrt");
+                               ("pow", "mpfr_pow")])
 
 let is_transendental_fun vi = Hashtbl.mem trans_func_names vi.vorig_name
 let mpfr_trans_func_name = Hashtbl.find trans_func_names
@@ -44,7 +68,7 @@ let make_fun_call_instr ?res:(res_vi_lval = None) fn_vi args =
   let call_exp = make_fun_call_exp fn_vi in
   Call (res_vi_lval, call_exp, args, unknown_loc)
 
-
+(*TODO: AVoid making new vi each time function is used*)
 let make_fn_vi typ name =
     let new_decl = Cil.makeGlobalVar ~temp:false name typ in
     Cil.setFormalsDecl new_decl typ;
@@ -80,6 +104,15 @@ let mpfr_ptr_type = TPtr (mpfr_type, [])
 
 let mpfr_void_ptr_exp = Cil.mkCast ~newt:mpfr_ptr_type zero_exp
 
+let file_type =
+  TNamed({torig_name = "FILE";
+    tname = "FILE";
+    ttype = TInt(IInt, []);   (*Hack just for printing, see if it works...*)
+    treferenced = false;
+  }, [])
+
+let file_ptr_type = TPtr (file_type, [])
+
 type mpfr_var =
     | Tmp of Cil_types.varinfo
     | Loc of Cil_types.varinfo
@@ -93,6 +126,8 @@ let mpfr_var_to_vi m_vi = match m_vi with
 let is_tmp_mpfr_vi m_vi = match m_vi with
     | Tmp _ -> true
     | _     -> false
+
+
 
 (*Returns true if it is a float, an array of floats, a ptr to a float,
   or a structure containing something that has a float
@@ -126,7 +161,28 @@ let lval_to_exp (lh, lo) =
 let varinfos_to_exps vis = List.map var_to_exp vis
 
 
-
+(*Specific class which adds an empty main function and
+  changes the name of the previous function called main (if it exists)
+*)
+class main_name_fixer = object (self)
+  inherit Visitor.frama_c_inplace
+  method! vfile f =
+    List.iter ( function
+        | GFun (fd, loc) when fd.svar.vorig_name = "main" ->
+            ignore (add_fundec_to_cfg ~loc:loc fd "main2")
+        | _ -> ()
+      )
+      f.globals;
+    (*Add new empty main function*)
+    let new_main = Cil.emptyFunction "main" in
+    let main_args = [("argc", Cil.intType, []); ("argv", TPtr(Cil.charPtrType, []), [])] in
+    Cil.setFunctionTypeMakeFormals new_main
+      (TFun (Cil.voidType, Some main_args, false, []));
+    f.globals <- f.globals @ [GFun (new_main, unknown_loc)];
+    ignore (add_fundec_to_cfg new_main "main");
+    Ast.mark_as_changed ();
+    Cil.ChangeTo f
+end
 
 (* float_to_mpfr_vi *)
 let vi_to_mpfr_with_newtype fl_vi newtype =
@@ -134,6 +190,9 @@ let vi_to_mpfr_with_newtype fl_vi newtype =
       let m_vi = Cil_const.copy_with_new_vid fl_vi in
       Cil_const.change_varinfo_name m_vi (fl_vi.vname ^ "_mpfr");
       Cil.update_var_type m_vi newtype;
+      (*If vi is initialised (e.g float x = 2.3;), then vdefined is true.
+        Since mpfr vars are init with call to mpfr_set, this should be false*)
+      m_vi.vdefined <- false;
       m_vi
 
 (*returns true if the operator is a comparison one*)
@@ -141,7 +200,26 @@ let is_compare_op = function
   | Lt | Gt | Le | Ge | Eq | Ne ->  true
   | _ -> false
 
+
 let float_to_mpfr_vi fl_vi = vi_to_mpfr_with_newtype fl_vi mpfr_type
+
+let atoi_fn_vi () =
+  let args = [("li", Cil.charPtrType, [])] in
+  let t = (TFun(Cil.intType, Some args, false, [])) in
+  make_fn_vi t "atoi"
+
+let fopen_fn_vi () =
+  let args = [("fname", Cil.charPtrType, []);
+              ("mode", Cil.charPtrType, [])] in
+  let t = (TFun(file_ptr_type, Some args, false, [])) in
+  make_fn_vi t "fopen"
+
+let fprintf_fn_vi () =
+  let args = [("file", file_ptr_type, []);
+              ("str", Cil.charPtrType, [])] in
+  let t = (TFun(file_ptr_type, Some args, true, [])) in
+  make_fn_vi t "fprintf"
+
 
 let uop_to_mpfr_fn_vi uop =
   let args = [
@@ -324,8 +402,8 @@ let mpfr_set_str_instr ?(base = 10) ?(rnd=rnd_exp) rop str  =
   make_fun_call_instr fn_vi [var_to_exp rop; str; rnd]
 
 
-let mpfr_set_instr to' from rnd =
-  (* let (m_to, m_from) = (mpfr_var_to_vi to', mpfr_var_to_vi from) in *)
+
+let mpfr_set_instr_fn_vi =
   let args = [
     ("rop", mpfr_type, []);
     ("op", mpfr_type, []);
@@ -333,7 +411,11 @@ let mpfr_set_instr to' from rnd =
   ]
   in
   let t = (TFun(Cil.intType, Some args, false, [])) in
-  let fn_vi = make_fn_vi t "mpfr_set" in
+  make_fn_vi t "mpfr_set"
+
+let mpfr_set_instr to' from rnd =
+  (* let (m_to, m_from) = (mpfr_var_to_vi to', mpfr_var_to_vi from) in *)
+  let fn_vi = mpfr_set_instr_fn_vi in
   (* let (to_exp,from_exp) = (var_to_exp to', var_to_exp from) in *)
   make_fun_call_instr fn_vi [to'; from; rnd]
 

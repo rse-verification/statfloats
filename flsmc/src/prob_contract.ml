@@ -82,6 +82,8 @@ let split_into_dist_and_pred l =
     dists;
   (dists, pred)
 
+
+
 (*
   Class which parses the contract of the entry-function, and converts it into
   the sequence of statements in MPFR-mode by replacing the "dummy statement"
@@ -99,9 +101,6 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
   val mutable dists = []
 
   val mutable is_in_old = false
-
-  val mutable diff_var = None
-  val mutable outfile_vi = None
 
   method enter_old = is_in_old <- true
   method exit_old = is_in_old <- false
@@ -157,13 +156,14 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       | None -> Kernel.fatal "no entry vi defined"
 
 
+
   method lval_to_mpfr_exp = function
     | (Var vi, off) ->
         let kf = Option.get self#current_kf in
         lval_to_exp (Var (self#get_local_or_glob_mpfr vi kf), off)
     | _ -> Kernel.fatal "Not supported yet with non-var dist vars"
 
-  method add_dist_instrs () =
+  method get_dist_instrs () =
     let kf = Option.get (self#current_kf) in
     let dist_to_instr d =
       Self.feedback "%s" d.dname;
@@ -186,7 +186,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
         ]
       else Kernel.fatal "only uniform dist supported"
     in
-    self#queueInstr @@ List.concat @@ List.map dist_to_instr dists
+    List.concat @@ List.map dist_to_instr dists
 
   method term_to_expr t =
     Self.feedback "term: %a" Printer.pp_term t;
@@ -196,7 +196,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       | TCast (_, Lreal, t') -> self#term_to_expr t'
       | _ -> Kernel.fatal "not implemented yet term_to_expr"
 
-  method pred_to_spec pred =
+  method pred_to_spec pred fp_vi =
     let kf = Option.get self#current_kf in
     Self.feedback "starting pred_to_spec";
     match pred.pred_content with
@@ -207,21 +207,23 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
         (* self#return_tmp_var kf t1_vi; *)
         let t1_flexp = self#term_to_expr t1 in
         let t1_flvi = self#fetch_tmp_var kf in
-        self#queueOneInstr @@ mpfr_set_const_instr t1_flexp
-          (var_to_exp t1_flvi) rnd_exp;
+        let i1 = mpfr_set_const_instr t1_flexp
+            (var_to_exp t1_flvi) rnd_exp
+        in
         let r_vi = self#fetch_tmp_var kf in
-        let sub_inst = make_binop_mpfr
+        let i2 = make_binop_mpfr
           (t1_rvi) (var_to_exp t1_flvi)
           (var_to_exp r_vi) MinusA rnd_exp
         in
-        let to_vi = Option.get diff_var in
-        let set_d_inst = mpfr_get_d_instr to_vi r_vi rnd_exp in
         self#return_tmp_var kf r_vi;
         self#return_tmp_var kf t1_flvi;
         self#return_tmp_var_exp kf t1_rvi;
-        self#queueInstr [sub_inst; set_d_inst];
-        (t1_flvi, t1_rvi, r_vi)
+        (* self#queueInstr [sub_inst; set_d_inst]; *)
+        (* (t1_flvi, t1_rvi, r_vi) *)
         (* match tl with {}  *)
+        let i4 = self#get_mpfr_print_instr t1_flvi (exp_to_vi t1_rvi) r_vi fp_vi in
+        [i1;i2;i4]
+
       | _ -> Kernel.fatal "not implemented yet other preds"
 
 
@@ -257,13 +259,12 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
     in
     pred <- Some p
 
-  method get_mpfr_print_stmt flvi rvi diffvi =
+  method get_mpfr_print_instr flvi rvi diffvi fp_vi =
     let str = "%.32Rf, %.32Rf, %.32Rf\n" in
     let str_exp = new_exp ~loc:unknown_loc (Const (CStr str)) in
     let instr = mpfr_fprintf_diff_instr
-      (Option.get outfile_vi) str_exp flvi rvi diffvi rnd_exp
-    in
-    Cil.mkStmtOneInstr instr
+      fp_vi str_exp flvi rvi diffvi rnd_exp
+    in instr
 
 
   method! vfile _ = Cil.DoChildren
@@ -279,6 +280,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
     Visitor.visitFramacFileCopy
               ((self) :> Visitor.frama_c_copy)
               f
+
   method is_in_entry_func () =
     match self#current_kf with
       | None -> false
@@ -290,31 +292,77 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
     if self#is_in_entry_func ()
     then (entry_vi <- Some f.svar; Cil.DoChildren)
     else
-      if Kernel_function.is_main (Option.get self#current_kf) then
-        (outfile_vi <- List.find_opt (fun vi -> vi.vorig_name = "fp" ) f.slocals;
-        let fun' = self#add_mpfr_stuff_to_func "main" in
-        diff_var <- List.find_opt (fun vi -> vi.vorig_name = "diff" ) f.slocals;
-        Cil.DoChildrenPost fun')
+      if f.svar.vorig_name = "main" then
+        let fun' = (fun f' -> let f'' = self#add_main_stuff f' in
+                            self#add_mpfr_stuff_to_func "main" f'')
+        in
+        (* diff_var <- List.find_opt (fun vi -> vi.vorig_name = "diff" ) f.slocals; *)
+        Cil.DoChildrenPost fun'
       else
         Cil.SkipChildren (*Avoid traversing other funcs*)
 
 
 
-  method! vstmt_aux s =
-      if not (is_dummy_stmt s)
-      then Cil.DoChildren
-      else
-        (* let instrs = self#pred_to_spec (self#get_pred ()) in
-        self#queueInstr instrs; *)
-        (
-          self#add_dist_instrs ();
-          let mpfr_call_instr = self#get_mpfr_entry_call_instr () in
-          let call_instr =(self#get_entry_call_instr ()) in
-          self#queueInstr [mpfr_call_instr;call_instr];
-          let (flvi, rexp, diffvi) = self#pred_to_spec (self#get_pred ()) in
-          let stmt = self#get_mpfr_print_stmt flvi (exp_to_vi rexp) diffvi in
-          Cil.ChangeTo stmt
-        )
+  method add_main_stuff f =
+    (*add local vars*)
+    let argv_vi = List.find (fun vi -> vi.vorig_name = "argv") f.sformals in
+    let fp = Cil.makeLocalVar f "fp" file_ptr_type in
+    let diff = Cil.makeLocalVar f "diff" Cil.doubleType in
+    let n = Cil.makeLocalVar f "N" Cil.intType in
+    let i = Cil.makeLocalVar f "i" Cil.intType in
+    let loc_vars = [fp;diff;n;i] in
+    (*Open diff file*)
+    let open_file_instr =
+      make_fun_call_instr
+        ~res:(Some (vi_to_varlval fp))
+        (fopen_fn_vi ())
+        [Cil.mkString ~loc:unknown_loc "../output_files/diff.csv";
+        Cil.mkString ~loc:unknown_loc "w"]
+    in
+    let fprintf_instr =
+      make_fun_call_instr
+        ~res:None
+        (fprintf_fn_vi ())
+        [var_to_exp fp;Cil.mkString ~loc:unknown_loc "float_res, real_res, diff\n"]
+    in
+    (*Read loop guard, N= atoi(argv[1])*)
+    let read_N_instr =
+      make_fun_call_instr ~res:(Some (vi_to_varlval n)) (atoi_fn_vi ())
+        [Cil.new_exp ~loc:unknown_loc
+          (Lval (Var argv_vi, Index (Cil.one ~loc:unknown_loc, NoOffset)))]
+    in
+    let before_loop_stmts = List.map Cil.mkStmtOneInstr
+      [open_file_instr; fprintf_instr; read_N_instr]
+    in
+    (*Make loop body*)
+    let dist_instrs = self#get_dist_instrs () in
+    let mpfr_call_instr = self#get_mpfr_entry_call_instr () in
+    let call_instr =(self#get_entry_call_instr ()) in
+    (* self#queueInstr [mpfr_call_instr;call_instr]; *)
+    let pred_instrs = self#pred_to_spec (self#get_pred ()) fp in
+    let body = List.map Cil.mkStmtOneInstr
+        (dist_instrs @ [mpfr_call_instr;call_instr] @ pred_instrs)
+    in
+    (*Make loop*)
+    let loop_stmt = Cil.mkForIncr ~iter:i
+      ~first:(Cil.zero ~loc:unknown_loc) ~stopat:(var_to_exp n)
+      ~incr:(Cil.one ~loc:unknown_loc) ~body:body ()
+    in
+    (*Add init and clear statement*)
+    let (init_stmt, clear_stmt) =
+      self#add_init_clear_stmt (List.of_seq
+          (ViHashtbl.to_seq_values glob_mpfr_vars))
+    in
+    (*Make the block*)
+    let body_block = Cil.mkBlock
+      ([mpfr_set_prec_stmt 256;init_stmt] @
+        before_loop_stmts @ loop_stmt @ [clear_stmt])
+    in
+    body_block.blocals <- loc_vars;
+    f.sbody <- body_block;
+    f.slocals <- loc_vars;
+    f
+
 
   method! vspec s =
     let kf = Option.get self#current_kf in
@@ -350,80 +398,3 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
         | _ -> Kernel.fatal "multiple behaviors not supported"
         )
 end
-
-
-(* class mpfr_spec_adder entry_name = object (self)
-  inherit Visitor.frama_c_inplace
-  val mutable entry_point_spec = None
-  val mutable input_vars = []
-
-  val mutable main_argc = None
-  val mutable main_argv = None
-
-  method add_spec f =
-    input_vars <-
-      List.filter_map
-        ( fun g ->
-            match g with
-              | GVar (vi, _, _) -> Some vi
-              | _ -> None
-        )
-        f.globals;
-    Visitor.visitFramacFileCopy
-              ((self) :> Visitor.frama_c_copy)
-              f
-  method queueOneInstr i = self#queueInstr [i]
-
-
-
-  method! vfile f =
-    List.iter
-      (fun g -> match g with
-        | GFun (fd, _) when fd.svar.vorig_name = entry_name ->
-            entry_point_spec <- Some fd.sspec
-        | _ -> ()
-      )
-     f.globals;
-     if not (Option.is_some entry_point_spec)
-     then Kernel.fatal "no entry point spec found"
-     else Cil.DoChildren
-
-  method ensures_help (_,id_pred) =
-    let _ = extract_from_flt_eq id_pred.ip_content.tp_statement.pred_content in
-    id_pred
-
-  method! vfunc f =
-    if not (Kernel_function.is_main (Option.get self#current_kf))
-    then Cil.SkipChildren
-    else
-      (
-        let () = match f.sformals with
-          | [argc; argv] when (is_int argc && is_char_ptr_ptr argv) ->
-              main_argc <- Some argc;
-              main_argv <- Some argv;
-          | _ -> Kernel.fatal "main does not have argc, **argv as params"
-        in
-        Cil.DoChildren
-      )
-  (* method! vstmt_aux s =
-    if not (s = Cil.dummyStmt)
-    then Cil.SkipChildren
-    else
-      let read_inputs_instrs = self#get_read_input_instrs () in
-      (self#queueOneInstr Cil.dummyInstr;
-      self#queueOneInstr Cil.dummyInstr;
-      Cil.SkipChildren) *)
-
-
-  method! vbehavior be =
-    if Kernel_function.is_entry_point (Option.get self#current_kf) then
-      (match be.b_post_cond with
-        | [] ->
-          Self.debug "spec has no post condition";
-          Cil.DoChildren
-        | post_li ->
-          let new_post = List.map self#ensures_help post_li in
-          Cil.DoChildren)
-    else
-      Cil.DoChildren
-end *)

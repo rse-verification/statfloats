@@ -1,4 +1,5 @@
 open Cil_types
+open Mpfr_utils
 
 (** Experimental module *)
 
@@ -19,24 +20,8 @@ let clone_function_definition old_kf new_name =
   visitor#set_current_func old_fundec;
   let new_fundec = Visitor.visitFramacFunction visitor old_fundec in
   (* update the CFG and sallstmts field *)
-  Cfg.clearCFGinfo ~clear_id:false new_fundec;
-  Cfg.cfgFun new_fundec;
-  let new_vi = new_fundec.svar in
-  new_vi.vname <- new_name;
-  let new_funspec =
-    Visitor.visitFramacFunspec visitor old_funspec
-  in
-  (* Creates the kernel function for the clone function. *)
-  let new_kf =
-    (* NOTE: it would be better if the replace function would
-             return the associated kernel function that is new here *)
-    Globals.Functions.replace_by_definition new_funspec new_fundec old_loc;
-    try Globals.Functions.get new_fundec.svar
-    with Not_found ->
-      Kernel.fatal "No clone kernel function for %s(%d)"
-        new_fundec.svar.vname new_fundec.svar.vid
-  in
-  new_kf
+  add_fundec_to_cfg ~loc:old_loc ~funspec:old_funspec
+    new_fundec new_name
 
 (** Returns a clone of a kernel function and adds it into the current AST *)
 let clone_defined_kernel_function old_kf new_name f =

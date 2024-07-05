@@ -333,7 +333,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
   method get_local_mpfr kf vi =
     let locs = match Hashtbl.find_opt loc_mpfr_vars (Kernel_function.get_name kf) with
       | Some locs' -> locs'
-      | None -> (Kernel.debug ~level:3 "Found no locs";
+      | None -> (Kernel.debug ~level:3 "Found no locs in %s" (Kernel_function.get_name kf);
                 let locs' = Hashtbl.create 20 in
                 Hashtbl.add loc_mpfr_vars (Kernel_function.get_name kf) locs';
                 locs')
@@ -347,8 +347,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           Hashtbl.add locs vi l_m_vi';
           l_m_vi'
     in
-    Kernel.debug ~level:3 "SND";
-    Hashtbl.iter (fun a b -> Kernel.debug ~level:3 "v: %a - %a" Printer.pp_varinfo a Printer.pp_varinfo b) locs;
+    Hashtbl.iter (fun a b -> Kernel.debug ~level:3 "in %s: %a - %a" (Kernel_function.get_name kf) Printer.pp_varinfo a Printer.pp_varinfo b) locs;
     l_m_vi
 
   method get_global_mpfr vi =
@@ -549,13 +548,8 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
               | [Call (Some (Var vi', _), e', args_exps', loc')] ->
                   (*Check if transendental, then use mpfr version for this*)
                   if (is_transendental_fun (exp_to_vi e')) then
-                    match args_exps' with
-                      | [arg] ->
-                      [Call (None, var_to_exp (mpfr_trans_fn_vi (exp_to_vi e')),
-                        ((var_to_exp vi')::args_exps') @ [zero_exp], loc')]
-                      | _ -> Kernel.fatal "should be only one arg in trans"
-                    (*assumes only one arg in args_exp, eg sinf(x)*)
-
+                        [Call (None, var_to_exp (mpfr_trans_fn_vi (exp_to_vi e')),
+                          ((var_to_exp vi')::args_exps') @ [zero_exp], loc')]
                   else
                     [Call (None, e', args_exps' @ [var_to_exp vi'], loc')]
                   (* [mpfr_set_instr vi' e_var rnd_exp] *)
@@ -565,18 +559,11 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
             in
             Cil.DoChildrenPost fun'
 
-      | Local_init (vi, li, _) ->
+      | Local_init (vi, AssignInit (SingleInit e), _) when Cil.isFloatingType vi.vtype ->
           let fun' = (fun i' ->
             match i' with
-              | [Local_init (vi', li', loc')] ->
-                (match li' with
-                  | AssignInit (SingleInit e) ->
-                    let e' =
-                      Visitor.visitFramacExpr (self :> Visitor.frama_c_copy) e
-                    in
-                    [Set (Cil.var vi', e', loc')]
-                  | _ -> Kernel.fatal "not supported1"
-                )
+              | [Local_init (vi', AssignInit (SingleInit e'), loc)] ->
+                  [mpfr_set_instr (var_to_exp vi') e' rnd_exp]
               | _ -> Kernel.fatal "some weird happened"
           )
           in Cil.DoChildrenPost fun'
@@ -606,17 +593,18 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
 
   method add_mpfr_stuff_to_func name f' =
     let kf = Option.get self#current_kf in
-    Self.debug "%s" (Kernel_function.get_name kf);
     (*Fix locals*)
     let tmp_m_locs =
       (hashtbl_get_default tmp_var_queue (Kernel_function.get_name kf) (new tmpVarQueue))#to_list
     in
     let loc_ht = hashtbl_get_default loc_mpfr_vars (Kernel_function.get_name kf) (Hashtbl.create 1) in
+    Kernel.debug ~level:3 "Adding mpfr stuff for: %s" (Kernel_function.get_name kf);
     let og_locs_to_keep =
       List.filter (fun x -> (Hashtbl.mem loc_ht x) |> not) f'.slocals in
     let loc_m_locs =
       List.filter (fun x -> not x.vformal)
         (List.of_seq (Hashtbl.to_seq_values loc_ht)) in
+
     (* let stmts_to_add = List.of_seq (Queue.to_seq stmts) in *)
     let all_m_locs = (tmp_m_locs @ loc_m_locs) in
     let all_locs = og_locs_to_keep @ all_m_locs in
@@ -662,21 +650,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           let fun' = self#add_mpfr_stuff_to_func name in
           Cil.DoChildrenPost fun')
         else
-          if Kernel_function.is_main kf then
-              (let (init_stmt, clear_stmt) =
-                self#add_init_clear_stmt (List.of_seq
-                    (ViHashtbl.to_seq_values glob_mpfr_vars))
-              in
-              f.sbody.bstmts <-
-                add_snd_last clear_stmt
-                  (*Adding dummy stmt, which shall be used by next spec visitor
-                    to insert the specification in mpfr mode
-                  *)
-                  (* ([mpfr_set_prec_stmt 256;init_stmt;Cil.dummyStmt] @ f.sbody.bstmts); *)
-                  ([mpfr_set_prec_stmt 256;init_stmt] @ f.sbody.bstmts);
-              Cil.ChangeTo f)
-          else
-            Cil.SkipChildren
+          Cil.SkipChildren
       | _ ->  Cil.SkipChildren
 
   (* method! vinit vi offs it ->
