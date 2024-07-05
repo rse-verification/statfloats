@@ -463,17 +463,15 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
         (List.of_seq (ViHashtbl.to_seq_values (self#get_glob_mpfr_vars ())))
       in
         (* Updates the list of globals *)
-      f'.globals <- (math_include_global::mpfr_include_global::include_flsmc::new_globs) @ f'.globals;
-      (* f'.globals <- new_globs @ f'.globals; *)
-
-      (* Self.feedback "%a" Printer.pp_file f'; *)
+      f'.globals <- (include_flsmc::new_globs) @ f'.globals;
       f'
     )
     in
     let filter_fl_vars g =
       match g with
         | GVar (vi, _, _) when viHasFloatingType vi.vtype -> Some vi
-        | GVarDecl (vi, _) when vi.vstorage = Extern && viHasFloatingType vi.vtype -> Some vi
+        | GVarDecl (vi, _) when vi.vstorage = Extern &&
+            viHasFloatingType vi.vtype -> Some vi
         | _ -> None
     in
     let fl_vars = List.filter_map filter_fl_vars f.globals in
@@ -483,7 +481,8 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       (List.map (fun vi -> (vi, vi_to_mpfr_with_newtype vi
                     (Option.get (self#get_mpfr_type vi.vtype)))) fl_vars));
     ViHashtbl.iter
-      (fun k v -> Self.debug "k: %a, v: %a" Printer.pp_varinfo k Printer.pp_varinfo v) glob_mpfr_vars;
+      (fun k v -> Self.debug "k: %a, v: %a"
+        Printer.pp_varinfo k Printer.pp_varinfo v) glob_mpfr_vars;
     Cil.DoChildrenPost fun'
 
   method! vvrbl vi =
