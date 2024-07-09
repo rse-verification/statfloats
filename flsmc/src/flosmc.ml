@@ -1,47 +1,16 @@
 open Flosmc_visitor
 open Selfplugin
-open Prob_contract
+open Parse_prob_contract
 open Mpfr_utils
+open Real_verifier
 
-
-module Enabled = Self.False
-  (struct
-  let option_name = "-flosmc"
-  let help = "when on (off by default), " ^ help_msg
-end)
-
-module MPFRFile = Self.String(struct
-  let option_name = "-mpfr-file"
-  let default = "/home/jesper/Documents/floats/statfloats/flsmc/output_files/out.c"
-  let arg_name = "mpfr-file"
-  let help = "file where the mpfr code is stored."
-end)
-
-module StatisticalAnalysisEnabled = Self.True
-  (struct
-  let option_name = "-flosmc-statistical-analysis"
-  let short_name = "-flosmc-stat"
-  let help = "when on (on by default), performs statistical analysis of the rounding error"
-end)
-
-module RealVerificationEnabled = Self.True
-  (struct
-  let option_name = "-flosmc-real-verification"
-  let short_name = "-flosmc-real"
-  let help = "when on (on by default), verifies the contract wrp real semantics"
-end)
-
-module MpfrForExtern = Self.True
-  (struct
-  let option_name = "-flosmc-extern-mpfr"
-  let help = "when on (on by default), creates mpfr-vars for all floats declared with 'extern'"
-end)
 
 let generate () =
   Self.feedback "Starting FloSMC, the statistical model checker for floats";
   Self.feedback "Please note that implicit type casting may not be correctly supported";
-  let new_prj = Project.create_by_copy ~last:true "new_prj" in
-  Project.set_current new_prj;
+  let stat_prj = Project.create_by_copy ~last:true "stat_prj" in
+  let real_prj = Project.create_by_copy ~last:true "real_prj" in
+  Project.set_current stat_prj;
   (*Add new empty main function*)
   let main_adder = new main_name_fixer in
   let _ = Visitor.visitFramacFileCopy (main_adder :> Visitor.frama_c_copy) (Ast.get ()) in
@@ -76,14 +45,22 @@ let generate () =
   Self.feedback "done with parsing spec";
 
   (*Print resulting transformed file*)
-  Printer.without_annot
-    Printer.pp_file
+  Printer.pp_file
       (Format.formatter_of_out_channel (open_out (MPFRFile.get ()))) new_file2;
 
+  (*Parse spec into deterministic pred over reals*)
+  Project.set_current real_prj;
+  let realvis = new real_verifier "entry" in
+  let new_file3 = Visitor.visitFramacFileCopy
+    (realvis :> Visitor.frama_c_copy) (Ast.get ()) in
+
+  Printer.pp_file
+    (Format.formatter_of_out_channel (open_out "real_out.c")) new_file3;
+
   (*Extract user-specified confidence level, probability and diff*)
-  let prob, conf = (specparser#get_prob (), specparser#get_conf_level ()) in
-  let diff = specparser#get_diff () in
-  (prob, conf, diff)
+  (* let prob, conf = (specparser#get_prob (), specparser#get_conf_level ()) in
+  let diff = specparser#get_diff () in *)
+  specparser
 
 (*returns out file name*)
 let make_c_file () =
@@ -110,12 +87,13 @@ let make_c_file () =
 
 let run () =
   if (Enabled.get ()) then
-    (let prob, conf, diff = generate () in
+    (let specparser = generate () in
     (* if (AnalyzeEnabled.get ()) then *)
     let out_name = make_c_file () in
     let csv_fname = "../output_files/diff.csv" in
+    let flt_eq = specparser#make_flteq_contract () in
     let sa = new Statistical_analyser.statistical_analyser
-      out_name csv_fname prob conf diff
+      out_name csv_fname flt_eq
     in
     sa#analyse ()
     )

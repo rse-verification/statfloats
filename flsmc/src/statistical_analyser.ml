@@ -1,5 +1,9 @@
 open Csv
 open Selfplugin
+open Prob_contract
+open Cil_types
+open Owl
+
 
 let get_csv_col header csv =
   let headers, data = match csv with h :: d -> h, d | [] -> assert false in
@@ -7,6 +11,8 @@ let get_csv_col header csv =
   List.concat (List.map (fun l ->
       List.map snd (List.filter (fun s ->
           fst s = header) l)) data2)
+
+
 
 let conf_level eps n =
   Self.feedback "EPS: %f, n: %d" eps n;
@@ -26,7 +32,30 @@ let one_sided_conf_test req_v meas_v n =
      Either.Left (conf_level eps n))
 
 
-class statistical_analyser bin csv_fname prob conf diff = object (self)
+class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object (self)
+  method get_sample_funs = function
+    | d::t ->
+      (match d with
+        | {dname="Uniform"; dvar=x; dparams=[a;b]} ->
+          Self.debug ~level:3 "found dist";
+          let [fl_a; fl_b] = List.map (fun x -> x.r_nearest) [a;b] in
+          let f' = (fun () -> Stats.uniform_rvs ~a:fl_a ~b:fl_b) in
+          (x, f')::(self#get_sample_funs t)
+        | {dname=dname;_} -> Kernel.fatal "only uniform dist currenly supported: %s" dname)
+    | [] ->
+      Self.debug ~level:3 "found  no more dist";
+      []
+
+  method do_samples n =
+    Self.feedback "Starting sampleing";
+    let sample_fns = self#get_sample_funs (prob_contract#get_dists ()) in
+    let samples = List.init n
+      (fun _ -> List.map (fun (_,f') -> string_of_float (f' ())) sample_fns) in
+    let headers = List.map (fun (x, _) ->
+      Format.asprintf "%a" Printer.pp_term x) sample_fns
+    in
+    (* List.iter (List.iter (fun x -> Self.feedback "%s" x)) (headers::samples); *)
+    Csv.save ~separator:',' "../output_files/samples.csv" (samples)
 
   method run_file n =
     let exec_cmd = Printf.sprintf "%s %d" bin n in
@@ -41,7 +70,7 @@ class statistical_analyser bin csv_fname prob conf diff = object (self)
     Q.div qdata2 (Q.of_int (List.length qdata))
 
   method get_meas_prob () =
-    let diff_q = Q.of_float diff in
+    let diff_q = Q.of_float (prob_contract#get_fl_diff ()) in
     let x = Csv.load csv_fname in
     (* Self.feedback "q:%s" (snd (List.hd @@ List.hd data)); *)
     let data2 = get_csv_col "diff" x in
@@ -50,17 +79,21 @@ class statistical_analyser bin csv_fname prob conf diff = object (self)
     (float_of_int (List.length bools)) /. (float_of_int (List.length qdata))
 
   method analyse () =
-    let n = 1000 in
+    let n = NrExecs.get () in
+    self#do_samples n;
+    (* self.do_samples (); *)
     self#run_file n;
     (* let avg = self#calc_avg () in *)
     (* Self.feedback "AVG: %.17g" (Q.to_float avg); *)
     (* let meas_conf = self#get_meas_conf_level () in *)
     let meas_prob = self#get_meas_prob () in
-    Self.feedback "Measured prob: %f" meas_prob;
-    let meas_conf = one_sided_conf_test prob meas_prob n in
+    Self.debug ~level:3 "Measured prob: %f" meas_prob;
+    let meas_conf = one_sided_conf_test
+      (prob_contract#get_prob ()) meas_prob n
+    in
     match meas_conf with
       | Left c ->
-          let () = if c < conf then
+          let () = if c < (prob_contract#get_confLevel ()) then
             Self.feedback "Success!"
           else
             Self.feedback "Failure!\n\
@@ -70,10 +103,11 @@ class statistical_analyser bin csv_fname prob conf diff = object (self)
             "Stats\n\
             Measured probability: %f  Requested probability: %f \n \
             Measured conf level: %f   Requested conf level: %f"
-            meas_prob prob c conf
+            meas_prob (prob_contract#get_prob ())
+                      c (prob_contract#get_confLevel ())
       | Right c ->
           Self.feedback "Failure!\n\
             The measured probability is smaller than the specified \n\
             Measured probability: %f  Requested probability: %f \n "
-            meas_prob prob
+            meas_prob (prob_contract#get_prob ())
 end

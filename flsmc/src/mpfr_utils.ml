@@ -1,4 +1,5 @@
 open Cil_types
+open Selfplugin
 
 let unknown_loc = Cil_datatype.Location.unknown
 let zero_exp = Cil.integer ~loc:unknown_loc 0
@@ -39,15 +40,36 @@ module ViHashtbl = Hashtbl.Make(struct
         let hash = Hashtbl.hash
       end)
 
+let type_of_const : constant -> typ = function
+  | CInt64 (_, ik, _) -> Cil_types.TInt (ik, [])
+  | CChr _ -> Cil.intType
+  | CStr _ -> Cil.theMachine.stringLiteralType
+  | CWStr _ -> TPtr (Cil.theMachine.wcharType, [])
+  | CReal (_, fk, _) -> TFloat (fk, [])
+  | CEnum _ -> Cil.intType
 
 
 
-
-
+(*From: https://git.frama-c.com/pub/frama-c/-/blob/master/src/plugins/eva/ast/eva_ast_typing.ml*)
+let type_of_exp_node : exp_node -> typ = function
+  | Const c -> type_of_const c
+  | Lval lv -> Cil.type_remove_qualifier_attributes (Cil.typeOfLval lv)
+  | UnOp (_, _, t) -> t
+  | BinOp (_, _, _, t) -> t
+  | CastE (t, _) -> t
+  | AddrOf lv -> TPtr (Cil.typeOfLval lv, [])
+  | StartOf lv ->
+    match Cil.unrollType (Cil.typeOfLval lv) with
+    | TArray (t, _, attrs) -> TPtr (t, attrs)
+    | _ ->  assert false
 
 let mpfr_include_global = GText "#include \"mpfr.h\""
 let math_include_global = GText "#include \"math.h\""
 let include_flsmc = GText "#include \"../flsmc.h\""
+
+let term_to_fl_const t = match t.term_node with
+  | TConst (LReal lr) -> lr.r_nearest
+  | _ -> Kernel.fatal "only constants in float expected here"
 
 
 let trans_func_names =
@@ -55,6 +77,24 @@ let trans_func_names =
                                ("cosf", "mpfr_cos");
                                ("sqrtf", "mpfr_sqrt");
                                ("pow", "mpfr_pow")])
+
+let make_id_pred_from_pred_node ?(names=[]) ?(loc=unknown_loc) pn =
+  Logic_const.new_predicate {pred_name=names;pred_loc=loc;pred_content=pn}
+
+(*checks last is pred and all prrevious ones are dists*)
+let split_into_dist_and_pred l =
+  let rev_l = List.rev l in
+  let pred = match (List.hd rev_l).ext_kind with
+    | Ext_annot ("ProbClause", _) as p -> List.hd rev_l
+    |  _ -> Kernel.fatal "last is not prob_ensures"
+  in
+  let dists = List.rev (List.tl rev_l) in
+  List.iter (fun x -> match x with
+    | {ext_name="distribution";_} -> ()
+    | _ -> Kernel.fatal "Not a distribution where expected one")
+    dists;
+  (dists, pred)
+
 
 let is_transendental_fun vi = Hashtbl.mem trans_func_names vi.vorig_name
 let mpfr_trans_func_name = Hashtbl.find trans_func_names
@@ -221,6 +261,17 @@ let fprintf_fn_vi () =
   make_fn_vi t "fprintf"
 
 
+let fscanf_fn_vi mem_types =
+  let args = [
+      ("file", file_ptr_type, []);
+      ("str", Cil.charConstPtrType, []);
+    ] @ List.mapi (fun i t -> (string_of_int i, t, [])) mem_types
+  in
+  let t = (TFun(Cil.intType, Some args, true, [])) in
+  let fn_vi = make_fn_vi t "fscanf" in
+  let t = (TFun(file_ptr_type, Some args, true, [])) in
+  make_fn_vi t "fscanf"
+
 let uop_to_mpfr_fn_vi uop =
   let args = [
               ("rop", mpfr_type, []);
@@ -266,6 +317,27 @@ let bop_to_mpfr_fn_vi oper =
   let f = Ast.get () in
   Cil.findOrCreateFunc f op_fn_name
   (TFun(Cil.intType, Some args, false, []))
+
+(*given args = x,y, generates fscanf(fp, "%f,%f,%f", &x, &y)*)
+let make_fscanf_instr ?(sep=",") fp args =
+  let mem_args = List.map (Cil.mkAddrOrStartOf ~loc:unknown_loc) args in
+  let mem_types = List.map (fun e -> type_of_exp_node e.enode) mem_args in
+  let get_token t = match t with
+    | TPtr(t', _) ->
+        (match Cil.unrollType t' with
+          | TInt(IInt,_) -> "%d"
+          | TFloat(FFloat, _) -> "%f"
+          | TFloat(FDouble, _) -> "%lf"
+          | _ ->
+            (Self.debug ~level:3 "type: %a" Printer.pp_typ t;
+            Kernel.fatal "not implemented other yet"))
+    | _ -> Kernel.fatal "Expected ptr here: %a" Printer.pp_typ t;
+  in
+  let tokens = List.map get_token mem_types in
+  let fn_vi = fscanf_fn_vi mem_types in
+  let format_str = Cil.mkString ~loc:unknown_loc
+    @@ (String.concat sep tokens) ^ "\n" in
+  make_fun_call_instr fn_vi @@ [fp;format_str] @ mem_args
 
 let make_unop_mpfr e r uop rnd_exp =
   let vi = uop_to_mpfr_fn_vi uop in
@@ -320,26 +392,6 @@ let mpfr_exps_from_struct_vi vi =
           fs
     | _ -> Kernel.fatal "Dont call this function with non-cinfo vi"
 
-let type_of_const : constant -> typ = function
-      | CInt64 (_, ik, _) -> Cil_types.TInt (ik, [])
-      | CChr _ -> Cil.intType
-      | CStr _ -> Cil.theMachine.stringLiteralType
-      | CWStr _ -> TPtr (Cil.theMachine.wcharType, [])
-      | CReal (_, fk, _) -> TFloat (fk, [])
-      | CEnum _ -> Cil.intType
-
-(*From: https://git.frama-c.com/pub/frama-c/-/blob/master/src/plugins/eva/ast/eva_ast_typing.ml*)
-let type_of_exp_node : exp_node -> typ = function
-  | Const c -> type_of_const c
-  | Lval lv -> Cil.type_remove_qualifier_attributes (Cil.typeOfLval lv)
-  | UnOp (_, _, t) -> t
-  | BinOp (_, _, _, t) -> t
-  | CastE (t, _) -> t
-  | AddrOf lv -> TPtr (Cil.typeOfLval lv, [])
-  | StartOf lv ->
-    match Cil.unrollType (Cil.typeOfLval lv) with
-    | TArray (t, _, attrs) -> TPtr (t, attrs)
-    | _ ->  assert false
 
 
 
@@ -356,6 +408,7 @@ let exp_is_float_binop = function
          Cil.isFloatingType (type_of_exp_node a.enode)
     -> true
   | _ -> false
+
 
 (*Make*)
 let get_mpfr_initOrClear_instr vars fname =
@@ -424,7 +477,7 @@ let mpfr_set_instr to' from rnd =
   (* mpfr_add(res1, tmp1, res1, MPFR_RNDN); *)
     (* Call of lval option * exp * exp list * location *)
 (* Create a call instr to mpfr_set_flt, from a float constant fl to variable vi *)
-let mpfr_set_const_instr fl_exp m_exp rnd =
+let mpfr_set_flt_instr fl_exp m_exp rnd =
   let args = [
     ("rop", mpfr_type, []);
     ("op", mpfr_type, []);

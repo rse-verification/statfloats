@@ -313,7 +313,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     | TFloat _  -> Some mpfr_type
     | TComp (ci, a) -> (match Hashtbl.find_opt mpfr_structs_map ci with
                   | Some ci' -> Some (TComp (ci', a)) | None -> None)
-    | t -> Kernel.debug ~level:3 "no type for: %a" Printer.pp_typ t; None
+    | t -> Self.debug ~level:3 "no type for: %a" Printer.pp_typ t; None
 
   method get_res_vi kf =
     match Hashtbl.find_opt res_vars kf with
@@ -326,14 +326,14 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     let m_vi = if vi.vglob then self#get_global_mpfr vi else
       self#get_local_mpfr kf vi
     in
-    Kernel.debug ~level:3 "Getting m_vi: %a %a" Printer.pp_varinfo vi Printer.pp_varinfo m_vi;
+    Self.debug ~level:3 "Getting m_vi: %a %a" Printer.pp_varinfo vi Printer.pp_varinfo m_vi;
     m_vi
 
 (*returns mpfr version of local var, should only be called if mpfr can be created*)
   method get_local_mpfr kf vi =
     let locs = match Hashtbl.find_opt loc_mpfr_vars (Kernel_function.get_name kf) with
       | Some locs' -> locs'
-      | None -> (Kernel.debug ~level:3 "Found no locs in %s" (Kernel_function.get_name kf);
+      | None -> (Self.debug ~level:3 "Found no locs in %s" (Kernel_function.get_name kf);
                 let locs' = Hashtbl.create 20 in
                 Hashtbl.add loc_mpfr_vars (Kernel_function.get_name kf) locs';
                 locs')
@@ -347,7 +347,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           Hashtbl.add locs vi l_m_vi';
           l_m_vi'
     in
-    Hashtbl.iter (fun a b -> Kernel.debug ~level:3 "in %s: %a - %a" (Kernel_function.get_name kf) Printer.pp_varinfo a Printer.pp_varinfo b) locs;
+    Hashtbl.iter (fun a b -> Self.debug ~level:3 "in %s: %a - %a" (Kernel_function.get_name kf) Printer.pp_varinfo a Printer.pp_varinfo b) locs;
     l_m_vi
 
   method get_global_mpfr vi =
@@ -424,7 +424,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     let mpfr_var = self#fetch_tmp_var kf in
     let fl_enode = Const (CReal (fl, FFloat, None)) in
     let fl_exp = Cil.new_exp ~loc:unknown_loc fl_enode in
-    self#queueOneInstr (mpfr_set_const_instr fl_exp
+    self#queueOneInstr (mpfr_set_flt_instr fl_exp
         (var_to_exp mpfr_var) rnd_exp);
     (* self#push_var mpfr_var kf; *)
     mpfr_var
@@ -434,7 +434,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     Stack.pop st *)
 
   method get_mpfr_fn_vi og_name =
-    Kernel.debug ~level:3 "fn_vi: %s" og_name;
+    Self.debug ~level:3 "fn_vi: %s" og_name;
     match Hashtbl.find_opt mpfr_funcs_names og_name with
       | Some m_name -> Some (Hashtbl.find fn_mpfr_names_to_vis m_name)
       | None -> None
@@ -597,7 +597,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       (hashtbl_get_default tmp_var_queue (Kernel_function.get_name kf) (new tmpVarQueue))#to_list
     in
     let loc_ht = hashtbl_get_default loc_mpfr_vars (Kernel_function.get_name kf) (Hashtbl.create 1) in
-    Kernel.debug ~level:3 "Adding mpfr stuff for: %s" (Kernel_function.get_name kf);
+    Self.debug ~level:3 "Adding mpfr stuff for: %s" (Kernel_function.get_name kf);
     let og_locs_to_keep =
       List.filter (fun x -> (Hashtbl.mem loc_ht x) |> not) f'.slocals in
     let loc_m_locs =
@@ -640,12 +640,12 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
 
   method! vfunc f =
     (* let new_f = Cil.emptyFunction ("m_" ^ f.svar.vname) in *)
-    Kernel.debug ~level:3 "Entering vfunc for %a" Printer.pp_fundec f;
+    Self.debug ~level:3 "Entering vfunc for %a" Printer.pp_fundec f;
     match self#current_kf with
       | Some(kf) ->
         let name = (Kernel_function.get_name kf) in
         if Seq.exists (fun n -> n = name) (Hashtbl.to_seq_values mpfr_funcs_names) then
-          (Kernel.debug ~level:3 "Found mpfr func: %s" name;
+          (Self.debug ~level:3 "Found mpfr func: %s" name;
           let fun' = self#add_mpfr_stuff_to_func name in
           Cil.DoChildrenPost fun')
         else
@@ -669,7 +669,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
 
 
   method vconst_any fl fl_str =
-    Kernel.debug ~level:3 "Pushing const fl: %f" fl;
+    Self.debug ~level:3 "Pushing const fl: %f" fl;
     let m_v = match fl_str with
      | Some s -> self#push_str_float_constant s (Option.get self#current_kf)
      | None -> self#push_float_constant fl (Option.get self#current_kf)
