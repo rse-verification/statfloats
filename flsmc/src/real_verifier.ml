@@ -6,7 +6,8 @@ open Selfplugin
 class real_verifier entry = object (self)
   inherit Visitor.frama_c_inplace
   method! vglob_aux = function
-    | GFun (f, _) when f.svar.vorig_name = "entry"-> Cil.DoChildren
+    | GFun (f, _) when f.svar.vorig_name =
+      Kernel.MainFunction.get_plain_string () -> Cil.DoChildren
     | _ -> Cil.SkipChildren
 
   method! vbehavior b =
@@ -18,7 +19,7 @@ class real_verifier entry = object (self)
         (match pred.ext_kind with
           | Ext_annot ("ProbClause", [_;_;{ext_kind=Ext_preds [p];_}]) ->
             (match p.pred_content with
-              | Papp (li, _, [t1; t2; _]) when li.l_var_info.lv_name = "flteq" ->
+              | Papp (li, _, [t1; t2; _]) when li.l_var_info.lv_name = "\\flteq" ->
                 let new_pred = make_id_pred_from_pred_node (Prel (Req, t1, t2)) in
                 b.b_extended <- [];
                 b.b_post_cond <- [(Normal, new_pred)];

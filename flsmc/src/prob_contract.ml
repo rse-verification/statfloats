@@ -34,7 +34,7 @@ type pPred =
 type dist =  {
     dvar: Cil_types.term; (*var as term as can be e.g. struct member*)
     dname: string;
-    dparams: Cil_types.logic_real list;
+    dparams: Cil_types.term list;
 }
 
 let get_dist_var {dvar=t;_} = t

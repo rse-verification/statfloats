@@ -11,13 +11,16 @@ let type_distribution type_ctxt loc l =
   Ext_terms res
   (* Ext_annot ("Distribution", res) *)
 
+
+
 (* let foo () = () *)
 let type_probContract type_ctxt loc [prob; conf; pred] =
+  Logic_builtin.add flteq_builtin;
   Self.debug "before creating old";
   (* let env_with_old = enter_post_state (Lenv.empty ()) Normal in *)
   (* let env_with_old = enter_post_state
     (Lenv.add_logic_label "Old" Logic_const.old_label (Lenv.empty ())) Normal in *)
-  let env_with_old = post_state_env Normal Lreal in
+  let env_with_old = type_ctxt.post_state [Normal] in
   Self.debug "after old'";
   let prob' = type_ctxt.type_term type_ctxt env_with_old prob in
   let conf' = type_ctxt.type_term type_ctxt env_with_old conf in
@@ -87,7 +90,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       let pc = new flteq_contract in
       pc#set_dists dists;
       let () = match (Option.get pred).pred_content with
-        | Papp (li, _, [t1; t2; d]) when li.l_var_info.lv_name = "flteq" ->
+        | Papp (li, _, [t1; t2; d]) when li.l_var_info.lv_name = "\\flteq" ->
           pc#set_prob_and_pred t1 t2 d prob;
           pc#set_confLevel conf_level
         | _ -> Kernel.fatal "only flteq expected here"
@@ -120,32 +123,47 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
         self#get_global_mpfr vi
       | None -> Kernel.fatal "only c-logic vars supperted yet"
 
-  method term_to_instrs t =
+  method term_to_instrs ?(res_vi=None) t =
     match t.term_node with
       | TConst (LReal ({r_nearest=fl; r_literal=fl_str;_})) ->
           var_to_exp @@ self#vconst_any fl (Some fl_str)
-      | TCast (true, _, t) -> self#term_to_instrs t
-      | TLval (TVar lv, _) ->
-        var_to_exp @@ self#logic_var_to_mpfr_vi lv
+      | TCast (true, _, t) -> self#term_to_instrs ~res_vi t
+      | TLval (th, TNoOffset) ->
+        (match th with
+          | TVar (lv) -> var_to_exp @@ self#logic_var_to_mpfr_vi lv
+          | TResult ty -> var_to_exp (Option.get res_vi)
+        )
+      | TLval _ -> Kernel.fatal "only nooffset yet implemented"
       | TBinOp (oper, t1, t2) ->
-        let a = (self#term_to_instrs t1) in
-        let b = (self#term_to_instrs t2) in
+        let a = (self#term_to_instrs ~res_vi t1) in
+        let b = (self#term_to_instrs ~res_vi t2) in
         self#vbinop_any a b oper
       | Tat (t, BuiltinLabel Old) ->
         self#enter_old;
-        let vexp = self#term_to_instrs t in
+        let vexp = self#term_to_instrs ~res_vi t in
         self#exit_old;
         vexp
-      | _ -> Kernel.fatal "not const term"
+      | _ -> Kernel.fatal "not const term: %a" Printer.pp_term t
 
 
-  method get_mpfr_entry_call_instr () =
-    let vi = Option.get (self#get_mpfr_fn_vi entry_name) in
-    Call (None, var_to_exp vi, [], unknown_loc)
+  method get_mpfr_entry_call_instr rvi_option args =
+    (* let make_fun_call_instr ?res:(res_vi_lval = None) fn_vi args = *)
+    let fn_vi = Option.get (self#get_mpfr_fn_vi entry_name) in
+    let args_exp =
+        let l = if Option.is_none rvi_option then args
+                else args @ [Option.get rvi_option]
+        in List.map var_to_exp l
+    in
+    make_fun_call_instr fn_vi args_exp
+    (* Call (Option.map vi_to_varlval rvi_option, var_to_exp vi, [], unknown_loc) *)
 
-  method get_entry_call_instr () =
+  method get_entry_call_instr rvi_option args =
     match entry_vi with
-      | Some vi' -> Call (None, var_to_exp vi', [], unknown_loc)
+      | Some vi' ->
+        make_fun_call_instr
+          ~res:(Option.map vi_to_varlval rvi_option)
+          vi'
+          (List.map var_to_exp args)
       | None -> Kernel.fatal "no entry vi defined"
 
 
@@ -180,51 +198,52 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       else Kernel.fatal "only uniform dist supported"
     in
     List.concat @@ List.map dist_to_instr dists *)
-  method get_dist_instrs () =
-    ()
 
-  method term_to_expr t =
+  method term_to_expr ?(res_vi=None) t =
     Self.feedback "term: %a" Printer.pp_term t;
     match t.term_node with
-      | TLval (TVar lv, _) ->
-        var_to_exp @@ Option.get lv.lv_origin
-      | TCast (_, Lreal, t') -> self#term_to_expr t'
+      | TLval (tlh, TNoOffset) ->
+        (match tlh with
+          | TVar lv -> var_to_exp @@ Option.get lv.lv_origin
+          | TResult t -> var_to_exp (Option.get res_vi)
+          | _ -> Kernel.fatal "not impl yet: %a" Printer.pp_term t)
+      | TCast (_, Lreal, t') -> self#term_to_expr ~res_vi t'
       | _ -> Kernel.fatal "not implemented yet term_to_expr"
 
-  method pred_to_spec pred dfp sfp =
+  method pred_to_spec fl_res_vi mpfr_res_vi dfp sfp =
+    let pred = self#get_pred () in
     let kf = Option.get self#current_kf in
     Self.feedback "starting pred_to_spec";
 
     match pred.pred_content with
-      | Papp (li, _, [t1; _; d]) when li.l_var_info.lv_name = "flteq" ->
+      | Papp (li, _, [t1; _; d]) when li.l_var_info.lv_name = "\\flteq" ->
         self#set_diff_from_term d;
         let lval_dists = List.map (fun x -> Logic_to_c.term_to_lval x.dvar) dists in
+        (*Read samples*)
         let pre1 = make_fscanf_instr (var_to_exp sfp) lval_dists in
         let pres2 = List.map
           (fun lv -> mpfr_set_flt_instr (lval_to_exp lv)
             (self#lval_to_mpfr_exp lv) rnd_exp)
           lval_dists
         in
-        let t1_rvi = self#term_to_instrs t1 in
-        (* let t2_vi = self#term_to_instrs t2 in *)
-        (* self#return_tmp_var kf t1_vi; *)
-        let t1_flexp = self#term_to_expr t1 in
-        let t1_mvi = self#fetch_tmp_var kf in
+        (*Get expression to check round-off error for*)
+        let t1_mexp_vi = self#term_to_instrs ~res_vi:mpfr_res_vi t1 in
+        let t1_flexp = self#term_to_expr ~res_vi:fl_res_vi t1 in
+        let t1_fl_mvi = self#fetch_tmp_var kf in
         let post1 = mpfr_set_flt_instr t1_flexp
-            (var_to_exp t1_mvi) rnd_exp
+            (var_to_exp t1_fl_mvi) rnd_exp
         in
+        (*Calculate error*)
         let r_vi = self#fetch_tmp_var kf in
         let post2 = make_binop_mpfr
-          (t1_rvi) (var_to_exp t1_mvi)
+          (t1_mexp_vi) (var_to_exp t1_fl_mvi)
           (var_to_exp r_vi) MinusA rnd_exp
         in
         self#return_tmp_var kf r_vi;
-        self#return_tmp_var kf t1_mvi;
-        self#return_tmp_var_exp kf t1_rvi;
-        (* self#queueInstr [sub_inst; set_d_inst]; *)
-        (* (t1_flvi, t1_rvi, r_vi) *)
-        (* match tl with {}  *)
-        let post3 = self#get_mpfr_print_instr t1_mvi (exp_to_vi t1_rvi) r_vi dfp in
+        self#return_tmp_var kf t1_fl_mvi;
+        self#return_tmp_var_exp kf t1_mexp_vi;
+        (*Print the result*)
+        let post3 = self#get_mpfr_print_instr t1_fl_mvi (exp_to_vi t1_mexp_vi) r_vi dfp in
         pre1::pres2, [post1;post2;post3]
 
       | _ -> Kernel.fatal "not implemented yet other preds"
@@ -290,16 +309,18 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
     match self#current_kf with
       | None -> false
       | Some kf ->
-        Self.debug "%s :: %s" (Kernel_function.get_name kf) entry_name;
+        Self.debug ~level:3 "%s :: %s" (Kernel_function.get_name kf) entry_name;
         Kernel_function.get_name kf = entry_name
 
   method! vfunc f =
+    let kf = Option.get self#current_kf in
     if self#is_in_entry_func ()
-    then (entry_vi <- Some f.svar; Cil.DoChildren)
+    then (entry_vi <- Some f.svar; Cil.SkipChildren)
     else
-      if f.svar.vorig_name = "main" then
-        let fun' = (fun f' -> let f'' = self#add_main_stuff f' in
-                            self#add_mpfr_stuff_to_func "main" f'')
+      if Kernel_function.get_name kf = "main" then
+        (* Self.debug ~level:3 "%s :: %s" (Kernel_function.get_name kf) entry_name; *)
+        let fun' = (fun f' -> let f'' = self#add_main_stuff f'  in f'')
+                            (* self#add_mpfr_stuff_to_func "main" f'') *)
         in
         (* diff_var <- List.find_opt (fun vi -> vi.vorig_name = "diff" ) f.slocals; *)
         Cil.DoChildrenPost fun'
@@ -309,6 +330,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
 
 
   method add_main_stuff f =
+    let kf = Option.get self#current_kf in
     (*add local vars*)
     let argv_vi = List.find (fun vi -> vi.vorig_name = "argv") f.sformals in
     let dfp = Cil.makeLocalVar f "dfp" file_ptr_type in
@@ -316,7 +338,15 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
     let diff = Cil.makeLocalVar f "diff" Cil.doubleType in
     let n = Cil.makeLocalVar f "N" Cil.intType in
     let i = Cil.makeLocalVar f "i" Cil.intType in
-    let loc_vars = [sfp;dfp;diff;n;i] in
+    let fl_args = List.map (fun vi -> Cil.makeLocalVar f vi.vorig_name vi.vtype)
+        (Cil.getFormalsDecl (Option.get entry_vi))
+    in
+    let mpfr_args = List.map (self#get_local_mpfr kf) fl_args in
+    let entry_type = (Option.get entry_vi).vtype in
+    let res_vi = if Cil.isVoidType (Cil.getReturnType entry_type) then None
+        else Some (Cil.makeLocalVar f "res" (Cil.getReturnType entry_type))
+    in
+    let mpfr_res_vi = Option.map (self#get_local_mpfr kf) res_vi in
     let open_file_instr fp fname mode =
       make_fun_call_instr
         ~res:(Some (vi_to_varlval fp))
@@ -344,13 +374,11 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       [open_sample_file_instr; open_diff_file_instr; fprintf_instr; read_N_instr]
     in
     (*Make loop body*)
-    (* let dist_instrs = self#get_dist_instrs () in *)
-    let mpfr_call_instr = self#get_mpfr_entry_call_instr () in
-    let call_instr =(self#get_entry_call_instr ()) in
-    (* self#queueInstr [mpfr_call_instr;call_instr]; *)
-    let pre_instrs, post_instrs = self#pred_to_spec (self#get_pred ()) dfp sfp in
+    let mpfr_call_instr = self#get_mpfr_entry_call_instr mpfr_res_vi mpfr_args in
+    let call_instr = self#get_entry_call_instr res_vi fl_args in
+    let pre_instrs, post_instrs =
+      self#pred_to_spec res_vi mpfr_res_vi dfp sfp in
     let body = List.map Cil.mkStmtOneInstr
-        (* (dist_instrs @ [mpfr_call_instr;call_instr] @ pred_instrs) *)
         (pre_instrs @ [mpfr_call_instr;call_instr] @ post_instrs)
     in
     (*Make loop*)
@@ -358,19 +386,25 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       ~first:(Cil.zero ~loc:unknown_loc) ~stopat:(var_to_exp n)
       ~incr:(Cil.one ~loc:unknown_loc) ~body:body ()
     in
-    (*Add init and clear statement*)
-    let (init_stmt, clear_stmt) =
-      self#add_init_clear_stmt (List.of_seq
-          (ViHashtbl.to_seq_values glob_mpfr_vars))
-    in
     (*Make the block*)
+    let ret_stmt = Cil.mkStmt (Return (None, unknown_loc)) in
     let body_block = Cil.mkBlock
-      ([mpfr_set_prec_stmt 256;init_stmt] @
-        before_loop_stmts @ loop_stmt @ [clear_stmt])
+      ([mpfr_set_prec_stmt 256] @
+        before_loop_stmts @ loop_stmt @ [ret_stmt])
+    in
+    let tmp_mpfr_locs =
+      let q = Hashtbl.find_opt tmp_var_queue (Kernel_function.get_name kf) in
+      if Option.is_some q then (Option.get q)#to_list else []
+    in
+    let loc_vars = ([sfp;dfp;diff;n;i] @ fl_args @ mpfr_args @
+        (Option.to_list mpfr_res_vi) @ (Option.to_list res_vi) @ tmp_mpfr_locs)
     in
     body_block.blocals <- loc_vars;
     f.sbody <- body_block;
     f.slocals <- loc_vars;
+    self#add_init_clear_stmt f
+      ((List.of_seq (ViHashtbl.to_seq_values glob_mpfr_vars)) @ mpfr_args @
+        (Option.to_list mpfr_res_vi) @ tmp_mpfr_locs);
     f
 
 
@@ -395,13 +429,12 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
           List.iter
             (fun dist -> match dist.ext_kind with
               | Ext_terms
-                  [var_term;
-                   {term_node=TConst (LStr "Uniform"); _};
-                   {term_node=TConst (LReal (lo_lr)); _};
-                   {term_node=TConst (LReal (hi_lr)); _}]
+                 [var_term; {term_node=TConst (LStr "Uniform"); _}; lo_t; hi_t]
                   ->
-                    self#add_dist {dvar=var_term;dname="Uniform";dparams=[lo_lr;hi_lr]}
-              | ext -> Kernel.fatal "Not a correct distribution %a" Printer.pp_extended dist
+                  self#add_dist
+                    {dvar=var_term;dname="Uniform";dparams=[lo_t;hi_t]}
+              | ext -> Kernel.fatal "Not a correct distribution %a"
+                          Printer.pp_extended dist
             )
             dists;
           Cil.DoChildren

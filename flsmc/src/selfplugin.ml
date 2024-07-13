@@ -29,11 +29,19 @@ module NrExecs = Self.Int(struct
   let help = "number of executions"
 end)
 
+
+
 module StatisticalAnalysisEnabled = Self.True
   (struct
   let option_name = "-flosmc-statistical-analysis"
   let short_name = "-flosmc-stat"
   let help = "when on (on by default), performs statistical analysis of the rounding error"
+end)
+
+module PlotDiffsEnabled = Self.False
+  (struct
+  let option_name = "-flosmc-plot-diffs"
+  let help = "when on (off by default), plots diffs"
 end)
 
 module RealVerificationEnabled = Self.True

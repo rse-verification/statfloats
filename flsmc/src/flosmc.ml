@@ -3,6 +3,9 @@ open Selfplugin
 open Parse_prob_contract
 open Mpfr_utils
 open Real_verifier
+open Cil_types
+
+
 
 
 let generate () =
@@ -13,8 +16,14 @@ let generate () =
   Project.set_current stat_prj;
   (*Add new empty main function*)
   let main_adder = new main_name_fixer in
-  let _ = Visitor.visitFramacFileCopy (main_adder :> Visitor.frama_c_copy) (Ast.get ()) in
+  let _ = Visitor.visitFramacFileCopy
+    (main_adder :> Visitor.frama_c_copy) (Ast.get ()) in
   Self.feedback "Done with adding main (0th step)";
+  let entry_name =
+    if main_adder#get_changed_main () then main_adder#get_new_main_name ()
+    else Kernel.MainFunction.get_plain_string ()
+  in
+  Self.debug ~level:3 "entry_name_set_to: %s" entry_name;
 
   (* Add structs/union defs for mpfr *)
   let struct_vis = new struct_and_union_copier in
@@ -39,7 +48,7 @@ let generate () =
   Self.feedback "done with transforming functions";
 
   (*Parse the spec into what can be used for statistical analysis*)
-  let specparser = new mpfr_contracts_parser mpfr_fns structs_map "entry" in
+  let specparser = new mpfr_contracts_parser mpfr_fns structs_map entry_name in
   specparser#init_from_transformer myvis;
   let new_file2 = specparser#parse_spec new_file in
   Self.feedback "done with parsing spec";
@@ -50,7 +59,7 @@ let generate () =
 
   (*Parse spec into deterministic pred over reals*)
   Project.set_current real_prj;
-  let realvis = new real_verifier "entry" in
+  let realvis = new real_verifier entry_name in
   let new_file3 = Visitor.visitFramacFileCopy
     (realvis :> Visitor.frama_c_copy) (Ast.get ()) in
 
@@ -85,18 +94,23 @@ let make_c_file () =
   else
     generate () *)
 
+let diff_fname = "../output_files/diff.csv"
+
 let run () =
   if (Enabled.get ()) then
-    (let specparser = generate () in
-    (* if (AnalyzeEnabled.get ()) then *)
-    let out_name = make_c_file () in
-    let csv_fname = "../output_files/diff.csv" in
-    let flt_eq = specparser#make_flteq_contract () in
-    let sa = new Statistical_analyser.statistical_analyser
-      out_name csv_fname flt_eq
-    in
-    sa#analyse ()
-    )
+      (let specparser = generate () in
+      (* if (AnalyzeEnabled.get ()) then *)
+      let out_name = make_c_file () in
+      let csv_fname = diff_fname in
+      let flt_eq = specparser#make_flteq_contract () in
+      let sa = new Statistical_analyser.statistical_analyser
+        out_name csv_fname flt_eq
+      in
+      sa#analyse ();
+      if (PlotDiffsEnabled.get ()) then
+        Plotting.plot_diffs diff_fname
+      else ()
+  )
     (* else () *)
   else ()
 

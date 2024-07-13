@@ -3,6 +3,7 @@ open Selfplugin
 open Prob_contract
 open Cil_types
 open Owl
+open Mpfr_utils
 
 
 let get_csv_col header csv =
@@ -15,7 +16,7 @@ let get_csv_col header csv =
 
 
 let conf_level eps n =
-  Self.feedback "EPS: %f, n: %d" eps n;
+  Self.feedback "EPS: %g, n: %d" eps n;
   exp(-.(2.0 *. (float_of_int n) *. (eps *. eps)))
 
 
@@ -38,7 +39,7 @@ class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object
       (match d with
         | {dname="Uniform"; dvar=x; dparams=[a;b]} ->
           Self.debug ~level:3 "found dist";
-          let [fl_a; fl_b] = List.map (fun x -> x.r_nearest) [a;b] in
+          let [fl_a; fl_b] = List.map term_to_fl_const [a;b] in
           let f' = (fun () -> Stats.uniform_rvs ~a:fl_a ~b:fl_b) in
           (x, f')::(self#get_sample_funs t)
         | {dname=dname;_} -> Kernel.fatal "only uniform dist currenly supported: %s" dname)
@@ -87,7 +88,7 @@ class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object
     (* Self.feedback "AVG: %.17g" (Q.to_float avg); *)
     (* let meas_conf = self#get_meas_conf_level () in *)
     let meas_prob = self#get_meas_prob () in
-    Self.debug ~level:3 "Measured prob: %f" meas_prob;
+    Self.debug ~level:3 "Measured prob: %g" meas_prob;
     let meas_conf = one_sided_conf_test
       (prob_contract#get_prob ()) meas_prob n
     in
@@ -101,13 +102,13 @@ class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object
           in
           Self.feedback
             "Stats\n\
-            Measured probability: %f  Requested probability: %f \n \
-            Measured conf level: %f   Requested conf level: %f"
+            Measured probability: %g  Requested probability: %g \n \
+            Measured conf level: %g   Requested conf level: %g"
             meas_prob (prob_contract#get_prob ())
                       c (prob_contract#get_confLevel ())
       | Right c ->
           Self.feedback "Failure!\n\
             The measured probability is smaller than the specified \n\
-            Measured probability: %f  Requested probability: %f \n "
+            Measured probability: %g  Requested probability: %g \n "
             meas_prob (prob_contract#get_prob ())
 end

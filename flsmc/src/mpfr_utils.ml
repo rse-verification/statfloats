@@ -6,6 +6,9 @@ let zero_exp = Cil.integer ~loc:unknown_loc 0
 let null_exp = Cil.mkCast
 let rnd_exp = Cil.integer ~loc:unknown_loc 0
 
+let is_result_term t = match t.term_node with
+  | TLval (TResult typ, _) -> true
+  | _ -> false
 
 let add_fundec_to_cfg ?(loc=unknown_loc) ?(funspec=Cil.empty_funspec ())
       new_fundec new_name =
@@ -67,8 +70,9 @@ let mpfr_include_global = GText "#include \"mpfr.h\""
 let math_include_global = GText "#include \"math.h\""
 let include_flsmc = GText "#include \"../flsmc.h\""
 
-let term_to_fl_const t = match t.term_node with
+let rec term_to_fl_const t = match t.term_node with
   | TConst (LReal lr) -> lr.r_nearest
+  | TUnOp (Neg, t) -> -.(term_to_fl_const t)
   | _ -> Kernel.fatal "only constants in float expected here"
 
 
@@ -200,16 +204,34 @@ let lval_to_exp (lh, lo) =
 
 let varinfos_to_exps vis = List.map var_to_exp vis
 
+let flteq_builtin = {
+  bl_name="\\flteq";
+  bl_labels=[];
+  bl_params = ["a"; "b"; "diff"];
+  bl_type = None;
+  bl_profile=[("a", Lreal); ("b", Lreal); ("diff", Lreal)]
+}
+
 
 (*Specific class which adds an empty main function and
   changes the name of the previous function called main (if it exists)
 *)
 class main_name_fixer = object (self)
   inherit Visitor.frama_c_inplace
+
+  val mutable changed_main = false
+  val new_main_name = "main2" (*new name for main function*)
+
+  method set_changed_main ?(newval=true) () = changed_main <- newval
+  method get_changed_main () = changed_main
+
+  method get_new_main_name () = new_main_name
+
   method! vfile f =
     List.iter ( function
         | GFun (fd, loc) when fd.svar.vorig_name = "main" ->
-            ignore (add_fundec_to_cfg ~loc:loc fd "main2")
+          self#set_changed_main ~newval:true ();
+          ignore (add_fundec_to_cfg ~loc:loc ~funspec:fd.sspec fd new_main_name)
         | _ -> ()
       )
       f.globals;
@@ -218,6 +240,7 @@ class main_name_fixer = object (self)
     let main_args = [("argc", Cil.intType, []); ("argv", TPtr(Cil.charPtrType, []), [])] in
     Cil.setFunctionTypeMakeFormals new_main
       (TFun (Cil.voidType, Some main_args, false, []));
+    Cil.setFormals new_main new_main.sformals; (*not sure why this is needed*)
     f.globals <- f.globals @ [GFun (new_main, unknown_loc)];
     ignore (add_fundec_to_cfg new_main "main");
     Ast.mark_as_changed ();

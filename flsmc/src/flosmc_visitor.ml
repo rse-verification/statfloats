@@ -439,12 +439,14 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       | Some m_name -> Some (Hashtbl.find fn_mpfr_names_to_vis m_name)
       | None -> None
 
-  method add_init_clear_stmt locs =
-    if locs = [] then (Cil.mkEmptyStmt (), Cil.mkEmptyStmt ())
+  (*adds init and clear stmt for all vars in locs to f*)
+  method add_init_clear_stmt f locs =
+    if locs = [] then () (*(Cil.mkEmptyStmt (), Cil.mkEmptyStmt ())*)
     else
       let init_stmt = Cil.mkStmtOneInstr (get_mpfr_inits_instr locs) in
       let clear_stmt = Cil.mkStmtOneInstr (get_mpfr_clears_instr locs) in
-      (init_stmt, clear_stmt)
+      f.sbody.bstmts <-
+        add_snd_last clear_stmt ([init_stmt] @ f.sbody.bstmts)
 
   method translate f =
     let f' = Visitor.visitFramacFileCopy
@@ -590,13 +592,17 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
 
   method! vspec _ = Cil.SkipChildren
 
+
+
   method add_mpfr_stuff_to_func name f' =
+    List.iter (fun vi -> Self.debug ~level:3 "ivhere: %a" Printer.pp_varinfo vi) f'.slocals;
     let kf = Option.get self#current_kf in
     (*Fix locals*)
     let tmp_m_locs =
       (hashtbl_get_default tmp_var_queue (Kernel_function.get_name kf) (new tmpVarQueue))#to_list
     in
-    let loc_ht = hashtbl_get_default loc_mpfr_vars (Kernel_function.get_name kf) (Hashtbl.create 1) in
+    let loc_ht = hashtbl_get_default loc_mpfr_vars (Kernel_function.get_name kf)
+      (Hashtbl.create 1) in
     Self.debug ~level:3 "Adding mpfr stuff for: %s" (Kernel_function.get_name kf);
     let og_locs_to_keep =
       List.filter (fun x -> (Hashtbl.mem loc_ht x) |> not) f'.slocals in
@@ -607,11 +613,9 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     (* let stmts_to_add = List.of_seq (Queue.to_seq stmts) in *)
     let all_m_locs = (tmp_m_locs @ loc_m_locs) in
     let all_locs = og_locs_to_keep @ all_m_locs in
-    let (init_stmt, clear_stmt) = self#add_init_clear_stmt all_m_locs in
     f'.slocals <- all_locs;
     f'.sbody.blocals <- all_locs;
-    f'.sbody.bstmts <-
-      add_snd_last clear_stmt ([init_stmt] @ f'.sbody.bstmts);
+    self#add_init_clear_stmt f' all_m_locs;
     let fhelp ({vtype=t;_} as vi) =
       if viHasFloatingType t then self#get_local_or_glob_mpfr vi kf else vi
     in
@@ -633,9 +637,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
             (TFun(Cil.voidType, Some forms_unrolled, fa, aa));
         | _ -> Kernel.fatal ~current:true "not a function type"
     in
-    Self.debug "typ: %a" Printer.pp_typ f'.svar.vtype;
     Hashtbl.add fn_mpfr_names_to_vis name f'.svar;
-    Self.debug "fdec: %a" Cil_printer.pp_fundec f';
     f'
 
   method! vfunc f =
