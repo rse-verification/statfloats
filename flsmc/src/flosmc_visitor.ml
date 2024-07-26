@@ -728,13 +728,13 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           Cil.DoChildrenPost f
         | UnOp (uop, e, t) when Cil.isFloatingType t ->
           let fun' = (fun e' -> match e'.enode with
-                        | UnOp (uop', e'', t) ->
-                        (*'hack', just set to itself*)
-                        let instr = make_unop_mpfr e'' e'' uop rnd_exp in
-                        self#queueOneInstr instr;
-                        e''
-                        | _ -> Kernel.fatal "Some weird happened in unop"
-                      )
+              | UnOp (uop', e'', t) ->
+                  let new_var_exp = var_to_exp (self#fetch_tmp_var kf) in
+                  let instr = make_unop_mpfr e'' new_var_exp uop rnd_exp in
+                  self#queueOneInstr instr;
+                  new_var_exp
+              | _ -> Kernel.fatal "Some weird happened in unop"
+          )
           in Cil.DoChildrenPost fun'
         | CastE _ -> (*Ignore casts for exps that have been converted into mpfr type*)
           let fun' = (fun e' -> match e'.enode with
