@@ -33,7 +33,7 @@ let one_sided_conf_test req_v meas_v n =
      Either.Left (conf_level eps n))
 
 
-class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object (self)
+class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
   method get_sample_funs = function
     | d::t ->
       (match d with
@@ -56,14 +56,15 @@ class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object
       Format.asprintf "%a" Printer.pp_term x) sample_fns
     in
     (* List.iter (List.iter (fun x -> Self.feedback "%s" x)) (headers::samples); *)
-    Csv.save ~separator:',' "../output_files/samples.csv" (samples)
+    Csv.save ~separator:',' (fmgr#get_samples_path ()) (samples)
 
   method run_file n =
-    let exec_cmd = Printf.sprintf "%s %d" bin n in
+    Self.debug ~level:3 "executing path: %s" @@ fmgr#get_exec_path ();
+    let exec_cmd = Printf.sprintf "%s %d" (fmgr#get_exec_path ()) n in
     ignore @@ Sys.command exec_cmd;
 
   method calc_avg () =
-    let x = Csv.load csv_fname in
+    let x = Csv.load (fmgr#get_diff_path ()) in
     (* Self.feedback "q:%s" (snd (List.hd @@ List.hd data)); *)
     let data2 = get_csv_col "diff" x in
     let qdata = List.map Q.of_string data2 in
@@ -72,7 +73,7 @@ class statistical_analyser bin csv_fname (prob_contract:flteq_contract) = object
 
   method get_meas_prob () =
     let diff_q = Q.of_float (prob_contract#get_fl_diff ()) in
-    let x = Csv.load csv_fname in
+    let x = Csv.load (fmgr#get_diff_path ()) in
     (* Self.feedback "q:%s" (snd (List.hd @@ List.hd data)); *)
     let data2 = get_csv_col "diff" x in
     let qdata = List.map (fun x -> Q.abs (Q.of_string x)) data2 in

@@ -14,10 +14,17 @@ module Enabled = Self.False
   let help = "when on (off by default), " ^ help_msg
 end)
 
-module MPFRFile = Self.String(struct
+(* module MPFRFile = Self.String(struct
   let option_name = "-mpfr-file"
   let default = "/home/jesper/Documents/floats/statfloats/flsmc/output_files/out.c"
   let arg_name = "mpfr_file"
+  let help = "file where the mpfr code is stored."
+end) *)
+
+module OutDir = Self.String(struct
+  let option_name = "-fs-out-dir"
+  let default = ""
+  let arg_name = "out_dir"
   let help = "file where the mpfr code is stored."
 end)
 

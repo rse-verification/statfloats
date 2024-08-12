@@ -30,7 +30,7 @@ class tmpVarQueue = object (self)
   method return_var vi =
     if self#contains_vi vi then
       (if vi == (Hashtbl.find vars id) then self#decr_id ()
-      else Kernel.fatal "should always return last var")
+      else Kernel.fatal "should always return last var %a" Printer.pp_varinfo vi)
     else
       Self.debug "not var found";
       ()
@@ -465,7 +465,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
         (List.of_seq (ViHashtbl.to_seq_values (self#get_glob_mpfr_vars ())))
       in
         (* Updates the list of globals *)
-      f'.globals <- (include_flsmc::new_globs) @ f'.globals;
+      f'.globals <- (get_include_list ()) @ new_globs @ f'.globals;
       f'
     )
     in
@@ -680,6 +680,8 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
 
 
   method vbinop_any a b oper =
+    Self.debug ~level:3 "binop with a: %a, b: %a, op: %a"
+      Printer.pp_exp a Printer.pp_exp b Printer.pp_binop oper;
     let kf = Option.get self#current_kf in
     self#return_tmp_var_exp kf b;
     self#return_tmp_var_exp kf a;
@@ -729,6 +731,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
         | UnOp (uop, e, t) when Cil.isFloatingType t ->
           let fun' = (fun e' -> match e'.enode with
               | UnOp (uop', e'', t) ->
+                  self#return_tmp_var_exp kf e'';
                   let new_var_exp = var_to_exp (self#fetch_tmp_var kf) in
                   let instr = make_unop_mpfr e'' new_var_exp uop rnd_exp in
                   self#queueOneInstr instr;

@@ -71,8 +71,10 @@ let logic_real_to_exp lr = Cil.kfloat FFloat lr.r_nearest ~loc:unknown_loc
   the sequence of statements in MPFR-mode by replacing the "dummy statement"
   place holder in the main function
 *)
-class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = object (self)
-  inherit (Flosmc_visitor.flosmc_transformer mpfr_funcs_names mpfr_structs_map)
+class mpfr_contracts_parser
+  mpfr_funcs_names mpfr_structs_map entry_name fmgr =
+    object (self)
+    inherit (Flosmc_visitor.flosmc_transformer mpfr_funcs_names mpfr_structs_map)
 
   val mutable diff = 0.1
   val mutable prob = 0.1
@@ -119,7 +121,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
   method logic_var_to_mpfr_vi lv =
     match lv.lv_origin with
       | Some vi ->
-        Self.feedback "x: %a x2: %a" Printer.pp_logic_var lv Printer.pp_varinfo vi;
+        Self.debug ~level:3 "x: %a x2: %a" Printer.pp_logic_var lv Printer.pp_varinfo vi;
         self#get_global_mpfr vi
       | None -> Kernel.fatal "only c-logic vars supperted yet"
 
@@ -200,7 +202,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
     List.concat @@ List.map dist_to_instr dists *)
 
   method term_to_expr ?(res_vi=None) t =
-    Self.feedback "term: %a" Printer.pp_term t;
+    Self.debug ~level:3 "term: %a" Printer.pp_term t;
     match t.term_node with
       | TLval (tlh, TNoOffset) ->
         (match tlh with
@@ -213,7 +215,7 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
   method pred_to_spec fl_res_vi mpfr_res_vi dfp sfp =
     let pred = self#get_pred () in
     let kf = Option.get self#current_kf in
-    Self.feedback "starting pred_to_spec";
+    Self.debug ~level:3 "starting pred_to_spec";
 
     match pred.pred_content with
       | Papp (li, _, [t1; _; d]) when li.l_var_info.lv_name = "\\flteq" ->
@@ -351,13 +353,15 @@ class mpfr_contracts_parser mpfr_funcs_names mpfr_structs_map entry_name = objec
       make_fun_call_instr
         ~res:(Some (vi_to_varlval fp))
         (fopen_fn_vi ())
-        [Cil.mkString ~loc:unknown_loc ("../output_files/"^fname^".csv");
+        [Cil.mkString ~loc:unknown_loc fname;
         Cil.mkString ~loc:unknown_loc mode]
     in
     (*Open samples files*)
-    let open_sample_file_instr = open_file_instr sfp "samples" "r" in
+    let open_sample_file_instr = open_file_instr sfp
+      (fmgr#get_samples_path ()) "r" in
     (*Open diff file*)
-    let open_diff_file_instr = open_file_instr dfp "diff" "w" in
+    let open_diff_file_instr = open_file_instr dfp
+      (fmgr#get_diff_path ()) "w" in
     let fprintf_instr =
       make_fun_call_instr
         ~res:None

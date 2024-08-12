@@ -66,9 +66,12 @@ let type_of_exp_node : exp_node -> typ = function
     | TArray (t, _, attrs) -> TPtr (t, attrs)
     | _ ->  assert false
 
-let mpfr_include_global = GText "#include \"mpfr.h\""
-let math_include_global = GText "#include \"math.h\""
-let include_flsmc = GText "#include \"../flsmc.h\""
+let include_global fname = GText (Printf.sprintf "#include \"%s\"" fname)
+(* let mpfr_include_global = GText "#include \"mpfr.h\""
+let math_include_global = GText "#include \"math.h\"" *)
+(* let include_flsmc = GText "#include \"../../flsmc.h\"" *)
+let includes = ["errno.h";"stdlib.h";"stdio.h";"fenv.h";"math.h";"mpfr.h"]
+let get_include_list () = List.map include_global includes
 
 let rec term_to_fl_const t = match t.term_node with
   | TConst (LReal lr) -> lr.r_nearest

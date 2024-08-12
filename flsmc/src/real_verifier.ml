@@ -5,6 +5,7 @@ open Selfplugin
   to be verified wrt reals*)
 class real_verifier entry = object (self)
   inherit Visitor.frama_c_inplace
+
   method! vglob_aux = function
     | GFun (f, _) when f.svar.vorig_name =
       Kernel.MainFunction.get_plain_string () -> Cil.DoChildren
