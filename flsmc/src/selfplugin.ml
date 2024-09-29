@@ -25,18 +25,42 @@ module OutDir = Self.String(struct
   let option_name = "-fs-out-dir"
   let default = ""
   let arg_name = "out_dir"
-  let help = "file where the mpfr code is stored."
+  let help = "Folder where the output is stored. If omitted, a new dir will be created automatically."
 end)
 
+module SampleFile = Self.String(struct
+  let option_name = "-fs-sample-file"
+  let default = ""
+  let arg_name = "sample_file"
+  let help = "File with input sample values. If not provided,
+    flosmc will sample randomly. If samples are provided, they must align exactly
+    with the input variables of the specified function."
+end)
+
+
+
 module NrExecs = Self.Int(struct
-  let option_name = "-nr-of-executions"
+  let option_name = "-fs-execs"
   let short_name = "-execs"
   let default = 10
   let arg_name = "nr_execs"
   let help = "number of executions"
 end)
 
+module MPFRPrec = Self.Int(struct
+  let option_name = "-fs-prec"
+  let short_name = "-prec"
+  let default = 256
+  let arg_name = "precision"
+  let help = "Precision in bits used for the MPFR simulation"
+end)
 
+module OnlySample = Self.False
+  (struct
+  let option_name = "-fs-only-sample"
+  let short_name = "-flosmc-sample"
+  let help = "when on (off by default), only samples the input values, does not perform the statistical analysis"
+end)
 
 module StatisticalAnalysisEnabled = Self.True
   (struct

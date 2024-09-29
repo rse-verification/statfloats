@@ -16,7 +16,7 @@ let get_csv_col header csv =
 
 
 let conf_level eps n =
-  Self.feedback "EPS: %g, n: %d" eps n;
+  Self.feedback "Epsilon: %g, Execs n: %d" eps n;
   exp(-.(2.0 *. (float_of_int n) *. (eps *. eps)))
 
 
@@ -48,7 +48,7 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
       []
 
   method do_samples n =
-    Self.feedback "Starting sampleing";
+    Self.debug ~level:2 "Starting sampling";
     let sample_fns = self#get_sample_funs (prob_contract#get_dists ()) in
     let samples = List.init n
       (fun _ -> List.map (fun (_,f') -> string_of_float (f' ())) sample_fns) in
@@ -56,7 +56,7 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
       Format.asprintf "%a" Printer.pp_term x) sample_fns
     in
     (* List.iter (List.iter (fun x -> Self.feedback "%s" x)) (headers::samples); *)
-    Csv.save ~separator:',' (fmgr#get_samples_path ()) (samples)
+    Csv.save ~separator:',' (fmgr#get_samples_path ()) (headers::samples)
 
   method run_file n =
     Self.debug ~level:3 "executing path: %s" @@ fmgr#get_exec_path ();
@@ -71,45 +71,59 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
     let qdata2 = List.fold_left Q.add Q.zero qdata in
     Q.div qdata2 (Q.of_int (List.length qdata))
 
-  method get_meas_prob () =
+
+  (*returns a tuple of the number of violations and total number*)
+  method get_successes_and_totals () =
     let diff_q = Q.of_float (prob_contract#get_fl_diff ()) in
     let x = Csv.load (fmgr#get_diff_path ()) in
     (* Self.feedback "q:%s" (snd (List.hd @@ List.hd data)); *)
     let data2 = get_csv_col "diff" x in
     let qdata = List.map (fun x -> Q.abs (Q.of_string x)) data2 in
     let bools = List.filter (fun x -> Q.leq x diff_q) qdata in
-    (float_of_int (List.length bools)) /. (float_of_int (List.length qdata))
+    List.length bools, List.length qdata
 
   method analyse () =
     let n = NrExecs.get () in
-    self#do_samples n;
+    if (not (fmgr#user_has_samples ())) then self#do_samples n;
     (* self.do_samples (); *)
-    self#run_file n;
-    (* let avg = self#calc_avg () in *)
-    (* Self.feedback "AVG: %.17g" (Q.to_float avg); *)
-    (* let meas_conf = self#get_meas_conf_level () in *)
-    let meas_prob = self#get_meas_prob () in
-    Self.debug ~level:3 "Measured prob: %g" meas_prob;
-    let meas_conf = one_sided_conf_test
-      (prob_contract#get_prob ()) meas_prob n
-    in
-    match meas_conf with
-      | Left c ->
-          let () = if c < (prob_contract#get_confLevel ()) then
-            Self.feedback "Success!"
-          else
-            Self.feedback "Failure!\n\
-            The measured conf level is worse than the specified"
-          in
-          Self.feedback
-            "Stats\n\
-            Measured probability: %g  Requested probability: %g \n \
-            Measured conf level: %g   Requested conf level: %g"
-            meas_prob (prob_contract#get_prob ())
-                      c (prob_contract#get_confLevel ())
-      | Right c ->
-          Self.feedback "Failure!\n\
-            The measured probability is smaller than the specified \n\
-            Measured probability: %g  Requested probability: %g \n "
-            meas_prob (prob_contract#get_prob ())
+    if (OnlySample.get ()) then () else
+      begin
+        self#run_file n;
+        (* let avg = self#calc_avg () in *)
+        (* Self.feedback "AVG: %.17g" (Q.to_float avg); *)
+        (* let meas_conf = self#get_meas_conf_level () in *)
+        let succs, tots = self#get_successes_and_totals () in
+        let viols = tots-succs in
+        let meas_prob = (float_of_int succs) /. (float_of_int tots) in
+        Self.debug ~level:3 "Measured prob: %.10f" meas_prob;
+        let meas_conf = one_sided_conf_test
+          (prob_contract#get_prob ()) meas_prob n
+        in
+        Self.feedback "requested diff: %g" (prob_contract#get_fl_diff ());
+        match meas_conf with
+          | Left c ->
+              (*Want to stop includint conf level in contract*)
+              Self.feedback "Success!";
+              (* let () = if c < (prob_contract#get_confLevel ()) then
+                Self.feedback "Success!"
+              else
+                Self.feedback "Failure!\n\
+                The measured conf level is worse than the specified" *)
+              (* in *)
+              Self.feedback
+                "Stats\n\
+                Measured conf level: %g   Requested conf level: %g \n \
+                Number of violations: %d  Executions: %d \n \
+                Measured probability: %g  Requested probability: %g"
+                c (prob_contract#get_confLevel ())
+                viols tots
+                meas_prob (prob_contract#get_prob ())
+
+          | Right c ->
+              Self.feedback "Failure!\n\
+                The measured probability is smaller than the specified \n\
+                Number of violations: %d  Executions: %d \n \
+                Measured probability: %g  Requested probability: %g \n "
+                viols tots meas_prob (prob_contract#get_prob ())
+      end
 end

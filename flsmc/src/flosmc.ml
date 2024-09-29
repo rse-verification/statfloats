@@ -23,21 +23,45 @@ class file_manager = object (self)
   val mutable real_fname = "real_out.c"
   val mutable dir_name = "tmp"
   val mutable diff_fname = "diff.csv"
+
   val mutable samples_fname = "samples.csv"
+  val mutable user_has_samples = false
 
+  method handle_user_samples () =
+    (*If user provides samples, then we copy the file to the new destination*)
+    let usersamples = SampleFile.get () in
+    Self.feedback "user smaple file: %s" usersamples;
+    if usersamples <> "" then
+      (
+         user_has_samples <- true;
+         samples_fname <- "user_samples.csv";
+         let cmd = "cp " ^ usersamples ^ " " ^ (self#get_samples_path ()) in
+         Self.debug ~level:2 "hello: %s" cmd;
+         ignore @@ Sys.command cmd
+      )
+    else ()
 
+  method user_has_samples () = user_has_samples
+
+  (*makes the dir, if user_has_samples is true then also copies the user
+    samples to the directory.*)
   method make_dir_name () =
     let files = (List.map File.get_name (File.get_all ())) in
     if List.is_empty files then
       (Self.debug ~level:3 "no files found";
       ())
-    else
-      let fname = Filename.remove_extension (List.hd files) in
-      let dt = pretty_print_time () in
-      let curr_dir = Sys.getcwd () in
-      Self.debug ~level:2 "dir_name: %s" dir_name;
-      dir_name <- curr_dir ^ "/" ^ fname ^ "_" ^ dt;
-      if not (Sys.file_exists dir_name) then Sys.mkdir dir_name 0o777
+    else (
+        let outdir = OutDir.get () in
+        let out_dir_name = if outdir <> "" then outdir else
+          let fname = Filename.remove_extension (List.hd files) in
+          let dt = pretty_print_time () in
+          fname ^ "_" ^ dt
+        in
+        let curr_dir = Sys.getcwd () in
+        dir_name <- curr_dir ^ "/" ^ out_dir_name;
+        let () = if not (Sys.file_exists dir_name) then
+        Sys.mkdir dir_name 0o777 in ()
+      )
 
 
   method get_exec_path () = dir_name ^ "/" ^ exec_fname
@@ -83,6 +107,8 @@ let generate () =
   Self.feedback "Starting FloSMC, the statistical model checker for floats";
   Self.feedback "Please note that implicit type casting may not be correctly supported";
   !fmgr#make_dir_name ();
+  !fmgr#handle_user_samples ();
+
   let stat_prj = Project.create_by_copy ~last:true "stat_prj" in
   let real_prj = Project.create_by_copy ~last:true "real_prj" in
   Project.set_current stat_prj;

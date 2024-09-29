@@ -73,9 +73,18 @@ let math_include_global = GText "#include \"math.h\"" *)
 let includes = ["errno.h";"stdlib.h";"stdio.h";"fenv.h";"math.h";"mpfr.h"]
 let get_include_list () = List.map include_global includes
 
+let term_binop_to_fl_binop b = match b with
+  | PlusA -> (+.)
+  | MinusA -> (-.)
+  | Mult -> ( *.)
+  | Div -> (/.)
+  | _ -> Kernel.fatal "not supported binop for float"
+
 let rec term_to_fl_const t = match t.term_node with
   | TConst (LReal lr) -> lr.r_nearest
   | TUnOp (Neg, t) -> -.(term_to_fl_const t)
+  | TBinOp (bop, t1, t2) ->
+    (term_binop_to_fl_binop bop) (term_to_fl_const t1) (term_to_fl_const t2)
   | _ -> Kernel.fatal "only constants in float expected here"
 
 
@@ -83,7 +92,10 @@ let trans_func_names =
   Hashtbl.of_seq (List.to_seq [("sinf", "mpfr_sin");
                                ("cosf", "mpfr_cos");
                                ("sqrtf", "mpfr_sqrt");
-                               ("pow", "mpfr_pow")])
+                               ("pow", "mpfr_pow");
+                               ("acosf", "mpfr_acos");
+                               ("asinf", "mpfr_asin");
+                               ("atanf", "mpfr_atan")])
 
 let make_id_pred_from_pred_node ?(names=[]) ?(loc=unknown_loc) pn =
   Logic_const.new_predicate {pred_name=names;pred_loc=loc;pred_content=pn}
@@ -441,7 +453,8 @@ let get_mpfr_initOrClear_instr vars fname =
     let lval_exps = List.concat (List.map (fun vi -> match vi.vtype with
       | TComp _ -> mpfr_exps_from_struct_vi vi
       | t when t = mpfr_type  -> [var_to_exp vi]
-      | _ -> Kernel.fatal "only mpfr type or mpfrs in structs supported"
+      | _ -> Kernel.fatal "only mpfr type or mpfrs in structs supported, got: %a"
+                Printer.pp_varinfo vi
     )
     vars )
     in

@@ -440,13 +440,17 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       | None -> None
 
   (*adds init and clear stmt for all vars in locs to f*)
-  method add_init_clear_stmt f locs =
+  method add_init_clear_stmt ?(before_init=None) f locs =
     if locs = [] then () (*(Cil.mkEmptyStmt (), Cil.mkEmptyStmt ())*)
     else
       let init_stmt = Cil.mkStmtOneInstr (get_mpfr_inits_instr locs) in
       let clear_stmt = Cil.mkStmtOneInstr (get_mpfr_clears_instr locs) in
       f.sbody.bstmts <-
-        add_snd_last clear_stmt ([init_stmt] @ f.sbody.bstmts)
+        if Option.is_none before_init then
+          add_snd_last clear_stmt ([init_stmt] @ f.sbody.bstmts)
+        else
+          add_snd_last clear_stmt
+            ([(Option.get before_init);init_stmt] @ f.sbody.bstmts)
 
   method translate f =
     let f' = Visitor.visitFramacFileCopy

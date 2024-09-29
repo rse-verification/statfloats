@@ -76,7 +76,7 @@ class mpfr_contracts_parser
     object (self)
     inherit (Flosmc_visitor.flosmc_transformer mpfr_funcs_names mpfr_structs_map)
 
-  val mutable diff = 0.1
+  (* val mutable diff = 0.1 *)
   val mutable prob = 0.1
   val mutable conf_level = 0.95
   val mutable pred = None
@@ -102,9 +102,10 @@ class mpfr_contracts_parser
   method enter_old = is_in_old <- true
   method exit_old = is_in_old <- false
 
-  method get_diff () = diff
+  (* method get_diff () = diff *)
 
-  method set_diff_from_term t = diff <- term_to_fl_const t
+  (* method set_diff_from_term t =
+    diff <- term_to_fl_const t *)
 
     (* prob_contract#set_diff () t *)
 
@@ -219,7 +220,7 @@ class mpfr_contracts_parser
 
     match pred.pred_content with
       | Papp (li, _, [t1; _; d]) when li.l_var_info.lv_name = "\\flteq" ->
-        self#set_diff_from_term d;
+        (* self#set_diff_from_term d; *)
         let lval_dists = List.map (fun x -> Logic_to_c.term_to_lval x.dvar) dists in
         (*Read samples*)
         let pre1 = make_fscanf_instr (var_to_exp sfp) lval_dists in
@@ -359,6 +360,11 @@ class mpfr_contracts_parser
     (*Open samples files*)
     let open_sample_file_instr = open_file_instr sfp
       (fmgr#get_samples_path ()) "r" in
+    let skip_headers_instr =
+      make_fun_call_instr
+        (fscanf_fn_vi [])
+        [var_to_exp sfp;Cil.mkString ~loc:unknown_loc "%*[^\n]\n"]
+    in
     (*Open diff file*)
     let open_diff_file_instr = open_file_instr dfp
       (fmgr#get_diff_path ()) "w" in
@@ -375,7 +381,8 @@ class mpfr_contracts_parser
           (Lval (Var argv_vi, Index (Cil.one ~loc:unknown_loc, NoOffset)))]
     in
     let before_loop_stmts = List.map Cil.mkStmtOneInstr
-      [open_sample_file_instr; open_diff_file_instr; fprintf_instr; read_N_instr]
+      [open_sample_file_instr; skip_headers_instr; open_diff_file_instr;
+        fprintf_instr; read_N_instr]
     in
     (*Make loop body*)
     let mpfr_call_instr = self#get_mpfr_entry_call_instr mpfr_res_vi mpfr_args in
@@ -393,8 +400,7 @@ class mpfr_contracts_parser
     (*Make the block*)
     let ret_stmt = Cil.mkStmt (Return (None, unknown_loc)) in
     let body_block = Cil.mkBlock
-      ([mpfr_set_prec_stmt 256] @
-        before_loop_stmts @ loop_stmt @ [ret_stmt])
+      (before_loop_stmts @ loop_stmt @ [ret_stmt])
     in
     let tmp_mpfr_locs =
       let q = Hashtbl.find_opt tmp_var_queue (Kernel_function.get_name kf) in
@@ -406,7 +412,8 @@ class mpfr_contracts_parser
     body_block.blocals <- loc_vars;
     f.sbody <- body_block;
     f.slocals <- loc_vars;
-    self#add_init_clear_stmt f
+    self#add_init_clear_stmt
+      ~before_init:(Some (mpfr_set_prec_stmt (MPFRPrec.get ()))) f
       ((List.of_seq (ViHashtbl.to_seq_values glob_mpfr_vars)) @ mpfr_args @
         (Option.to_list mpfr_res_vi) @ tmp_mpfr_locs);
     f
@@ -422,7 +429,7 @@ class mpfr_contracts_parser
         | [] ->
           Kernel.fatal "no spec for main func"
         | [{b_extended=l; _}] ->
-          let dists, prpred = split_into_dist_and_pred l in
+          let spec_dists, prpred = split_into_dist_and_pred l in
           (match prpred.ext_kind with
             | Ext_annot ("ProbClause", [prob_ext;conf_ext;pred_ext]) ->
               self#set_prob prob_ext;
@@ -440,7 +447,7 @@ class mpfr_contracts_parser
               | ext -> Kernel.fatal "Not a correct distribution %a"
                           Printer.pp_extended dist
             )
-            dists;
+            (List.rev spec_dists);
           Cil.DoChildren
         | _ -> Kernel.fatal "multiple behaviors not supported"
         )
