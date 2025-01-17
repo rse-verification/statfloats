@@ -33,15 +33,55 @@ let one_sided_conf_test req_v meas_v n =
      Either.Left (conf_level eps n))
 
 
+(*TODO: Make a virtual class to easier implement other distributions*)
+class mpfr_uniform_sampler (a:float) (b:float) (prec:int) = object (self)
+  val mutable m_a =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp a Near in tmp
+  val mutable m_b =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp b Near in tmp
+  val mutable m_asubb =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp (b -. a) Near in
+    tmp
+  val rng = Gmp_random.init_default ()
+  val mutable m_sample = Mpfr.init2 prec
+  (* returns a + rnd * (b-a) in mpfr format with prec precision
+    stores in m_sample. Note that we always reuse the sample var.
+  *)
+  method draw_sample () =
+    Gmp_random.Mpfr.urandom m_sample rng Near;
+    let _ = Mpfr.mul m_sample m_sample m_asubb Near in (* res = rnd*(a-b) *)
+    let _ = Mpfr.add m_sample m_a m_sample Near in (* res = a+rnd*(a-b) *)
+    ()
+  (*returns the latest drawn sample. NOTE: Does not draw a new sample*)
+  method get_sample () = m_sample
+  (*Draws a sample and returns the sample*)
+  method draw_and_get_sample () = self#draw_sample (); self#get_sample ()
+end
+
+(* let mpfr_uniform m_res a b prec rng =
+  let m_tmp = Mpfr.init2 prec in
+  let m_a = Mpfr.init2 prec in
+  let m_b = Mpfr.init2 prec in
+  let _ = Mpfr.set_d m_a a Near in
+  let _ = Mpfr.set_d m_b b Near in
+  let _ = Mpfr.set_d m_tmp (a -. b) Near in
+  Gmp_random.Mpfr.urandom m_res rng Near;
+  let _ = Mpfr.mul m_res m_res m_tmp Near in (* res = rnd*(a-b) *)
+  let _ = Mpfr.add m_res m_a m_res Near in (* res = a+rnd*(a-b) *)
+  m_res *)
+
 class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
-  method get_sample_funs = function
+  method get_samplers = function
     | d::t ->
       (match d with
         | {dname="Uniform"; dvar=x; dparams=[a;b]} ->
           Self.debug ~level:3 "found dist";
           let [fl_a; fl_b] = List.map term_to_fl_const [a;b] in
-          let f' = (fun () -> Stats.uniform_rvs ~a:fl_a ~b:fl_b) in
-          (x, f')::(self#get_sample_funs t)
+          let sampler = new mpfr_uniform_sampler fl_a fl_b (Selfplugin.MPFRPrec.get ()) in
+          (x, sampler)::(self#get_samplers t)
         | {dname=dname;_} -> Kernel.fatal "only uniform dist currenly supported: %s" dname)
     | [] ->
       Self.debug ~level:3 "found  no more dist";
@@ -49,14 +89,18 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
 
   method do_samples n =
     Self.debug ~level:2 "Starting sampling";
-    let sample_fns = self#get_sample_funs (prob_contract#get_dists ()) in
+    let samplers = self#get_samplers (prob_contract#get_dists ()) in
     let samples = List.init n
-      (fun _ -> List.map (fun (_,f') -> string_of_float (f' ())) sample_fns) in
+      (fun _ -> List.map (fun (_,sampler) ->
+        let m_sample = sampler#draw_and_get_sample () in
+
+        Mpfr.to_string m_sample) samplers)
+    in
     let headers = List.map (fun (x, _) ->
-      Format.asprintf "%a" Printer.pp_term x) sample_fns
+      Format.asprintf "%a" Printer.pp_term x) samplers
     in
     (* List.iter (List.iter (fun x -> Self.feedback "%s" x)) (headers::samples); *)
-    Csv.save ~separator:',' (fmgr#get_samples_path ()) (headers::samples)
+    Csv.save ~separator:'\t' (fmgr#get_samples_path ()) (headers::samples)
 
   method run_file n =
     Self.debug ~level:3 "executing path: %s" @@ fmgr#get_exec_path ();

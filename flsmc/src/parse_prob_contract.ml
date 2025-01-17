@@ -221,13 +221,25 @@ class mpfr_contracts_parser
     match pred.pred_content with
       | Papp (li, _, [t1; _; d]) when li.l_var_info.lv_name = "\\flteq" ->
         (* self#set_diff_from_term d; *)
-        let lval_dists = List.map (fun x -> Logic_to_c.term_to_lval x.dvar) dists in
+        let distlvals =
+          List.map (fun x ->(Logic_to_c.term_to_lval x.dvar)) dists
+        in
         (*Read samples*)
-        let pre1 = make_fscanf_instr (var_to_exp sfp) lval_dists in
+        (* let pre1 = make_fscanf_instr (var_to_exp sfp) lval_dists in
         let pres2 = List.map
           (fun lv -> mpfr_set_flt_instr (lval_to_exp lv)
             (self#lval_to_mpfr_exp lv) rnd_exp)
           lval_dists
+        in *)
+        let sample_instrs =
+          List.concat_map
+            (fun dlv ->
+              let m_exp = self#lval_to_mpfr_exp dlv in
+              [make_mpfr_inp_str_instr m_exp (var_to_exp sfp);
+               mpfr_get_d_instr m_exp dlv
+              ]
+            )
+            distlvals
         in
         (*Get expression to check round-off error for*)
         let t1_mexp_vi = self#term_to_instrs ~res_vi:mpfr_res_vi t1 in
@@ -246,8 +258,10 @@ class mpfr_contracts_parser
         self#return_tmp_var kf t1_fl_mvi;
         self#return_tmp_var_exp kf t1_mexp_vi;
         (*Print the result*)
-        let post3 = self#get_mpfr_print_instr t1_fl_mvi (exp_to_vi t1_mexp_vi) r_vi dfp in
-        pre1::pres2, [post1;post2;post3]
+        let post3 =
+          self#get_mpfr_print_instr t1_fl_mvi (exp_to_vi t1_mexp_vi) r_vi dfp
+        in
+        sample_instrs, [post1;post2;post3]
 
       | _ -> Kernel.fatal "not implemented yet other preds"
 

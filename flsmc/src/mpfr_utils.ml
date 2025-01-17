@@ -356,6 +356,8 @@ let bop_to_mpfr_fn_vi oper =
   Cil.findOrCreateFunc f op_fn_name
   (TFun(Cil.intType, Some args, false, []))
 
+
+
 (*given args = x,y, generates fscanf(fp, "%f,%f,%f", &x, &y)*)
 let make_fscanf_instr ?(sep=",") fp args =
   let mem_args = List.map (Cil.mkAddrOrStartOf ~loc:unknown_loc) args in
@@ -480,6 +482,18 @@ let get_mpfr_inits_instr vars = get_mpfr_initOrClear_instr vars "mpfr_inits"
     let t = (TFun(Cil.intType, Some args, true, [])) in
     let fn_vi = make_fn_vi t "mpfr_clears" in
     make_fun_call_instr fn_vi ((varinfos_to_exps vars) @ [mpfr_void_ptr_exp]) *)
+let make_mpfr_inp_str_instr ?(base = 10) ?(rnd=rnd_exp) rop_exp fp =
+  let args = [
+    ("rop", mpfr_type, []);
+    ("FILE", file_ptr_type, []);
+    ("base", Cil.intType, []);
+    ("rnd", mpfr_rnd_type, [])
+  ]
+  in
+  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let base_exp = Cil.integer ~loc:unknown_loc base in
+  let fn_vi = make_fn_vi t "mpfr_inp_str" in
+  make_fun_call_instr fn_vi [rop_exp; fp; base_exp; rnd]
 
 let mpfr_set_str_instr ?(base = 10) ?(rnd=rnd_exp) rop str  =
   let args = [
@@ -490,8 +504,9 @@ let mpfr_set_str_instr ?(base = 10) ?(rnd=rnd_exp) rop str  =
   ]
   in
   let t = (TFun(Cil.intType, Some args, false, [])) in
+  let base_exp = Cil.integer ~loc:unknown_loc base in
   let fn_vi = make_fn_vi t "mpfr_set_str" in
-  make_fun_call_instr fn_vi [var_to_exp rop; str; rnd]
+  make_fun_call_instr fn_vi [var_to_exp rop; str; base_exp; rnd]
 
 
 
@@ -548,7 +563,7 @@ let mpfr_set_const_str_instr flstr vi rnd =
   Cil.update_var_type m_vi mpfr_type;
   m_vi *)
 
-let mpfr_get_d_instr from_vi to_vi rnd =
+let mpfr_get_d_instr ?(rnd=rnd_exp) from_exp res_lval =
   let args = [
     ("op", mpfr_type, []);
     ("rnd", mpfr_rnd_type, [])
@@ -556,9 +571,7 @@ let mpfr_get_d_instr from_vi to_vi rnd =
   in
   let t = (TFun(Cil.doubleType, Some args, false, [])) in
   let fn_vi = make_fn_vi t "mpfr_get_d" in
-  let to_vi_exp = var_to_exp to_vi in
-  let res_lval = Some (vi_to_varlval from_vi) in
-  make_fun_call_instr ~res:res_lval fn_vi [to_vi_exp; rnd]
+  make_fun_call_instr ~res:(Some res_lval) fn_vi [from_exp; rnd]
 
 let mpfr_fprintf_diff_instr file_vi str_exp a_vi b_vi diff_vi rnd =
     let args = [
