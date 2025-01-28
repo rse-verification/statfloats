@@ -27,6 +27,10 @@ class file_manager = object (self)
   val mutable samples_fname = "samples.csv"
   val mutable user_has_samples = false
 
+  method remove_samples_file () = Sys.remove @@ self#get_samples_path ()
+
+  method remove_diff_file () = Sys.remove @@ self#get_diff_path ()
+
   method handle_user_samples () =
     (*If user provides samples, then we copy the file to the new destination*)
     let usersamples = SampleFile.get () in
@@ -200,6 +204,8 @@ let run () =
           Plotting.plot_diffs (!fmgr#get_diff_path ())
         else ()
       in
+      if (not (SaveSamples.get ())) then begin !fmgr#remove_samples_file () end;
+      if (not (SaveDiffs.get ())) then begin !fmgr#remove_diff_file () end;
       ()
       (* if (RealVerificationEnabled.get ()) then
          *)
