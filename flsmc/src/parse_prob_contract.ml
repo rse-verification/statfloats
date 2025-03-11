@@ -12,7 +12,7 @@ let type_distribution type_ctxt loc l =
   (* Ext_annot ("Distribution", res) *)
 
 
-
+(*If conf is supplied*)
 (* let foo () = () *)
 let type_probContract type_ctxt loc [prob; conf; pred] =
   Logic_builtin.add flteq_builtin;
@@ -31,6 +31,23 @@ let type_probContract type_ctxt loc [prob; conf; pred] =
   let ext_conf = new_acsl_extension "confLevel" unknown_loc false (Ext_terms [conf']) in
   let ext_pred = new_acsl_extension "probPred" unknown_loc false (Ext_preds [pred']) in
   Ext_annot ("ProbClause", [ext_prob; ext_conf; ext_pred])
+
+(*If no conf is supplied*)
+let type_probContract type_ctxt loc [prob; pred] =
+    Logic_builtin.add flteq_builtin;
+    Self.debug "before creating old";
+    (* let env_with_old = enter_post_state (Lenv.empty ()) Normal in *)
+    (* let env_with_old = enter_post_state
+      (Lenv.add_logic_label "Old" Logic_const.old_label (Lenv.empty ())) Normal in *)
+    let env_with_old = type_ctxt.post_state [Normal] in
+    Self.debug "after old'";
+    let prob' = type_ctxt.type_term type_ctxt env_with_old prob in
+    Self.debug "after årp'";
+    let pred' = type_ctxt.type_predicate type_ctxt env_with_old pred in
+    Self.debug "after åred'";
+    let ext_prob = new_acsl_extension "prob" unknown_loc false (Ext_terms [prob']) in
+    let ext_pred = new_acsl_extension "probPred" unknown_loc false (Ext_preds [pred']) in
+    Ext_annot ("ProbClause", [ext_prob; ext_pred])
 
 
 
@@ -78,7 +95,7 @@ class mpfr_contracts_parser
 
   (* val mutable diff = 0.1 *)
   val mutable prob = 0.1
-  val mutable conf_level = 0.95
+  val mutable conf_level = 1.0
   val mutable pred = None
   val mutable entry_vi = None
 
@@ -446,8 +463,12 @@ class mpfr_contracts_parser
           let spec_dists, prpred = split_into_dist_and_pred l in
           (match prpred.ext_kind with
             | Ext_annot ("ProbClause", [prob_ext;conf_ext;pred_ext]) ->
+              Self.feedback "probClause sets a conf level, this is decapretated";
               self#set_prob prob_ext;
               self#set_conf_level conf_ext;
+              self#set_pred pred_ext
+            | Ext_annot ("ProbClause", [prob_ext;pred_ext]) ->
+              self#set_prob prob_ext;
               self#set_pred pred_ext
             | _ -> Kernel.fatal "not a prob clause extension"
           );

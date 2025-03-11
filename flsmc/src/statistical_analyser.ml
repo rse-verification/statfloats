@@ -172,10 +172,10 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
               (* in *)
               Self.feedback
                 "Stats\n\
-                Measured conf level: %g   Requested conf level: %g \n \
+                Measured confidence level: %g   \n \
                 Number of violations: %d  Executions: %d \n \
                 Measured probability: %g  Requested probability: %g"
-                c (prob_contract#get_confLevel ())
+                c
                 viols tots
                 meas_prob (prob_contract#get_prob ())
 
