@@ -3,3 +3,6 @@
 
 #To run (from /src):
 dune exec -- frama-c  -flosmc ../test.c
+
+
+#to run mpfr file
