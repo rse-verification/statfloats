@@ -6,6 +6,6 @@
 )
 (plugin
 (optional)
-(name hello)
+(name flosmc)
 (libraries frama-c-flosmc.core)
 (site (frama-c plugins)))

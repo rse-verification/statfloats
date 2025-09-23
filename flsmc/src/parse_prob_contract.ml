@@ -27,9 +27,9 @@ let type_probContract type_ctxt loc [prob; conf; pred] =
   Self.debug "after årp'";
   let pred' = type_ctxt.type_predicate type_ctxt env_with_old pred in
   Self.debug "after åred'";
-  let ext_prob = new_acsl_extension "prob" unknown_loc false (Ext_terms [prob']) in
-  let ext_conf = new_acsl_extension "confLevel" unknown_loc false (Ext_terms [conf']) in
-  let ext_pred = new_acsl_extension "probPred" unknown_loc false (Ext_preds [pred']) in
+  let ext_prob = new_acsl_extension ~plugin:"flsmc" "prob" unknown_loc false (Ext_terms [prob']) in
+  let ext_conf = new_acsl_extension ~plugin:"flsmc" "confLevel" unknown_loc false (Ext_terms [conf']) in
+  let ext_pred = new_acsl_extension ~plugin:"flsmc" "probPred" unknown_loc false (Ext_preds [pred']) in
   Ext_annot ("ProbClause", [ext_prob; ext_conf; ext_pred])
 
 (*If no conf is supplied*)
@@ -45,8 +45,8 @@ let type_probContract type_ctxt loc [prob; pred] =
     Self.debug "after årp'";
     let pred' = type_ctxt.type_predicate type_ctxt env_with_old pred in
     Self.debug "after åred'";
-    let ext_prob = new_acsl_extension "prob" unknown_loc false (Ext_terms [prob']) in
-    let ext_pred = new_acsl_extension "probPred" unknown_loc false (Ext_preds [pred']) in
+    let ext_prob = new_acsl_extension ~plugin:"flsmc" "prob" unknown_loc false (Ext_terms [prob']) in
+    let ext_pred = new_acsl_extension ~plugin:"flsmc" "probPred" unknown_loc false (Ext_preds [pred']) in
     Ext_annot ("ProbClause", [ext_prob; ext_pred])
 
 
@@ -369,9 +369,9 @@ class mpfr_contracts_parser
     let argv_vi = List.find (fun vi -> vi.vorig_name = "argv") f.sformals in
     let dfp = Cil.makeLocalVar f "dfp" file_ptr_type in
     let sfp = Cil.makeLocalVar f "sfp" file_ptr_type in
-    let diff = Cil.makeLocalVar f "diff" Cil.doubleType in
-    let n = Cil.makeLocalVar f "N" Cil.intType in
-    let i = Cil.makeLocalVar f "i" Cil.intType in
+    let diff = Cil.makeLocalVar f "diff" Cil_const.doubleType in
+    let n = Cil.makeLocalVar f "N" Cil_const.intType in
+    let i = Cil.makeLocalVar f "i" Cil_const.intType in
     let fl_args = List.map (fun vi -> Cil.makeLocalVar f vi.vorig_name vi.vtype)
         (Cil.getFormalsDecl (Option.get entry_vi))
     in

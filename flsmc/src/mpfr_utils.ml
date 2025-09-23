@@ -45,11 +45,11 @@ module ViHashtbl = Hashtbl.Make(struct
 
 let type_of_const : constant -> typ = function
   | CInt64 (_, ik, _) -> Cil_types.TInt (ik, [])
-  | CChr _ -> Cil.intType
-  | CStr _ -> Cil.theMachine.stringLiteralType
-  | CWStr _ -> TPtr (Cil.theMachine.wcharType, [])
+  | CChr _ -> Cil_const.intType
+  | CStr _ -> Machine.string_literal_type ()
+  | CWStr _ -> TPtr (Machine.wchar_type (), [])
   | CReal (_, fk, _) -> TFloat (fk, [])
-  | CEnum _ -> Cil.intType
+  | CEnum _ -> Cil_const.intType
 
 
 
@@ -252,9 +252,9 @@ class main_name_fixer = object (self)
       f.globals;
     (*Add new empty main function*)
     let new_main = Cil.emptyFunction "main" in
-    let main_args = [("argc", Cil.intType, []); ("argv", TPtr(Cil.charPtrType, []), [])] in
+    let main_args = [("argc", Cil_const.intType, []); ("argv", TPtr(Cil_const.charPtrType, []), [])] in
     Cil.setFunctionTypeMakeFormals new_main
-      (TFun (Cil.voidType, Some main_args, false, []));
+      (TFun (Cil_const.voidType, Some main_args, false, []));
     Cil.setFormals new_main new_main.sformals; (*not sure why this is needed*)
     f.globals <- f.globals @ [GFun (new_main, unknown_loc)];
     ignore (add_fundec_to_cfg new_main "main");
@@ -282,19 +282,19 @@ let is_compare_op = function
 let float_to_mpfr_vi fl_vi = vi_to_mpfr_with_newtype fl_vi mpfr_type
 
 let atoi_fn_vi () =
-  let args = [("li", Cil.charPtrType, [])] in
-  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let args = [("li", Cil_const.charPtrType, [])] in
+  let t = (TFun(Cil_const.intType, Some args, false, [])) in
   make_fn_vi t "atoi"
 
 let fopen_fn_vi () =
-  let args = [("fname", Cil.charPtrType, []);
-              ("mode", Cil.charPtrType, [])] in
+  let args = [("fname", Cil_const.charPtrType, []);
+              ("mode", Cil_const.charPtrType, [])] in
   let t = (TFun(file_ptr_type, Some args, false, [])) in
   make_fn_vi t "fopen"
 
 let fprintf_fn_vi () =
   let args = [("file", file_ptr_type, []);
-              ("str", Cil.charPtrType, [])] in
+              ("str", Cil_const.charPtrType, [])] in
   let t = (TFun(file_ptr_type, Some args, true, [])) in
   make_fn_vi t "fprintf"
 
@@ -302,10 +302,10 @@ let fprintf_fn_vi () =
 let fscanf_fn_vi mem_types =
   let args = [
       ("file", file_ptr_type, []);
-      ("str", Cil.charConstPtrType, []);
+      ("str", Cil_const.charConstPtrType, []);
     ] @ List.mapi (fun i t -> (string_of_int i, t, [])) mem_types
   in
-  let t = (TFun(Cil.intType, Some args, true, [])) in
+  let t = (TFun(Cil_const.intType, Some args, true, [])) in
   let fn_vi = make_fn_vi t "fscanf" in
   let t = (TFun(file_ptr_type, Some args, true, [])) in
   make_fn_vi t "fscanf"
@@ -323,7 +323,7 @@ let uop_to_mpfr_fn_vi uop =
     | _ -> Kernel.fatal "only Neg unary op supported for floats"
   in
   Cil.findOrCreateFunc f op_fn_name
-    (TFun(Cil.intType, Some args, false, []))
+    (TFun(Cil_const.intType, Some args, false, []))
 
 let bop_to_mpfr_fn_vi oper =
   let args =
@@ -354,7 +354,7 @@ let bop_to_mpfr_fn_vi oper =
   in
   let f = Ast.get () in
   Cil.findOrCreateFunc f op_fn_name
-  (TFun(Cil.intType, Some args, false, []))
+  (TFun(Cil_const.intType, Some args, false, []))
 
 
 
@@ -405,13 +405,13 @@ let mpfr_trans_fn_vi vi =
       ("rnd", mpfr_rnd_type, [])
     ]
     in
-    let t = (TFun(Cil.intType, Some args, false, [])) in
+    let t = (TFun(Cil_const.intType, Some args, false, [])) in
     make_fn_vi t (mpfr_trans_func_name vi.vorig_name)
 
 
 let mpfr_set_prec_stmt n =
-  let args = [("prec",Cil.intType,[])] in
-  let t = (TFun(Cil.intType, Some args, true, [])) in
+  let args = [("prec",Cil_const.intType,[])] in
+  let t = (TFun(Cil_const.intType, Some args, true, [])) in
   let fn_vi = make_fn_vi t "mpfr_set_default_prec" in
   Cil.mkStmtOneInstr (make_fun_call_instr fn_vi [Cil.integer ~loc:unknown_loc n])
 
@@ -465,7 +465,7 @@ let get_mpfr_initOrClear_instr vars fname =
       (List.mapi (fun i _ -> ("v" ^ (string_of_int i), mpfr_type, [])) lval_exps)
        @ [("end", mpfr_rnd_type, [])]
     in
-    let t = (TFun(Cil.intType, Some args, true, [])) in
+    let t = (TFun(Cil_const.intType, Some args, true, [])) in
     let fn_vi = make_fn_vi t fname in
     make_fun_call_instr fn_vi (lval_exps @ [mpfr_void_ptr_exp])
 
@@ -479,18 +479,18 @@ let get_mpfr_inits_instr vars = get_mpfr_initOrClear_instr vars "mpfr_inits"
       (List.mapi (fun i _ -> ("v" ^ (string_of_int i), mpfr_type, [])) vars)
        @ [("end", mpfr_rnd_type, [])]
     in
-    let t = (TFun(Cil.intType, Some args, true, [])) in
+    let t = (TFun(Cil_const.intType, Some args, true, [])) in
     let fn_vi = make_fn_vi t "mpfr_clears" in
     make_fun_call_instr fn_vi ((varinfos_to_exps vars) @ [mpfr_void_ptr_exp]) *)
 let make_mpfr_inp_str_instr ?(base = 10) ?(rnd=rnd_exp) rop_exp fp =
   let args = [
     ("rop", mpfr_type, []);
     ("FILE", file_ptr_type, []);
-    ("base", Cil.intType, []);
+    ("base", Cil_const.intType, []);
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let t = (TFun(Cil_const.intType, Some args, false, [])) in
   let base_exp = Cil.integer ~loc:unknown_loc base in
   let fn_vi = make_fn_vi t "mpfr_inp_str" in
   make_fun_call_instr fn_vi [rop_exp; fp; base_exp; rnd]
@@ -498,12 +498,12 @@ let make_mpfr_inp_str_instr ?(base = 10) ?(rnd=rnd_exp) rop_exp fp =
 let mpfr_set_str_instr ?(base = 10) ?(rnd=rnd_exp) rop str  =
   let args = [
     ("rop", mpfr_type, []);
-    ("rop", Cil.charPtrType, []);
-    ("base", Cil.intType, []);
+    ("rop", Cil_const.charPtrType, []);
+    ("base", Cil_const.intType, []);
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let t = (TFun(Cil_const.intType, Some args, false, [])) in
   let base_exp = Cil.integer ~loc:unknown_loc base in
   let fn_vi = make_fn_vi t "mpfr_set_str" in
   make_fun_call_instr fn_vi [var_to_exp rop; str; base_exp; rnd]
@@ -517,7 +517,7 @@ let mpfr_set_instr_fn_vi =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let t = (TFun(Cil_const.intType, Some args, false, [])) in
   make_fn_vi t "mpfr_set"
 
 let mpfr_set_instr to' from rnd =
@@ -538,19 +538,19 @@ let mpfr_set_flt_instr fl_exp m_exp rnd =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil.intType, Some args, false, [])) in
+  let t = (TFun(Cil_const.intType, Some args, false, [])) in
   let fn_vi = make_fn_vi t "mpfr_set_flt" in
   make_fun_call_instr fn_vi [m_exp; fl_exp; rnd]
 
 let mpfr_set_const_str_instr flstr vi rnd =
     let args = [
       ("rop", mpfr_type, []);
-      ("s", Cil.charPtrType, []);
-      ("base", Cil.intType, []);
+      ("s", Cil_const.charPtrType, []);
+      ("base", Cil_const.intType, []);
       ("rnd", mpfr_rnd_type, [])
     ]
     in
-    let t = (TFun(Cil.intType, Some args, false, [])) in
+    let t = (TFun(Cil_const.intType, Some args, false, [])) in
     let fn_vi = make_fn_vi t "mpfr_set_str" in
     let fl_enode = Const (CStr flstr) in
     let fl_exp = Cil.new_exp ~loc:unknown_loc fl_enode in
@@ -569,20 +569,20 @@ let mpfr_get_d_instr ?(rnd=rnd_exp) from_exp res_lval =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil.doubleType, Some args, false, [])) in
+  let t = (TFun(Cil_const.doubleType, Some args, false, [])) in
   let fn_vi = make_fn_vi t "mpfr_get_d" in
   make_fun_call_instr ~res:(Some res_lval) fn_vi [from_exp; rnd]
 
 let mpfr_fprintf_diff_instr file_vi str_exp a_vi b_vi diff_vi rnd =
     let args = [
       ("file", file_ptr_type, []);
-      ("str", Cil.charConstPtrType, []);
+      ("str", Cil_const.charConstPtrType, []);
       ("a", mpfr_type, []);
       ("b", mpfr_type, []);
       ("diff", mpfr_type, []);
     ]
     in
-    let t = (TFun(Cil.intType, Some args, true, [])) in
+    let t = (TFun(Cil_const.intType, Some args, true, [])) in
     let fn_vi = make_fn_vi t "mpfr_fprintf" in
     let file_exp = var_to_exp file_vi in
     let a_exp = var_to_exp a_vi in

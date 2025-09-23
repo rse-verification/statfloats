@@ -638,7 +638,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     let () = match f'.svar.vtype with
         | TFun(_, args, fa, aa) ->
           Cil.setFunctionType f'
-            (TFun(Cil.voidType, Some forms_unrolled, fa, aa));
+            (TFun(Cil_const.voidType, Some forms_unrolled, fa, aa));
         | _ -> Kernel.fatal ~current:true "not a function type"
     in
     Hashtbl.add fn_mpfr_names_to_vis name f'.svar;
@@ -724,7 +724,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
                 self#return_tmp_var_exp kf e2';
                 self#return_tmp_var_exp kf e1';
                 let r = Cil.var (Cil.makeTempVar
-                  (Kernel_function.get_definition kf) Cil.intType)
+                  (Kernel_function.get_definition kf) Cil_const.intType)
                 in
                 self#queueOneInstr @@ make_cmp_binop_mpfr e1' e2' r oper';
                 lval_to_exp r

@@ -21,7 +21,7 @@ type dPred = DLogOp of (logOp * dPred * dPred) | DNeg of dPred |
 
 (*Probabilistic expr*)
 type pExpr =
-  | Pr of dPred (*e.g., \mathbb{P}(x > 2.5)*)
+  | Pr of dPred (* e.g., \mathbb{P}(x > 2.5) *)
   | PBinop of (binOp * pExpr * pExpr)
   | PConst of float
 

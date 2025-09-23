@@ -90,7 +90,7 @@ class file_manager = object (self)
 
   method compile_mpfr_file () =
     let compile_cmd =
-      Printf.sprintf "gcc %s -lmpfr -lgmp -lm -o %s"
+      Printf.sprintf "gcc -O3 %s -lmpfr -lgmp -lm -o %s"
         (self#get_mpfr_path ()) (self#get_exec_path ());
     in
     ignore @@ Sys.command compile_cmd
