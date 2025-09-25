@@ -44,11 +44,11 @@ module ViHashtbl = Hashtbl.Make(struct
       end)
 
 let type_of_const : constant -> typ = function
-  | CInt64 (_, ik, _) -> Cil_types.TInt (ik, [])
+  | CInt64 (_, ik, _) -> {tnode = Cil_types.TInt ik; tattr = []}
   | CChr _ -> Cil_const.intType
   | CStr _ -> Machine.string_literal_type ()
-  | CWStr _ -> TPtr (Machine.wchar_type (), [])
-  | CReal (_, fk, _) -> TFloat (fk, [])
+  | CWStr _ -> {tnode = TPtr (Machine.wchar_type ()); tattr = []}
+  | CReal (_, fk, _) -> {tnode = TFloat fk; tattr = []}
   | CEnum _ -> Cil_const.intType
 
 
@@ -56,14 +56,15 @@ let type_of_const : constant -> typ = function
 (*From: https://git.frama-c.com/pub/frama-c/-/blob/master/src/plugins/eva/ast/eva_ast_typing.ml*)
 let type_of_exp_node : exp_node -> typ = function
   | Const c -> type_of_const c
-  | Lval lv -> Cil.type_remove_qualifier_attributes (Cil.typeOfLval lv)
+  | Lval lv -> Ast_types.remove_qualifiers (Cil.typeOfLval lv)
   | UnOp (_, _, t) -> t
   | BinOp (_, _, _, t) -> t
   | CastE (t, _) -> t
-  | AddrOf lv -> TPtr (Cil.typeOfLval lv, [])
+  | AddrOf lv -> {tnode = TPtr (Cil.typeOfLval lv); tattr = []}
   | StartOf lv ->
-    match Cil.unrollType (Cil.typeOfLval lv) with
-    | TArray (t, _, attrs) -> TPtr (t, attrs)
+    let unrolltype = Ast_types.unroll (Cil.typeOfLval lv) in
+    match unrolltype.tnode with
+    | TArray (t, _) -> {tnode = TPtr t; tattr = unrolltype.tattr}
     | _ ->  assert false
 
 let include_global fname = GText (Printf.sprintf "#include \"%s\"" fname)
@@ -136,41 +137,45 @@ let make_fn_vi typ name =
 
 let make_fun_call fn_vi args = Cil.mkStmt (Instr (make_fun_call_instr fn_vi args))
 
-let rec file_ptr_type =
-  TPtr(file_type, [])
+let tnodeToType tnode = {tnode = tnode; tattr = []}
+
+let rec file_ptr_type = {tnode = TPtr file_type; tattr = []}
+
 and file_type =
-  TNamed({torig_name = "FILE";
+  tnodeToType (TNamed({torig_name = "FILE";
     tname = "FILE";
-    ttype = TInt(IInt, []);   (*Hack just for printing, see if it works...*)
+    ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
     treferenced = false;
-  }, [])
+  }))
 
 let mpfr_rnd_type =
   TNamed({torig_name = "mpfr_rnd_t";
           tname = "mpfr_rnd_t";
-          ttype = TInt(IInt, []);   (*Hack just for printing, see if it works...*)
+          ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
           treferenced = false;
-  }, [])
+  })
 
 let mpfr_type =
-  TNamed({torig_name = "mpfr_t";
+  tnodeToType
+  (TNamed({torig_name = "mpfr_t";
     tname = "mpfr_t";
-    ttype = TInt(IInt, []);   (*Hack just for printing, see if it works...*)
+    ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
     treferenced = false;
-  }, [])
+  }))
 
-let mpfr_ptr_type = TPtr (mpfr_type, [])
+let mpfr_ptr_type = tnodeToType (TPtr mpfr_type)
 
 let mpfr_void_ptr_exp = Cil.mkCast ~newt:mpfr_ptr_type zero_exp
 
 let file_type =
-  TNamed({torig_name = "FILE";
+  tnodeToType
+  (TNamed({torig_name = "FILE";
     tname = "FILE";
-    ttype = TInt(IInt, []);   (*Hack just for printing, see if it works...*)
+    ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
     treferenced = false;
-  }, [])
+  }))
 
-let file_ptr_type = TPtr (file_type, [])
+let file_ptr_type = TPtr file_type
 
 type mpfr_var =
     | Tmp of Cil_types.varinfo
@@ -191,23 +196,23 @@ let is_tmp_mpfr_vi m_vi = match m_vi with
 (*Returns true if it is a float, an array of floats, a ptr to a float,
   or a structure containing something that has a float
 *)
-let rec viHasFloatingType = function
-  | TVoid _ -> false
+let rec viHasFloatingType typ = match typ.tnode with
+  | TVoid -> false
   | TInt _ -> false
   | TFloat _ -> true
-  | TPtr (t, _) -> viHasFloatingType t
-  | TArray (t, _, _) -> viHasFloatingType t
-  | TFun (t, Some tl, _, _) ->
+  | TPtr t -> viHasFloatingType t
+  | TArray (t, _) -> viHasFloatingType t
+  | TFun (t, Some tl, _) ->
     (viHasFloatingType t) ||
       (Seq.exists (fun (_, t', _) -> viHasFloatingType t') (List.to_seq tl))
-  | TFun (t, None, _, _) -> (viHasFloatingType t)
-  | TNamed (t, _) -> viHasFloatingType t.ttype
-  | TComp ({cfields=fs; _}, _) -> (match fs with
+  | TFun (t, None, _) -> (viHasFloatingType t)
+  | TNamed t -> viHasFloatingType t.ttype
+  | TComp ({cfields=fs; _}) -> (match fs with
     | Some fs' -> Seq.exists (fun f -> viHasFloatingType f.ftype) (List.to_seq fs')
     | None -> false
     )
   | TEnum _ -> false
-  | TBuiltin_va_list _ -> false (*I dont know what this is, returning false*)
+  | TBuiltin_va_list -> false (*I dont know what this is, returning false*)
 
 let var_to_exp vi =
       Cil.new_exp ~loc:unknown_loc
@@ -252,7 +257,7 @@ class main_name_fixer = object (self)
       f.globals;
     (*Add new empty main function*)
     let new_main = Cil.emptyFunction "main" in
-    let main_args = [("argc", Cil_const.intType, []); ("argv", TPtr(Cil_const.charPtrType, []), [])] in
+    let main_args = [("argc", Cil_const.intType, []); ("argv", tnodeToType (TPtr(Cil_const.charPtrType)), [])] in
     Cil.setFunctionTypeMakeFormals new_main
       (TFun (Cil_const.voidType, Some main_args, false, []));
     Cil.setFormals new_main new_main.sformals; (*not sure why this is needed*)
