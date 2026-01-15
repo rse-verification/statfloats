@@ -193,23 +193,29 @@ let generate () =
 
 let run () =
   if (Enabled.get ()) then
-      (let specparser = generate () in
-      !fmgr#compile_mpfr_file ();
-      (* if (AnalyzeEnabled.get ()) then *)
-      let flt_eq = specparser#make_flteq_contract () in
-      let sa = new Statistical_analyser.statistical_analyser !fmgr flt_eq in
-      sa#analyse ();
-      let () =
-        if (PlotDiffsEnabled.get ()) then
-          Plotting.plot_diffs (!fmgr#get_diff_path ())
-        else ()
-      in
-      if (not (SaveSamples.get ())) then begin !fmgr#remove_samples_file () end;
-      if (not (SaveDiffs.get ())) then begin !fmgr#remove_diff_file () end;
-      ()
+      (
+        let specparser = generate () in
+        !fmgr#compile_mpfr_file ();
+        (* if (AnalyzeEnabled.get ()) then *)
+        let flt_eq = specparser#make_flteq_contract () in
+        let sa = new Statistical_analyser.statistical_analyser !fmgr flt_eq in
+        sa#analyse ();
+        let () =
+          if (PlotDiffsEnabled.get ()) then
+            Plotting.plot_diffs (!fmgr#get_diff_path ())
+          else ()
+        in
+        (if (PlotSamplesForVar.get () <> "") then
+          Plotting.plot_csv_histogram
+            (!fmgr#get_samples_path ())
+            (PlotSamplesForVar.get ())
+            1000);
+        if (not (SaveSamples.get ())) then begin !fmgr#remove_samples_file () end;
+        if (not (SaveDiffs.get ())) then begin !fmgr#remove_diff_file () end;
+        ()
       (* if (RealVerificationEnabled.get ()) then
          *)
-  )
+      )
     (* else () *)
   else ()
 

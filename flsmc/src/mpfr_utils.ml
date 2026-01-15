@@ -139,21 +139,24 @@ let make_fun_call fn_vi args = Cil.mkStmt (Instr (make_fun_call_instr fn_vi args
 
 let tnodeToType tnode = {tnode = tnode; tattr = []}
 
-let rec file_ptr_type = {tnode = TPtr file_type; tattr = []}
 
-and file_type =
+
+let file_type =
   tnodeToType (TNamed({torig_name = "FILE";
     tname = "FILE";
     ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
     treferenced = false;
   }))
 
+let file_ptr_type = tnodeToType (TPtr file_type)
+
 let mpfr_rnd_type =
-  TNamed({torig_name = "mpfr_rnd_t";
+  tnodeToType
+  (TNamed({torig_name = "mpfr_rnd_t";
           tname = "mpfr_rnd_t";
           ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
           treferenced = false;
-  })
+  }))
 
 let mpfr_type =
   tnodeToType
@@ -167,15 +170,7 @@ let mpfr_ptr_type = tnodeToType (TPtr mpfr_type)
 
 let mpfr_void_ptr_exp = Cil.mkCast ~newt:mpfr_ptr_type zero_exp
 
-let file_type =
-  tnodeToType
-  (TNamed({torig_name = "FILE";
-    tname = "FILE";
-    ttype = Cil_const.intType;   (*Hack just for printing, see if it works...*)
-    treferenced = false;
-  }))
 
-let file_ptr_type = TPtr file_type
 
 type mpfr_var =
     | Tmp of Cil_types.varinfo
@@ -259,7 +254,7 @@ class main_name_fixer = object (self)
     let new_main = Cil.emptyFunction "main" in
     let main_args = [("argc", Cil_const.intType, []); ("argv", tnodeToType (TPtr(Cil_const.charPtrType)), [])] in
     Cil.setFunctionTypeMakeFormals new_main
-      (TFun (Cil_const.voidType, Some main_args, false, []));
+      (tnodeToType (TFun (Cil_const.voidType, Some main_args, false)));
     Cil.setFormals new_main new_main.sformals; (*not sure why this is needed*)
     f.globals <- f.globals @ [GFun (new_main, unknown_loc)];
     ignore (add_fundec_to_cfg new_main "main");
@@ -288,19 +283,19 @@ let float_to_mpfr_vi fl_vi = vi_to_mpfr_with_newtype fl_vi mpfr_type
 
 let atoi_fn_vi () =
   let args = [("li", Cil_const.charPtrType, [])] in
-  let t = (TFun(Cil_const.intType, Some args, false, [])) in
+  let t = tnodeToType (TFun(Cil_const.intType, Some args, false)) in
   make_fn_vi t "atoi"
 
 let fopen_fn_vi () =
   let args = [("fname", Cil_const.charPtrType, []);
               ("mode", Cil_const.charPtrType, [])] in
-  let t = (TFun(file_ptr_type, Some args, false, [])) in
+  let t = tnodeToType (TFun(file_ptr_type, Some args, false)) in
   make_fn_vi t "fopen"
 
 let fprintf_fn_vi () =
   let args = [("file", file_ptr_type, []);
               ("str", Cil_const.charPtrType, [])] in
-  let t = (TFun(file_ptr_type, Some args, true, [])) in
+  let t = tnodeToType (TFun(file_ptr_type, Some args, true)) in
   make_fn_vi t "fprintf"
 
 
@@ -310,9 +305,9 @@ let fscanf_fn_vi mem_types =
       ("str", Cil_const.charConstPtrType, []);
     ] @ List.mapi (fun i t -> (string_of_int i, t, [])) mem_types
   in
-  let t = (TFun(Cil_const.intType, Some args, true, [])) in
+  let t = tnodeToType (TFun(Cil_const.intType, Some args, true)) in
   let fn_vi = make_fn_vi t "fscanf" in
-  let t = (TFun(file_ptr_type, Some args, true, [])) in
+  let t = tnodeToType (TFun(file_ptr_type, Some args, true)) in
   make_fn_vi t "fscanf"
 
 let uop_to_mpfr_fn_vi uop =
@@ -328,7 +323,7 @@ let uop_to_mpfr_fn_vi uop =
     | _ -> Kernel.fatal "only Neg unary op supported for floats"
   in
   Cil.findOrCreateFunc f op_fn_name
-    (TFun(Cil_const.intType, Some args, false, []))
+    @@ tnodeToType (TFun(Cil_const.intType, Some args, false))
 
 let bop_to_mpfr_fn_vi oper =
   let args =
@@ -359,7 +354,7 @@ let bop_to_mpfr_fn_vi oper =
   in
   let f = Ast.get () in
   Cil.findOrCreateFunc f op_fn_name
-  (TFun(Cil_const.intType, Some args, false, []))
+    @@ tnodeToType (TFun(Cil_const.intType, Some args, false))
 
 
 
@@ -367,12 +362,12 @@ let bop_to_mpfr_fn_vi oper =
 let make_fscanf_instr ?(sep=",") fp args =
   let mem_args = List.map (Cil.mkAddrOrStartOf ~loc:unknown_loc) args in
   let mem_types = List.map (fun e -> type_of_exp_node e.enode) mem_args in
-  let get_token t = match t with
-    | TPtr(t', _) ->
-        (match Cil.unrollType t' with
-          | TInt(IInt,_) -> "%d"
-          | TFloat(FFloat, _) -> "%f"
-          | TFloat(FDouble, _) -> "%lf"
+  let get_token t = match t.tnode with
+    | TPtr(t') ->
+        (match (Ast_types.unroll t').tnode with
+          | TInt(IInt) -> "%d"
+          | TFloat(FFloat) -> "%f"
+          | TFloat(FDouble) -> "%lf"
           | _ ->
             (Self.debug ~level:3 "type: %a" Printer.pp_typ t;
             Kernel.fatal "not implemented other yet"))
@@ -410,13 +405,13 @@ let mpfr_trans_fn_vi vi =
       ("rnd", mpfr_rnd_type, [])
     ]
     in
-    let t = (TFun(Cil_const.intType, Some args, false, [])) in
+    let t = tnodeToType (TFun(Cil_const.intType, Some args, false)) in
     make_fn_vi t (mpfr_trans_func_name vi.vorig_name)
 
 
 let mpfr_set_prec_stmt n =
   let args = [("prec",Cil_const.intType,[])] in
-  let t = (TFun(Cil_const.intType, Some args, true, [])) in
+  let t = tnodeToType (TFun(Cil_const.intType, Some args, true)) in
   let fn_vi = make_fn_vi t "mpfr_set_default_prec" in
   Cil.mkStmtOneInstr (make_fun_call_instr fn_vi [Cil.integer ~loc:unknown_loc n])
 
@@ -428,8 +423,8 @@ let var_offs_to_exp vi offs = Cil.new_exp ~loc:unknown_loc (Lval (Var vi, offs))
 
 (*Not yet supported with e.g. mpfr arrays in structs*)
 let mpfr_exps_from_struct_vi vi =
-  match vi.vtype with
-    | TComp (ci, _) ->
+  match vi.vtype.tnode with
+    | TComp (ci) ->
         let fs = Option.get ci.cfields in
         List.filter_map (fun f ->
           if not (f.ftype = mpfr_type) then None
@@ -446,20 +441,20 @@ let mpfr_exps_from_struct_vi vi =
   in the future.
  *)
 let exp_is_float_binop = function
-  | BinOp (_, _, _, t) when Cil.isFloatingType t -> true
+  | BinOp (_, _, _, t) when Ast_types.is_float t -> true
   | BinOp (bop, a, b, _)
     when is_compare_op bop &&
-         Cil.isFloatingType (type_of_exp_node a.enode) &&
-         Cil.isFloatingType (type_of_exp_node a.enode)
+         Ast_types.is_float (type_of_exp_node a.enode) &&
+         Ast_types.is_float (type_of_exp_node a.enode)
     -> true
   | _ -> false
 
 
 (*Make*)
 let get_mpfr_initOrClear_instr vars fname =
-    let lval_exps = List.concat (List.map (fun vi -> match vi.vtype with
+    let lval_exps = List.concat (List.map (fun vi -> match vi.vtype.tnode with
       | TComp _ -> mpfr_exps_from_struct_vi vi
-      | t when t = mpfr_type  -> [var_to_exp vi]
+      | _ when vi.vtype = mpfr_type  -> [var_to_exp vi]
       | _ -> Kernel.fatal "only mpfr type or mpfrs in structs supported, got: %a"
                 Printer.pp_varinfo vi
     )
@@ -470,7 +465,7 @@ let get_mpfr_initOrClear_instr vars fname =
       (List.mapi (fun i _ -> ("v" ^ (string_of_int i), mpfr_type, [])) lval_exps)
        @ [("end", mpfr_rnd_type, [])]
     in
-    let t = (TFun(Cil_const.intType, Some args, true, [])) in
+    let t = tnodeToType (TFun(Cil_const.intType, Some args, true)) in
     let fn_vi = make_fn_vi t fname in
     make_fun_call_instr fn_vi (lval_exps @ [mpfr_void_ptr_exp])
 
@@ -495,7 +490,7 @@ let make_mpfr_inp_str_instr ?(base = 10) ?(rnd=rnd_exp) rop_exp fp =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil_const.intType, Some args, false, [])) in
+  let t = tnodeToType (TFun(Cil_const.intType, Some args, false)) in
   let base_exp = Cil.integer ~loc:unknown_loc base in
   let fn_vi = make_fn_vi t "mpfr_inp_str" in
   make_fun_call_instr fn_vi [rop_exp; fp; base_exp; rnd]
@@ -508,7 +503,7 @@ let mpfr_set_str_instr ?(base = 10) ?(rnd=rnd_exp) rop str  =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil_const.intType, Some args, false, [])) in
+  let t = tnodeToType (TFun(Cil_const.intType, Some args, false)) in
   let base_exp = Cil.integer ~loc:unknown_loc base in
   let fn_vi = make_fn_vi t "mpfr_set_str" in
   make_fun_call_instr fn_vi [var_to_exp rop; str; base_exp; rnd]
@@ -522,7 +517,7 @@ let mpfr_set_instr_fn_vi =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil_const.intType, Some args, false, [])) in
+  let t = tnodeToType (TFun(Cil_const.intType, Some args, false)) in
   make_fn_vi t "mpfr_set"
 
 let mpfr_set_instr to' from rnd =
@@ -543,7 +538,7 @@ let mpfr_set_flt_instr fl_exp m_exp rnd =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil_const.intType, Some args, false, [])) in
+  let t = tnodeToType  (TFun(Cil_const.intType, Some args, false)) in
   let fn_vi = make_fn_vi t "mpfr_set_flt" in
   make_fun_call_instr fn_vi [m_exp; fl_exp; rnd]
 
@@ -555,7 +550,7 @@ let mpfr_set_const_str_instr flstr vi rnd =
       ("rnd", mpfr_rnd_type, [])
     ]
     in
-    let t = (TFun(Cil_const.intType, Some args, false, [])) in
+    let t = tnodeToType (TFun(Cil_const.intType, Some args, false)) in
     let fn_vi = make_fn_vi t "mpfr_set_str" in
     let fl_enode = Const (CStr flstr) in
     let fl_exp = Cil.new_exp ~loc:unknown_loc fl_enode in
@@ -574,7 +569,7 @@ let mpfr_get_d_instr ?(rnd=rnd_exp) from_exp res_lval =
     ("rnd", mpfr_rnd_type, [])
   ]
   in
-  let t = (TFun(Cil_const.doubleType, Some args, false, [])) in
+  let t = tnodeToType (TFun(Cil_const.doubleType, Some args, false)) in
   let fn_vi = make_fn_vi t "mpfr_get_d" in
   make_fun_call_instr ~res:(Some res_lval) fn_vi [from_exp; rnd]
 
@@ -587,7 +582,7 @@ let mpfr_fprintf_diff_instr file_vi str_exp a_vi b_vi diff_vi rnd =
       ("diff", mpfr_type, []);
     ]
     in
-    let t = (TFun(Cil_const.intType, Some args, true, [])) in
+    let t = tnodeToType (TFun(Cil_const.intType, Some args, true)) in
     let fn_vi = make_fn_vi t "mpfr_fprintf" in
     let file_exp = var_to_exp file_vi in
     let a_exp = var_to_exp a_vi in
@@ -601,7 +596,7 @@ let extract_from_flt_eq p =
         Some (e,r)
       | _ -> None
 
-let is_int vi = Cil.isIntegralType vi.vtype
-let is_char_ptr_ptr vi = match vi.vtype with
-  | TPtr (t, _) -> Cil.isAnyCharPtrType t
+let is_int vi = Ast_types.is_integral vi.vtype
+let is_char_ptr_ptr vi = match vi.vtype.tnode with
+  | TPtr (t) -> Ast_types.is_any_char_ptr t
   | _ -> false

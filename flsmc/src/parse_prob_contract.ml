@@ -377,7 +377,7 @@ class mpfr_contracts_parser
     in
     let mpfr_args = List.map (self#get_local_mpfr kf) fl_args in
     let entry_type = (Option.get entry_vi).vtype in
-    let res_vi = if Cil.isVoidType (Cil.getReturnType entry_type) then None
+    let res_vi = if Ast_types.is_void (Cil.getReturnType entry_type) then None
         else Some (Cil.makeLocalVar f "res" (Cil.getReturnType entry_type))
     in
     let mpfr_res_vi = Option.map (self#get_local_mpfr kf) res_vi in
@@ -479,6 +479,11 @@ class mpfr_contracts_parser
                   ->
                   self#add_dist
                     {dvar=var_term;dname="Uniform";dparams=[lo_t;hi_t]}
+              | Ext_terms
+                  [var_term; {term_node=TConst (LStr "Normal"); _}; mu_t; sigma_t]
+                    ->
+                    self#add_dist
+                      {dvar=var_term;dname="Normal";dparams=[mu_t;sigma_t]}
               | ext -> Kernel.fatal "Not a correct distribution %a"
                           Printer.pp_extended dist
             )

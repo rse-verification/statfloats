@@ -65,15 +65,23 @@ end)
 
 module StatisticalAnalysisEnabled = Self.True
   (struct
-  let option_name = "-flosmc-statistical-analysis"
+  let option_name = "-fs-statistical-analysis"
   let short_name = "-flosmc-stat"
   let help = "when on (on by default), performs statistical analysis of the rounding error"
 end)
 
 module PlotDiffsEnabled = Self.False
   (struct
-  let option_name = "-flosmc-plot-diffs"
-  let help = "when on (off by default), plots diffs"
+  let option_name = "-fs-plot-diffs"
+  let help = "when on (off by default), plots diffs. This may not work."
+end)
+
+module PlotSamplesForVar = Self.String
+  (struct
+  let default = ""
+  let arg_name = "variable"
+  let option_name = "-fs-plot-samples"
+  let help = "when on (off by default), plots samples for the given variable. This may not work."
 end)
 
 module RealVerificationEnabled = Self.True
