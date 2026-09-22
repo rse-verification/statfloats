@@ -27,9 +27,9 @@ let type_probContract type_ctxt loc [prob; conf; pred] =
   Self.debug "after årp'";
   let pred' = type_ctxt.type_predicate type_ctxt env_with_old pred in
   Self.debug "after åred'";
-  let ext_prob = new_acsl_extension "prob" unknown_loc false (Ext_terms [prob']) in
-  let ext_conf = new_acsl_extension "confLevel" unknown_loc false (Ext_terms [conf']) in
-  let ext_pred = new_acsl_extension "probPred" unknown_loc false (Ext_preds [pred']) in
+  let ext_prob = new_acsl_extension ~plugin:"flostat" "prob" unknown_loc false (Ext_terms [prob']) in
+  let ext_conf = new_acsl_extension ~plugin:"flostat" "confLevel" unknown_loc false (Ext_terms [conf']) in
+  let ext_pred = new_acsl_extension ~plugin:"flostat" "probPred" unknown_loc false (Ext_preds [pred']) in
   Ext_annot ("ProbClause", [ext_prob; ext_conf; ext_pred])
 
 
@@ -286,7 +286,7 @@ class mpfr_contracts_parser
 
   method get_mpfr_print_instr flvi rvi diffvi fp_vi =
     let str = "%.32Rf, %.32Rf, %.32Rf\n" in
-    let str_exp = new_exp ~loc:unknown_loc (Const (CStr str)) in
+    let str_exp = string_to_exp str in
     let instr = mpfr_fprintf_diff_instr
       fp_vi str_exp flvi rvi diffvi rnd_exp
     in instr
@@ -338,15 +338,15 @@ class mpfr_contracts_parser
     let argv_vi = List.find (fun vi -> vi.vorig_name = "argv") f.sformals in
     let dfp = Cil.makeLocalVar f "dfp" file_ptr_type in
     let sfp = Cil.makeLocalVar f "sfp" file_ptr_type in
-    let diff = Cil.makeLocalVar f "diff" Cil.doubleType in
-    let n = Cil.makeLocalVar f "N" Cil.intType in
-    let i = Cil.makeLocalVar f "i" Cil.intType in
+    let diff = Cil.makeLocalVar f "diff" Cil_const.doubleType in
+    let n = Cil.makeLocalVar f "N" Cil_const.intType in
+    let i = Cil.makeLocalVar f "i" Cil_const.intType in
     let fl_args = List.map (fun vi -> Cil.makeLocalVar f vi.vorig_name vi.vtype)
         (Cil.getFormalsDecl (Option.get entry_vi))
     in
     let mpfr_args = List.map (self#get_local_mpfr kf) fl_args in
     let entry_type = (Option.get entry_vi).vtype in
-    let res_vi = if Cil.isVoidType (Cil.getReturnType entry_type) then None
+    let res_vi = if Ast_types.is_void (Cil.getReturnType entry_type) then None
         else Some (Cil.makeLocalVar f "res" (Cil.getReturnType entry_type))
     in
     let mpfr_res_vi = Option.map (self#get_local_mpfr kf) res_vi in
@@ -354,8 +354,7 @@ class mpfr_contracts_parser
       make_fun_call_instr
         ~res:(Some (vi_to_varlval fp))
         (fopen_fn_vi ())
-        [Cil.mkString ~loc:unknown_loc fname;
-        Cil.mkString ~loc:unknown_loc mode]
+        [string_to_exp fname; string_to_exp mode]
     in
     (*Open samples files*)
     let open_sample_file_instr = open_file_instr sfp
@@ -363,7 +362,7 @@ class mpfr_contracts_parser
     let skip_headers_instr =
       make_fun_call_instr
         (fscanf_fn_vi [])
-        [var_to_exp sfp;Cil.mkString ~loc:unknown_loc "%*[^\n]\n"]
+        [var_to_exp sfp;string_to_exp "%*[^\n]\n"]
     in
     (*Open diff file*)
     let open_diff_file_instr = open_file_instr dfp
@@ -372,7 +371,7 @@ class mpfr_contracts_parser
       make_fun_call_instr
         ~res:None
         (fprintf_fn_vi ())
-        [var_to_exp dfp;Cil.mkString ~loc:unknown_loc "float_res, real_res, diff\n"]
+        [var_to_exp dfp;string_to_exp "float_res, real_res, diff\n"]
     in
     (*Read loop guard, N= atoi(argv[1])*)
     let read_N_instr =

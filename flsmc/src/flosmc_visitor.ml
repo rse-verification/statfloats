@@ -164,7 +164,8 @@ let copy_compinfo_to_mpfr ci =
       (List.map
         (fun fld ->
           fld.fname,
-          (if not(Cil.isFloatingType fld.ftype) then fld.ftype else mpfr_type),
+          (if not(Ast_types.is_float fld.ftype) then fld.ftype else mpfr_type),
+          None,
           None,
           [],
           unknown_loc
@@ -203,7 +204,7 @@ class struct_and_union_copier = object (self)
       | [] -> []
       | g::t ->
         (match g with
-          | GCompTag (ci, _) when viHasFloatingType (TComp (ci, [])) ->
+          | GCompTag (ci, _) when hasFloatingType (Cil_const.mk_tcomp ci) ->
             let ci' = copy_compinfo_to_mpfr ci in
             Hashtbl.add struct_union_map ci ci';
             g::(GCompTag (ci', unknown_loc))::(copy_mpfrs t)
@@ -308,12 +309,12 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
   (*Gets the corresponding mpfr type of a varinfo,
   returns None if no exists
   *)
-  method get_mpfr_type = function
-    | TNamed (ti, _)  -> self#get_mpfr_type ti.ttype
+  method get_mpfr_type t = match t.tnode with
+    | TNamed ti  -> self#get_mpfr_type ti.ttype
     | TFloat _  -> Some mpfr_type
-    | TComp (ci, a) -> (match Hashtbl.find_opt mpfr_structs_map ci with
-                  | Some ci' -> Some (TComp (ci', a)) | None -> None)
-    | t -> Self.debug ~level:3 "no type for: %a" Printer.pp_typ t; None
+    | TComp ci -> (match Hashtbl.find_opt mpfr_structs_map ci with
+                  | Some ci' -> Some (Cil_const.mk_tcomp ci') | None -> None)
+    | _ -> Self.debug ~level:3 "no type for: %a" Printer.pp_typ t; None
 
   method get_res_vi kf =
     match Hashtbl.find_opt res_vars kf with
@@ -461,7 +462,6 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
   method! vglob_aux = function
     | GFun _ -> Cil.DoChildren
     | _ -> Cil.SkipChildren
-
   method! vfile f =
      let fun' = (fun f' ->
       let new_globs =
@@ -475,9 +475,9 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     in
     let filter_fl_vars g =
       match g with
-        | GVar (vi, _, _) when viHasFloatingType vi.vtype -> Some vi
+        | GVar (vi, _, _) when hasFloatingType vi.vtype -> Some vi
         | GVarDecl (vi, _) when vi.vstorage = Extern &&
-            viHasFloatingType vi.vtype -> Some vi
+            hasFloatingType vi.vtype -> Some vi
         | _ -> None
     in
     let fl_vars = List.filter_map filter_fl_vars f.globals in
@@ -497,14 +497,14 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       | Some(kf) ->
         let kf = Option.get self#current_kf in
         let fun' = (fun vi' ->
-          match Cil.unrollType vi.vtype with
-            | TFloat(_,_) ->
+          match Ast_types.unroll_node vi.vtype with
+            | TFloat _ ->
               let m_v = self#get_local_or_glob_mpfr vi' kf in
               (* self#push_var m_v kf; *)
               m_v
-            | TComp (ci, _) as tci when viHasFloatingType tci ->
+            | TComp ci when hasFloatingType vi.vtype ->
                 self#get_local_or_glob_mpfr vi' kf
-            | TFun(t, maybe_args, variable, attrs) ->
+            | TFun(_, _, _) ->
               (match self#get_mpfr_fn_vi vi'.vorig_name with
                 | Some m_v -> m_v
                 | None -> vi')
@@ -527,7 +527,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       [mpfr_set_instr vi_exp e rnd_exp]
     in
     match i with
-      (* | Set ((Var {vtype=t; _} as vi, NoOffset), _, _) when Cil.isFloatingType t ->
+      (* | Set ((Var {vtype=t; _} as vi, NoOffset), _, _) when Ast_types.is_float t ->
         let fun' = (fun i' ->
             match i' with
               | [Set ((Var vi', _), e', loc')] -> add_set_help (var_to_exp vi') e'
@@ -536,7 +536,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
         in
         Cil.DoChildrenPost fun' *)
       (* | Set ((Mem (Lval (Var vi, Field fi)))) -> *)
-     | Set (lv, _, _) when Cil.isFloatingType (Cil.typeOfLval lv) ->
+     | Set (lv, _, _) when Ast_types.is_float (Cil.typeOfLval lv) ->
           let fun' = (fun i' ->
             match i' with
               (* | Set ((Mem (Lval (Var vi', Field fi')))) -> *)
@@ -550,13 +550,13 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       | Call (Some (Var vi, _), _, _, _) ->
         let fun' = (fun i' ->
             match i' with
-              | [Call (Some (Var vi', _), e', args_exps', loc')] ->
+              | [Call (Some (Var vi', _), Var vi, args_exps', loc')] ->
                   (*Check if transendental, then use mpfr version for this*)
-                  if (is_transendental_fun (exp_to_vi e')) then
-                        [Call (None, var_to_exp (mpfr_trans_fn_vi (exp_to_vi e')),
+                  if (is_transendental_fun vi) then
+                        [Call (None, Var (mpfr_trans_fn_vi vi),
                           ((var_to_exp vi')::args_exps') @ [zero_exp], loc')]
                   else
-                    [Call (None, e', args_exps' @ [var_to_exp vi'], loc')]
+                    [Call (None, Var vi, args_exps' @ [var_to_exp vi'], loc')]
                   (* [mpfr_set_instr vi' e_var rnd_exp] *)
               | _ -> Kernel.fatal "some weird happened"
             (* let m_vi = self#get_local_or_glob_mpfr vi kf in *)
@@ -564,7 +564,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
             in
             Cil.DoChildrenPost fun'
 
-      | Local_init (vi, AssignInit (SingleInit e), _) when Cil.isFloatingType vi.vtype ->
+      | Local_init (vi, AssignInit (SingleInit e), _) when Ast_types.is_float vi.vtype ->
           let fun' = (fun i' ->
             match i' with
               | [Local_init (vi', AssignInit (SingleInit e'), loc)] ->
@@ -621,24 +621,24 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
     f'.sbody.blocals <- all_locs;
     self#add_init_clear_stmt f' all_m_locs;
     let fhelp ({vtype=t;_} as vi) =
-      if viHasFloatingType t then self#get_local_or_glob_mpfr vi kf else vi
+      if hasFloatingType t then self#get_local_or_glob_mpfr vi kf else vi
     in
     let formals = List.map fhelp (Kernel_function.get_formals kf) in
     let res_vi_as_list = match Hashtbl.find_opt res_vars kf with
       | Some res_vi -> [res_vi]
       | None -> []
     in
-     (* if Cil.isFloatingType f.svar.vtype then [self#get_res_vi kf] else [] in *)
+     (* if Ast_types.is_float f.svar.vtype then [self#get_res_vi kf] else [] in *)
     let all_formals = formals @ res_vi_as_list in
     let () = Cil.setFormals f' all_formals in
     f'.sformals <- all_formals;
-    let forms_unrolled =
+    let formals_unrolled =
       (List.map (fun a -> (a.vname, a.vtype, a.vattr)) all_formals)
     in            (* Cil.update_var_type *)
     let () = match f'.svar.vtype with
-        | TFun(_, args, fa, aa) ->
+        | {tnode = TFun(_, args, fa); tattr = aa}  ->
           Cil.setFunctionType f'
-            (TFun(Cil.voidType, Some forms_unrolled, fa, aa));
+            {tnode = TFun(Cil_const.voidType, Some formals_unrolled, fa); tattr = aa}
         | _ -> Kernel.fatal ~current:true "not a function type"
     in
     Hashtbl.add fn_mpfr_names_to_vis name f'.svar;
@@ -703,7 +703,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
         )
         in
         Cil.DoChildrenPost fun'
-        | BinOp (_,_,_,t) when Cil.isFloatingType t ->
+        | BinOp (_,_,_,t) when Ast_types.is_float t ->
           let f = (fun e' ->
             match e'.enode with
               | BinOp (oper', e1', e2', t') ->
@@ -715,8 +715,8 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           Cil.DoChildrenPost f
         | BinOp (bop,a,b,_) when
               is_compare_op bop &&
-              Cil.isFloatingType (type_of_exp_node a.enode) &&
-              Cil.isFloatingType (type_of_exp_node b.enode) ->
+              Ast_types.is_float (Cil.typeOf a) &&
+              Ast_types.is_float (Cil.typeOf b) ->
           let f = (fun e' ->
             match e'.enode with
               | BinOp (oper', e1', e2', t') ->
@@ -724,7 +724,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
                 self#return_tmp_var_exp kf e2';
                 self#return_tmp_var_exp kf e1';
                 let r = Cil.var (Cil.makeTempVar
-                  (Kernel_function.get_definition kf) Cil.intType)
+                  (Kernel_function.get_definition kf) Cil_const.intType)
                 in
                 self#queueOneInstr @@ make_cmp_binop_mpfr e1' e2' r oper';
                 lval_to_exp r
@@ -732,7 +732,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           )
           in
           Cil.DoChildrenPost f
-        | UnOp (uop, e, t) when Cil.isFloatingType t ->
+        | UnOp (uop, e, t) when Ast_types.is_float t ->
           let fun' = (fun e' -> match e'.enode with
               | UnOp (uop', e'', t) ->
                   self#return_tmp_var_exp kf e'';
@@ -745,7 +745,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           in Cil.DoChildrenPost fun'
         | CastE _ -> (*Ignore casts for exps that have been converted into mpfr type*)
           let fun' = (fun e' -> match e'.enode with
-            | CastE (t', e'') when type_of_exp_node e''.enode = mpfr_type -> e''
+            | CastE (t', e'') when Cil.typeOf e'' = mpfr_type -> e''
             | _ -> e'
           ) in
           Cil.DoChildrenPost fun'
