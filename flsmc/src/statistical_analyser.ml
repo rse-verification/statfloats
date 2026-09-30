@@ -78,6 +78,13 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
     let x = Csv.load (fmgr#get_diff_path ()) in
     (* Self.feedback "q:%s" (snd (List.hd @@ List.hd data)); *)
     let data2 = get_csv_col "diff" x in
+    List.iter (fun diff ->
+      match String.lowercase_ascii diff with
+      | "nan" | "+nan" | "-nan" | "inf" | "+inf" | "-inf"
+      | "infinity" | "+infinity" | "-infinity" ->
+        Kernel.fatal "non-finite diff value in results: %s" diff
+      | _ -> ()
+    ) data2;
     let qdata = List.map (fun x -> Q.abs (Q.of_string x)) data2 in
     let bools = List.filter (fun x -> Q.leq x diff_q) qdata in
     List.length bools, List.length qdata

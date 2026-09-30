@@ -74,7 +74,7 @@ let logic_real_to_exp lr = Cil.kfloat FFloat lr.r_nearest ~loc:unknown_loc
 class mpfr_contracts_parser
   mpfr_funcs_names mpfr_structs_map entry_name fmgr =
     object (self)
-    inherit (Flosmc_visitor.flosmc_transformer mpfr_funcs_names mpfr_structs_map)
+    inherit (Flostat_visitor.flostat_transformer mpfr_funcs_names mpfr_structs_map)
 
   (* val mutable diff = 0.1 *)
   val mutable prob = 0.1
@@ -112,7 +112,7 @@ class mpfr_contracts_parser
   method add_dist d = dists <- d::dists
   method get_dists () = dists
 
-  method init_from_transformer (vis:Flosmc_visitor.flosmc_transformer): unit =
+  method init_from_transformer (vis:Flostat_visitor.flostat_transformer): unit =
     self#set_tmp_var_queue (vis#get_tmp_var_queue ());
     self#set_res_vars (vis#get_res_vars ());
     self#set_loc_mpfr_vars (vis#get_loc_mpfr_vars ());
@@ -171,11 +171,51 @@ class mpfr_contracts_parser
 
 
 
-  method lval_to_mpfr_exp = function
-    | (Var vi, off) ->
-        let kf = Option.get self#current_kf in
-        lval_to_exp (Var (self#get_local_or_glob_mpfr vi kf), off)
-    | _ -> Kernel.fatal "Not supported yet with non-var dist vars"
+  method lval_to_mpfr_exp lv =
+    let kf = Option.get self#current_kf in
+    let rec map_lval (host, offset) =
+      let host = match host with
+        | Var vi ->
+            (match self#get_mpfr_type vi.vtype with
+            | Some _ -> Var (self#get_local_or_glob_mpfr vi kf)
+            | None -> Var vi)
+        | Mem exp -> Mem (map_exp exp)
+      in
+      host, map_offset offset
+    and map_exp exp =
+      let enode = match exp.enode with
+        | Lval lv -> Lval (map_lval lv)
+        | AddrOf lv -> AddrOf (map_lval lv)
+        | StartOf lv -> StartOf (map_lval lv)
+        | CastE (typ, exp) ->
+            let typ = Option.value (self#get_mpfr_type typ) ~default:typ in
+            CastE (typ, map_exp exp)
+        | _ -> exp.enode
+      in
+      Cil.new_exp ~loc:exp.eloc enode
+    and map_offset = function
+      | NoOffset -> NoOffset
+      | Field (field, rest) ->
+          let field =
+            match Hashtbl.find_opt mpfr_structs_map field.fcomp with
+            | None -> field
+            | Some ci ->
+                (match ci.cfields with
+                | Some fields ->
+                    (match List.find_opt
+                      (fun candidate -> candidate.fname = field.fname) fields with
+                    | Some candidate -> candidate
+                    | None ->
+                        Kernel.fatal "MPFR struct %s has no field %s"
+                          ci.cname field.fname)
+                | None ->
+                    Kernel.fatal "MPFR struct %s has no field definitions"
+                      ci.cname)
+          in
+          Field (field, map_offset rest)
+      | Index (exp, rest) -> Index (map_exp exp, map_offset rest)
+    in
+    lval_to_exp (map_lval lv)
 
   (* method get_dist_instrs () =
     let kf = Option.get (self#current_kf) in

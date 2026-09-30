@@ -17,7 +17,7 @@ float sinf(float x);
     requires 0 <= c.phaseA <= 2*3.14 &&
              0 <= c.phaseB <= 2*3.14 &&
              0 <= c.phaseC <= 2*3.14;
-             ensures \result == \sin(c.phaseA + c.phaseB + c.phaseC);
+    ensures \result == \sin(c.phaseA + c.phaseB + c.phaseC);
     // ensures \Prob(|\result - \sin(c.phaseA + c.phaseB + c.phaseC)| >= DIFF) >= 0.99;
 */
 float calcTorque(float phA, float phB, float phC) {

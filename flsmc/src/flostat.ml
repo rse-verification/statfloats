@@ -1,4 +1,4 @@
-open Flosmc_visitor
+open Flostat_visitor
 open Selfplugin
 open Parse_prob_contract
 open Mpfr_utils
@@ -104,7 +104,7 @@ let fmgr = ref (new file_manager)
 
 
 let generate () =
-  Self.feedback "Starting FloSMC, the statistical model checker for floats";
+  Self.feedback "Starting FloStat, the statistical model checker for floats";
   Self.feedback "Please note that implicit type casting may not be correctly supported";
   !fmgr#make_dir_name ();
   !fmgr#handle_user_samples ();
@@ -126,13 +126,14 @@ let generate () =
   (* Add structs/union defs for mpfr *)
   let struct_vis = new struct_and_union_copier in
   struct_vis#copy_structs (Ast.get ());
+  Self.debug ~level:2 "Done with adding structs (0.4th step)";
   let structs_map = struct_vis#get_mpfr_strct_union_map () in
-  Self.debug ~level:1 "Done with adding structs (0.5th step)";
+  Self.debug ~level:2 "Done with adding structs (0.5th step)";
 
   (*Add function defs for mpfr (not yet rewriting statements)*)
   let myvis2 = new mpfr_functions_adder in
   let _ = myvis2#add_fns (Ast.get ()) in
-  Self.debug ~level:1 "Done with adding funcs (first step)";
+  Self.debug ~level:2 "Done with adding funcs (first step)";
   let mpfr_fns =
     Hashtbl.of_seq
       (Seq.map (fun (kf, new_name) -> (Kernel_function.get_name kf, new_name))
@@ -141,7 +142,7 @@ let generate () =
 
   (*Rewrite all statements in mpfr_funcs into mpfr_mode. Also changes
    all variables into mpfr at appropriate places*)
-  let myvis = new flosmc_transformer mpfr_fns structs_map in
+  let myvis = new flostat_transformer mpfr_fns structs_map in
   let new_file = myvis#translate (Ast.get ()) in
   Self.debug ~level:1 "done with transforming functions";
 
@@ -215,10 +216,10 @@ let run () =
 
 (*    let () = Hashtbl.iter (fun x y -> Self.feedback "%s: %d" x y) vars_per_func in*)
 
-(* let () = Acsl_extension.register_behavior "prob_dist" type_probDist false ~plugin:"flsmc" *)
-let () = Acsl_extension.register_behavior "probPred" type_probPred false ~plugin:"flsmc"
-let () = Acsl_extension.register_behavior "prob" type_prob false ~plugin:"flsmc"
-let () = Acsl_extension.register_behavior "confLevel" type_conf false ~plugin:"flsmc"
-let () = Acsl_extension.register_behavior "distribution" type_distribution false ~plugin:"flsmc"
-let () = Acsl_extension.register_behavior "prob_ensures" type_probContract false ~plugin:"flsmc"
+(* let () = Acsl_extension.register_behavior "prob_dist" type_probDist false ~plugin:"flostat" *)
+let () = Acsl_extension.register_behavior "probPred" type_probPred false ~plugin:"flostat"
+let () = Acsl_extension.register_behavior "prob" type_prob false ~plugin:"flostat"
+let () = Acsl_extension.register_behavior "confLevel" type_conf false ~plugin:"flostat"
+let () = Acsl_extension.register_behavior "distribution" type_distribution false ~plugin:"flostat"
+let () = Acsl_extension.register_behavior "prob_ensures" type_probContract false ~plugin:"flostat"
 let () = Boot.Main.extend run

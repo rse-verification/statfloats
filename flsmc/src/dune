@@ -1,11 +1,11 @@
 (library
-(name Flosmc)
-(public_name frama-c-flosmc.core)
+(name FloFlostat)
+(public_name frama-c-flostat.core)
 (flags -open Frama_c_kernel :standard -w -27-21-26-33-32-8-5)
 (libraries frama-c.kernel csv owl plplot)
 )
 (plugin
 (optional)
 (name hello)
-(libraries frama-c-flosmc.core)
+(libraries frama-c-flostat.core)
 (site (frama-c plugins)))

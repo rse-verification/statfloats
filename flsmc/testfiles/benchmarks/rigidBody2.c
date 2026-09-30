@@ -1,8 +1,8 @@
 /*@
-  \flsmc::distribution x1, "Uniform", -15.0, 15.0;
-	\flsmc::distribution x2, "Uniform", -15.0, 15.0;
-	\flsmc::distribution x3, "Uniform", -15.0, 15.0;
-	\flsmc::prob_ensures 0.99, 0.001,
+  \flostat::distribution x1, "Uniform", -15.0, 15.0;
+	\flostat::distribution x2, "Uniform", -15.0, 15.0;
+	\flostat::distribution x3, "Uniform", -15.0, 15.0;
+	\flostat::prob_ensures 0.99, 0.001,
 	\flteq(\result, 2*(x1*x2*x3) + (3*x3*x3) - x2*(x1*x2*x3) + (3*x3*x3) - x2, 0.0196);
 */
 float rigidBody2(float x1, float x2, float x3) {

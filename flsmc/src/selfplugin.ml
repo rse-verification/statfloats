@@ -16,7 +16,7 @@ end)
 
 (* module MPFRFile = Self.String(struct
   let option_name = "-mpfr-file"
-  let default = "/home/jesper/Documents/floats/statfloats/flsmc/output_files/out.c"
+  let default = "/home/jesper/Documents/floats/statfloats/flostat/output_files/out.c"
   let arg_name = "mpfr_file"
   let help = "file where the mpfr code is stored."
 end) *)

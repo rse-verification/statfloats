@@ -1,7 +1,7 @@
 
 /*@
-  \flsmc::distribution x, "Uniform", -1.57079632679, 1.57079632679;
-  \flsmc::prob_ensures 0.99, 0.001,
+  \flostat::distribution x, "Uniform", -1.57079632679, 1.57079632679;
+  \flostat::prob_ensures 0.99, 0.001,
 	\flteq(\result, x - (x*x*x)/6.0 + (x*x*x*x*x)/120.0 -
 		(x*x*x*x*x*x*x)/5040.0, 0.000000237);
 */

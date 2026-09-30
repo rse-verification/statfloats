@@ -57,9 +57,6 @@ let type_of_const (c: Cil_types.constant) : Cil_types.typ =
 
 
 let include_global fname = GText (Printf.sprintf "#include \"%s\"" fname)
-(* let mpfr_include_global = GText "#include \"mpfr.h\""
-let math_include_global = GText "#include \"math.h\"" *)
-(* let include_flsmc = GText "#include \"../../flsmc.h\"" *)
 let includes = ["errno.h";"stdlib.h";"stdio.h";"fenv.h";"math.h";"mpfr.h"]
 let get_include_list () = List.map include_global includes
 
@@ -85,7 +82,8 @@ let trans_func_names =
                                ("pow", "mpfr_pow");
                                ("acosf", "mpfr_acos");
                                ("asinf", "mpfr_asin");
-                               ("atanf", "mpfr_atan")])
+                               ("atanf", "mpfr_atan");
+                               ("fabsf", "mpfr_abs")])
 
 let make_id_pred_from_pred_node ?(names=[]) ?(loc=unknown_loc) pn =
   Logic_const.new_predicate {pred_name=names;pred_loc=loc;pred_content=pn}
@@ -107,7 +105,7 @@ let split_into_dist_and_pred l =
 
 let is_transendental_fun vi = Hashtbl.mem trans_func_names vi.vorig_name
 
-  let mpfr_trans_func_name = Hashtbl.find trans_func_names
+let mpfr_trans_func_name = Hashtbl.find trans_func_names
 
 let vi_to_varlval vi = (Var(vi), NoOffset)
 
@@ -184,23 +182,27 @@ let is_tmp_mpfr_vi m_vi = match m_vi with
 (*Returns true if it is a float, an array of floats, a ptr to a float,
   or a structure containing something that has a float
 *)
-let rec hasFloatingType t = match t.tnode with
-  | TVoid -> false
-  | TInt _ -> false
-  | TFloat _ -> true
-  | TPtr t' -> hasFloatingType t
-  | TArray (t, _) -> hasFloatingType t
-  | TFun (t', Some tl, _) ->
-    (hasFloatingType t) ||
-      (Seq.exists (fun (_, t', _) -> hasFloatingType t') (List.to_seq tl))
-  | TFun (t, None, _) -> (hasFloatingType t)
-  | TNamed t -> hasFloatingType t.ttype
-  | TComp {cfields=fs; _} -> (match fs with
-    | Some fs' -> Seq.exists (fun f -> hasFloatingType f.ftype) (List.to_seq fs')
-    | None -> false
-    )
-  | TEnum _ -> false
-  | TBuiltin_va_list -> false (*I dont know what this is, returning false*)
+let hasFloatingType t =
+  let rec contains seen t = match t.tnode with
+    | TVoid | TInt _ | TEnum _ | TBuiltin_va_list -> false
+    | TFloat _ -> true
+    | TPtr t' -> contains seen t'
+    | TArray (t, _) -> contains seen t
+    | TFun (t', Some tl, _) ->
+      contains seen t' ||
+      Seq.exists (fun (_, t', _) -> contains seen t') (List.to_seq tl)
+    | TFun (t', None, _) -> contains seen t'
+    | TNamed t -> contains seen t.ttype
+    | TComp ci ->
+      if Hashtbl.mem seen ci.ckey then false
+      else (
+        Hashtbl.add seen ci.ckey ();
+        match ci.cfields with
+        | Some fs -> List.exists (fun f -> contains seen f.ftype) fs
+        | None -> false
+      )
+  in
+  contains (Hashtbl.create 10) t
 
 let var_to_exp vi =
       Cil.new_exp ~loc:unknown_loc
@@ -345,7 +347,8 @@ let bop_to_mpfr_fn_vi oper =
     | Ge -> "mpfr_greaterequal_p"
     | Le -> "mpfr_lessequal_p"
     | Eq -> "mpfr_equal_p"
-    | _ -> Kernel.fatal "unsupported binop"
+    | Ne -> "mpfr_lessgreater_p " (* TODO: IS this correct semantics?*)
+    | _ -> Kernel.fatal "unsupported binop %a" Printer.pp_binop oper
   in
   let f = Ast.get () in
   Cil.findOrCreateFunc f op_fn_name
@@ -413,15 +416,31 @@ let mpfr_set_prec_stmt n =
 
 let var_offs_to_exp vi offs = Cil.new_exp ~loc:unknown_loc (Lval (Var vi, offs))
 
-(*Not yet supported with e.g. mpfr arrays in structs*)
 let mpfr_exps_from_struct_vi vi =
-  match vi.vtype.tnode with
+  let rec append_offset prefix suffix =
+    match prefix with
+    | NoOffset -> suffix
+    | Field (f, rest) -> Field (f, append_offset rest suffix)
+    | Index (e, rest) -> Index (e, append_offset rest suffix)
+  in
+  let rec collect_fields prefix fields =
+    List.concat_map (fun f ->
+      let offset = append_offset prefix (Field (f, NoOffset)) in
+      if f.ftype = mpfr_type then [var_offs_to_exp vi offset]
+      else
+        match Ast_types.unroll_node f.ftype with
+        | TComp ci ->
+          (match ci.cfields with
+          | Some nested_fields -> collect_fields offset nested_fields
+          | None -> [])
+        | _ -> []
+    ) fields
+  in
+  match Ast_types.unroll_node vi.vtype with
     | TComp ci ->
-        let fs = Option.get ci.cfields in
-        List.filter_map (fun f ->
-          if not (f.ftype = mpfr_type) then None
-          else Some (var_offs_to_exp vi (Field (f, NoOffset))))
-          fs
+        (match ci.cfields with
+        | Some fields -> collect_fields NoOffset fields
+        | None -> [])
     | _ -> Kernel.fatal "Dont call this function with non-cinfo vi"
 
 
@@ -447,8 +466,10 @@ let get_mpfr_initOrClear_instr vars fname =
     let lval_exps = List.concat (List.map (fun vi -> match vi.vtype with
       | {tnode = TComp _; _} -> mpfr_exps_from_struct_vi vi
       | t when t = mpfr_type  -> [var_to_exp vi]
-      | _ -> Kernel.fatal "only mpfr type or mpfrs in structs supported, got: %a"
+      | {tnode = TPtr _; _} -> []
+      | _ -> Kernel.fatal "only mpfr type or mpfrs in structs supported, got: %a of type %a"
                 Printer.pp_varinfo vi
+                Printer.pp_typ vi.vtype
     )
     vars )
     in
@@ -533,7 +554,7 @@ let mpfr_set_const_str_instr flstr vi rnd =
     let fn_vi = make_fn_vi t "mpfr_set_str" in
     let fl_exp = string_to_exp flstr in
     let vi_exp = var_to_exp vi in
-    let base_exp = Cil.integer ~loc:unknown_loc 10 in
+    let base_exp = Cil.integer ~loc:unknown_loc 0 in
     make_fun_call_instr fn_vi [vi_exp; fl_exp; base_exp; rnd]
 
 (* let float_to_mpfr_vi fl_vi =

@@ -158,29 +158,7 @@ let mpfr_ti =
 (* let setInstr =
   Set () *)
 
-let copy_compinfo_to_mpfr ci =
-  let new_flds =
-    Option.map
-      (List.map
-        (fun fld ->
-          fld.fname,
-          (if not(Ast_types.is_float fld.ftype) then fld.ftype else mpfr_type),
-          None,
-          None,
-          [],
-          unknown_loc
-        )
-      )
-      ci.cfields
-  in
-  let ci' =
-    Cil_const.mkCompInfo
-      true
-      (ci.cname ^ "_mpfr")
-      ~norig:(if ci.corig_name = "" then "" else ci.corig_name ^ "_mpfr")
-      (fun _ -> new_flds)
-      []
-  in ci'
+
 
 
 (* let rec interleave_zip_list = function
@@ -194,6 +172,8 @@ class struct_and_union_copier = object (self)
   val mutable struct_union_map = Hashtbl.create 10;
   method get_mpfr_strct_union_map () = struct_union_map
 
+  method ci_to_type ci = {tnode = TComp ci; tattr = []}
+
   method copy_structs f =
     Visitor.visitFramacFile
                 ((self) :> Visitor.frama_c_inplace)
@@ -205,14 +185,55 @@ class struct_and_union_copier = object (self)
       | g::t ->
         (match g with
           | GCompTag (ci, _) when hasFloatingType (Cil_const.mk_tcomp ci) ->
-            let ci' = copy_compinfo_to_mpfr ci in
-            Hashtbl.add struct_union_map ci ci';
+            let ci' = self#copy_compinfo_to_mpfr ci in
             g::(GCompTag (ci', unknown_loc))::(copy_mpfrs t)
           | _ -> g::(copy_mpfrs t)
         )
     in
+    Self.debug ~level:4 "done with adding structs";
     f.globals <- copy_mpfrs f.globals;
+    Self.debug ~level:4 "snd done with adding structs";
+
     Cil.SkipChildren
+  method copy_compinfo_to_mpfr ci =
+    match Hashtbl.find_opt struct_union_map ci with
+    | Some ci' -> ci'
+    | None ->
+      let rec get_mpfr_fld_type t =
+        match Ast_types.unroll_node t with
+        | TComp nested when hasFloatingType t ->
+            Cil_const.mk_tcomp (self#copy_compinfo_to_mpfr nested)
+        | TPtr pointee when hasFloatingType pointee ->
+            {tnode = TPtr (get_mpfr_fld_type pointee); tattr = t.tattr}
+        | TArray (element, length) when hasFloatingType t ->
+            {tnode = TArray (get_mpfr_fld_type element, length); tattr = t.tattr}
+        | _ when Ast_types.is_float t -> mpfr_type
+        | _ -> t
+      in
+      let new_flds =
+        Option.map
+          (List.map
+            (fun fld ->
+              fld.fname,
+              get_mpfr_fld_type fld.ftype,
+              None,
+              None,
+              [],
+              unknown_loc
+            )
+          )
+          ci.cfields
+      in
+      let ci' =
+        Cil_const.mkCompInfo
+          ci.cstruct
+          (ci.cname ^ "_mpfr")
+          ~norig:(if ci.corig_name = "" then "" else ci.corig_name ^ "_mpfr")
+          (fun _ -> new_flds)
+          []
+      in
+      Hashtbl.add struct_union_map ci ci';
+      ci'
 end
 (*Gatheres info on how many mpfr vars to create*)
 class mpfr_functions_adder = object (self)
@@ -270,7 +291,7 @@ end
   structs map is a map from compinfo to mpfr counterparts eg
     struct A {float x;} -> struct A_mpfr {mpfr_t x;}
 *)
-class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
+class flostat_transformer mpfr_funcs_names mpfr_structs_map = object (self)
   inherit Visitor.frama_c_inplace (*(Project.current ())*)
 
   (* val mutable glob_mpfr_vars = ViHashtbl.create 10 *)
@@ -312,6 +333,9 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
   method get_mpfr_type t = match t.tnode with
     | TNamed ti  -> self#get_mpfr_type ti.ttype
     | TFloat _  -> Some mpfr_type
+    | TPtr t' -> (match self#get_mpfr_type t' with
+      | Some t'' -> Some {tnode = TPtr t''; tattr = t.tattr}
+      | None -> None )
     | TComp ci -> (match Hashtbl.find_opt mpfr_structs_map ci with
                   | Some ci' -> Some (Cil_const.mk_tcomp ci') | None -> None)
     | _ -> Self.debug ~level:3 "no type for: %a" Printer.pp_typ t; None
@@ -348,7 +372,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           Hashtbl.add locs vi l_m_vi';
           l_m_vi'
     in
-    Hashtbl.iter (fun a b -> Self.debug ~level:3 "in %s: %a - %a" (Kernel_function.get_name kf) Printer.pp_varinfo a Printer.pp_varinfo b) locs;
+    Hashtbl.iter (fun a b -> Self.debug ~level:5 "in %s: %a - %a" (Kernel_function.get_name kf) Printer.pp_varinfo a Printer.pp_varinfo b) locs;
     l_m_vi
 
   method get_global_mpfr vi =
@@ -504,20 +528,88 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
               m_v
             | TComp ci when hasFloatingType vi.vtype ->
                 self#get_local_or_glob_mpfr vi' kf
+            | TPtr t when hasFloatingType t ->
+                self#get_local_or_glob_mpfr vi' kf
             | TFun(_, _, _) ->
               (match self#get_mpfr_fn_vi vi'.vorig_name with
                 | Some m_v -> m_v
                 | None -> vi')
-            | _ -> vi'
+            (* | TPtr({tnode = TFloat _; tattr = _}) ->  *)
+            (* | _ -> Self. *)
+            | _ -> Self.feedback "varinfo not changed: %a" Printer.pp_varinfo vi'; vi'
           )
       in
       Cil.DoChildrenPost fun'
 
   method struct_lval_to_mpfr lv =
-    match lv with
-      | (Var vi', NoOffset) -> var_to_exp vi'
-      | (lh, (Field (_,_) as fld)) ->
-          Cil.new_exp ~loc:unknown_loc (Lval (lh, fld))
+    Cil.new_exp ~loc:unknown_loc (Lval lv)
+
+  method mpfr_field field =
+    match Hashtbl.find_opt mpfr_structs_map field.fcomp with
+    | None -> field
+    | Some ci ->
+        (match ci.cfields with
+        | Some fields ->
+            (match List.find_opt
+              (fun candidate -> candidate.fname = field.fname) fields with
+            | Some candidate -> candidate
+            | None ->
+                Kernel.fatal "MPFR struct %s has no field %s"
+                  ci.cname field.fname)
+        | None ->
+            Kernel.fatal "MPFR struct %s has no field definitions" ci.cname)
+
+  method mpfr_offset = function
+    | NoOffset -> NoOffset
+    | Field (field, rest) -> Field (self#mpfr_field field, self#mpfr_offset rest)
+    | Index (exp, rest) -> Index (exp, self#mpfr_offset rest)
+
+  method append_offset prefix suffix =
+    match prefix with
+    | NoOffset -> suffix
+    | Field (f, rest) -> Field (f, self#append_offset rest suffix)
+    | Index (e, rest) -> Index (e, self#append_offset rest suffix)
+
+  method lval_with_offset (host, offset) more =
+    (host, self#append_offset offset more)
+
+  method exp_of_lval lv =
+    Cil.new_exp ~loc:unknown_loc (Lval lv)
+
+  method copy_mpfr_struct_lval dst src loc =
+    let rec copy dst src dst_type src_type =
+      if dst_type = mpfr_type then
+        [mpfr_set_instr (self#exp_of_lval dst) (self#exp_of_lval src) rnd_exp]
+      else
+        match Ast_types.unroll_node dst_type, Ast_types.unroll_node src_type with
+        | TComp dst_ci, TComp src_ci when dst_ci.cstruct && src_ci.cstruct ->
+          let dst_fields = Option.value dst_ci.cfields ~default:[] in
+          let src_fields = Option.value src_ci.cfields ~default:[] in
+          if List.length dst_fields <> List.length src_fields then
+            Kernel.fatal "mismatched struct fields in MPFR struct assignment";
+          List.concat (List.map2 (fun dst_field src_field ->
+            copy
+              (self#lval_with_offset dst (Field (dst_field, NoOffset)))
+              (self#lval_with_offset src (Field (src_field, NoOffset)))
+              dst_field.ftype src_field.ftype
+          ) dst_fields src_fields)
+        | TArray (dst_elt, Some dst_len), TArray (src_elt, Some src_len) ->
+          (match dst_len.enode, src_len.enode with
+          | Const (CInt64 (dst_len, _, _)), Const (CInt64 (src_len, _, _))
+            when Z.equal dst_len src_len && Z.sign dst_len >= 0 ->
+            List.concat_map (fun i ->
+              let index = Cil.integer ~loc:unknown_loc i in
+              copy
+                (self#lval_with_offset dst (Index (index, NoOffset)))
+                (self#lval_with_offset src (Index (index, NoOffset)))
+                dst_elt src_elt
+            ) (List.init (Z.to_int dst_len) Fun.id)
+          | _ -> Kernel.fatal "non-constant array in MPFR struct assignment")
+        | TArray (_, None), TArray (_, None) -> []
+        | _ ->
+          [Set (dst, self#exp_of_lval src, loc)]
+    in
+    copy dst src (Cil.typeOfLval dst) (Cil.typeOfLval src)
 
   method! vinst i =
     let kf = Option.get self#current_kf in
@@ -547,16 +639,48 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
           )
           in
           Cil.DoChildrenPost fun'
-      | Call (Some (Var vi, _), _, _, _) ->
+      | Set (lv, _, _)
+        when (match Ast_types.unroll_node (Cil.typeOfLval lv) with
+          | TComp _ | TArray _ -> hasFloatingType (Cil.typeOfLval lv)
+          | _ -> false) ->
+          let fun' = (function
+            | [Set (lv', {enode = Lval src; _}, loc)] ->
+              self#copy_mpfr_struct_lval lv' src loc
+            | [Set _] ->
+              Kernel.fatal "MPFR struct assignment requires an lvalue source"
+            | _ -> Kernel.fatal "unexpected MPFR struct assignment")
+          in
+          Cil.DoChildrenPost fun'
+      | Local_init (_, ConsInit (callee, _, _), _)
+        when is_transendental_fun callee ||
+             Hashtbl.mem mpfr_funcs_names callee.vorig_name ->
+          let fun' = (function
+            | [Local_init (vi, ConsInit (_, args, _), loc)] ->
+                let result = var_to_exp vi in
+                let mpfr_call =
+                  if is_transendental_fun callee then
+                    Call
+                      (None, Var (mpfr_trans_fn_vi callee),
+                       result :: args @ [zero_exp], loc)
+                  else
+                    let fn_vi = Option.get (self#get_mpfr_fn_vi callee.vorig_name) in
+                    Call (None, Var fn_vi, args @ [result], loc)
+                in
+                [mpfr_call]
+            | _ -> Kernel.fatal "unexpected function local initialization")
+          in
+          Cil.DoChildrenPost fun'
+      | Call (Some _, _, _, _) ->
         let fun' = (fun i' ->
             match i' with
-              | [Call (Some (Var vi', _), Var vi, args_exps', loc')] ->
+              | [Call (Some result_lv, Var vi, args_exps', loc')] ->
+                  let result_exp = self#exp_of_lval result_lv in
                   (*Check if transendental, then use mpfr version for this*)
                   if (is_transendental_fun vi) then
                         [Call (None, Var (mpfr_trans_fn_vi vi),
-                          ((var_to_exp vi')::args_exps') @ [zero_exp], loc')]
+                          (result_exp::args_exps') @ [zero_exp], loc')]
                   else
-                    [Call (None, Var vi, args_exps' @ [var_to_exp vi'], loc')]
+                    [Call (None, Var vi, args_exps' @ [result_exp], loc')]
                   (* [mpfr_set_instr vi' e_var rnd_exp] *)
               | _ -> Kernel.fatal "some weird happened"
             (* let m_vi = self#get_local_or_glob_mpfr vi kf in *)
@@ -572,6 +696,16 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
               | _ -> Kernel.fatal "some weird happened"
           )
           in Cil.DoChildrenPost fun'
+      | Local_init (vi, AssignInit (SingleInit _), _) ->
+          (match Ast_types.unroll_node vi.vtype with
+          | TPtr t when hasFloatingType t ->
+              let fun' = (function
+                | [Local_init (vi', AssignInit (SingleInit e'), loc)] ->
+                    [Set ((Var vi', NoOffset), e', loc)]
+                | _ -> Kernel.fatal "unexpected pointer local initialization")
+              in
+              Cil.DoChildrenPost fun'
+          | _ -> Cil.DoChildren)
       | _ -> Cil.DoChildren
 
   method! vstmt_aux s =
@@ -598,7 +732,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
 
 
 
-  method add_mpfr_stuff_to_func name f' =
+  method make_mpfr_func name f' =
     List.iter (fun vi -> Self.debug ~level:3 "ivhere: %a" Printer.pp_varinfo vi) f'.slocals;
     let kf = Option.get self#current_kf in
     (*Fix locals*)
@@ -624,9 +758,11 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
       if hasFloatingType t then self#get_local_or_glob_mpfr vi kf else vi
     in
     let formals = List.map fhelp (Kernel_function.get_formals kf) in
-    let res_vi_as_list = match Hashtbl.find_opt res_vars kf with
-      | Some res_vi -> [res_vi]
-      | None -> []
+    let res_vi_as_list =
+      if Ast_types.is_float (Cil.getReturnType f'.svar.vtype) then
+        [self#get_res_vi kf]
+      else
+        []
     in
      (* if Ast_types.is_float f.svar.vtype then [self#get_res_vi kf] else [] in *)
     let all_formals = formals @ res_vi_as_list in
@@ -652,7 +788,7 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
         let name = (Kernel_function.get_name kf) in
         if Seq.exists (fun n -> n = name) (Hashtbl.to_seq_values mpfr_funcs_names) then
           (Self.debug ~level:3 "Found mpfr func: %s" name;
-          let fun' = self#add_mpfr_stuff_to_func name in
+          let fun' = self#make_mpfr_func name in
           Cil.DoChildrenPost fun')
         else
           Cil.SkipChildren
@@ -697,6 +833,32 @@ class flosmc_transformer mpfr_funcs_names mpfr_structs_map = object (self)
   method! vexpr e =
     let kf = Option.get self#current_kf in
     match e.enode with
+        | Lval (_, offset) ->
+          let fun' = (fun e' -> match e'.enode with
+            | Lval (host, offset') ->
+                Cil.new_exp ~loc:e'.eloc (Lval (host, self#mpfr_offset offset'))
+            | _ -> e'
+          ) in
+          Cil.DoChildrenPost fun'
+        | AddrOf (_, offset) ->
+          let fun' = (fun e' -> match e'.enode with
+            | AddrOf (host, offset') ->
+                (match host, offset' with
+                | Var vi, NoOffset when vi.vformal && vi.vtype = mpfr_type ->
+                    Cil.mkCast ~newt:mpfr_ptr_type (var_to_exp vi)
+                | _ ->
+                    Cil.new_exp ~loc:e'.eloc
+                      (AddrOf (host, self#mpfr_offset offset')))
+            | _ -> e'
+          ) in
+          Cil.DoChildrenPost fun'
+        | StartOf (_, offset) ->
+          let fun' = (fun e' -> match e'.enode with
+            | StartOf (host, offset') ->
+                Cil.new_exp ~loc:e'.eloc (StartOf (host, self#mpfr_offset offset'))
+            | _ -> e'
+          ) in
+          Cil.DoChildrenPost fun'
         | Const(CReal(fl, _, fl_str)) ->
         let fun' = (fun e ->
           var_to_exp (self#vconst_any fl fl_str)

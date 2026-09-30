@@ -1,9 +1,9 @@
 /*@
-  \flsmc::distribution atts0, "Uniform", 3.0, 9.0;
-  \flsmc::distribution atts1, "Uniform", 1.5, 5.0;
-  \flsmc::distribution atts2, "Uniform", -2.0, 10.0;
-  \flsmc::distribution atts3, "Uniform", -1.0, 3.5;
-  \flsmc::prob_ensures 0.99, 0.001,
+  \flostat::distribution atts0, "Uniform", 3.0, 9.0;
+  \flostat::distribution atts1, "Uniform", 1.5, 5.0;
+  \flostat::distribution atts2, "Uniform", -2.0, 10.0;
+  \flostat::distribution atts3, "Uniform", -1.0, 3.5;
+  \flostat::prob_ensures 0.99, 0.001,
   \flteq(\result, ((0.052100253064028955) * atts0 + (-0.8942341911807864) * atts1
     + (0.40478255170032273) * atts2 + (-0.93774690197704236) * atts3) -
     ((-0.85073072819636686) * atts0 + (-0.98664016916368502) * atts1 +

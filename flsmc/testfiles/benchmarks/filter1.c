@@ -1,7 +1,7 @@
 
 /*@
-  \flsmc::distribution x0, "Uniform", -2.0, 2.0;
-  \flsmc::prob_ensures 0.99, 0.001,
+  \flostat::distribution x0, "Uniform", -2.0, 2.0;
+  \flostat::prob_ensures 0.99, 0.001,
 		\flteq(\result, 0.7 * x0 , 0.000000125);
 */
 float filter1 (float x0) {
