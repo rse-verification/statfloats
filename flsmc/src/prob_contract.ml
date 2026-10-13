@@ -96,4 +96,12 @@ class flteq_contract = object (self)
     self#set_prob pr;
     let pred' = Prel (Rlt, mkTerm (TBinOp (MinusA, e1, e2)), diff) in (*TODO: SHould be abs also but to lazy to fix now*)
     probPred <- Some (PBinOp (Gt, Pr(pred'), PConst pr));
+
+  method set_prob_and_round_error error_term x tolerance pr =
+    self#set_e1 x;
+    self#set_e2 x;
+    self#set_diff tolerance;
+    self#set_prob pr;
+    let pred' = Prel (Rle, error_term, tolerance) in
+    probPred <- Some (PBinOp (Gt, Pr(pred'), PConst pr))
 end

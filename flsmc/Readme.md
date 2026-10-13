@@ -42,7 +42,8 @@ Useful options include:
 ## Contracts
 
 Attach uniform input distributions and one probability postcondition to the
-selected function:
+selected function. The existing form takes a probability, a confidence level,
+and a `\flteq` predicate:
 
 ```c
 /*@
@@ -55,10 +56,28 @@ float calculate(float input) {
 }
 ```
 
-The probability and confidence arguments must be real constants. The
-postcondition currently supports `\flteq(result, reference, tolerance)`.
-Distributions currently support `"Uniform"` with real-constant lower and
-upper bounds.
+The probability and confidence arguments must be real constants. A shorter
+rounding-error form is also supported; its reported confidence level defaults
+to `0.95`:
+
+```c
+/*@
+  \flostat::distribution input, "Uniform", 0.0, 1.0;
+  \flostat::prob_ensures
+    0.99,
+    \round_error(\result) <= 0.00034;
+*/
+float calculate(float input) {
+  return input * input;
+}
+```
+
+`\round_error(x)` measures the absolute difference between the native
+floating-point evaluation of `x` and its MPFR evaluation, equivalent to
+`\abs(x - \real(x))`. The predicate currently supports `\round_error(x) <=
+tolerance`. Both forms compare the requested probability of staying within
+the tolerance. Distributions currently support `"Uniform"` with real-constant
+lower and upper bounds.
 
 Use `\flostat::equation target, expression;` to define an input from other
 sampled inputs. Equation expressions are evaluated in MPFR before either

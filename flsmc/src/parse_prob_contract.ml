@@ -20,8 +20,15 @@ let type_equation type_ctxt loc [target; expression] =
 
 
 (* let foo () = () *)
-let type_probContract type_ctxt loc [prob; conf; pred] =
+let type_probContract type_ctxt loc args =
   Logic_builtin.add flteq_builtin;
+  Logic_builtin.add round_error_builtin;
+  let prob, conf, pred = match args with
+    | [prob; pred] -> prob, None, pred
+    | [prob; conf; pred] -> prob, Some conf, pred
+    | _ -> Kernel.fatal
+        "prob_ensures expects a probability, an optional confidence, and a predicate"
+  in
   Self.debug "before creating old";
   (* let env_with_old = enter_post_state (Lenv.empty ()) Normal in *)
   (* let env_with_old = enter_post_state
@@ -29,7 +36,10 @@ let type_probContract type_ctxt loc [prob; conf; pred] =
   let env_with_old = type_ctxt.post_state [Normal] in
   Self.debug "after old'";
   let prob' = type_ctxt.type_term type_ctxt env_with_old prob in
-  let conf' = type_ctxt.type_term type_ctxt env_with_old conf in
+  let conf' = match conf with
+    | Some conf -> type_ctxt.type_term type_ctxt env_with_old conf
+    | None -> Logic_const.treal 0.95
+  in
   Self.debug "after årp'";
   let pred' = type_ctxt.type_predicate type_ctxt env_with_old pred in
   Self.debug "after åred'";
@@ -154,7 +164,13 @@ class mpfr_contracts_parser
         | Papp (li, _, [t1; t2; d]) when li.l_var_info.lv_name = "\\flteq" ->
           pc#set_prob_and_pred t1 t2 d prob;
           pc#set_confLevel conf_level
-        | _ -> Kernel.fatal "only flteq expected here"
+        | Prel (Rle, ({term_node = Tapp (li, _, [x]); _} as error_term), tolerance)
+            when li.l_var_info.lv_name = "\\round_error" ->
+          pc#set_prob_and_round_error error_term x tolerance prob;
+          pc#set_confLevel conf_level
+        | _ ->
+          Kernel.fatal
+            "prob_ensures predicate must be \\flteq(...) or \\round_error(...) <= tolerance"
       in
       pc
 
@@ -425,7 +441,18 @@ class mpfr_contracts_parser
     Self.debug ~level:3 "starting pred_to_spec";
 
     match pred.pred_content with
-      | Papp (li, _, [t1; _; d]) when li.l_var_info.lv_name = "\\flteq" ->
+      | Papp (li, _, [t1; _; _]) when li.l_var_info.lv_name = "\\flteq" ->
+        self#rounding_error_to_spec fl_res_vi mpfr_res_vi dfp sfp t1
+
+      | Prel (Rle, {term_node = Tapp (li, _, [t1]); _}, _)
+          when li.l_var_info.lv_name = "\\round_error" ->
+        self#rounding_error_to_spec fl_res_vi mpfr_res_vi dfp sfp t1
+
+      | _ -> Kernel.fatal "not implemented yet other preds"
+
+
+  method private rounding_error_to_spec fl_res_vi mpfr_res_vi dfp sfp t1 =
+        let kf = Option.get self#current_kf in
         (* self#set_diff_from_term d; *)
         let lval_dists = List.map (fun x -> Logic_to_c.term_to_lval x.dvar) dists in
         (*Read samples*)
@@ -454,8 +481,6 @@ class mpfr_contracts_parser
         (*Print the result*)
         let post3 = self#get_mpfr_print_instr t1_fl_mvi (exp_to_vi t1_mexp_vi) r_vi dfp in
         pre1::pres2, [post1;post2;post3]
-
-      | _ -> Kernel.fatal "not implemented yet other preds"
 
 
 

@@ -25,7 +25,16 @@ class real_verifier entry = object (self)
                 b.b_extended <- [];
                 b.b_post_cond <- [(Normal, new_pred)];
                 Cil.ChangeTo b
-              | _ -> Kernel.fatal "Only flteq currently supported"
+              | Prel (Rle, {term_node = Tapp (li, _, [_]); _}, tolerance)
+                  when li.l_var_info.lv_name = "\\round_error" ->
+                let zero = Logic_const.treal 0.0 in
+                let new_pred =
+                  make_id_pred_from_pred_node (Prel (Rle, zero, tolerance))
+                in
+                b.b_extended <- [];
+                b.b_post_cond <- [(Normal, new_pred)];
+                Cil.ChangeTo b
+              | _ -> Kernel.fatal "Only flteq and round_error currently supported"
             )
           | _ -> Cil.SkipChildren
         )

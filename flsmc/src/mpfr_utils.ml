@@ -222,6 +222,14 @@ let flteq_builtin = {
   bl_profile=[("a", Lreal); ("b", Lreal); ("diff", Lreal)]
 }
 
+let round_error_builtin = {
+  bl_name="\\round_error";
+  bl_labels=[];
+  bl_params = ["x"];
+  bl_type = Some Lreal;
+  bl_profile=[("x", Lreal)]
+}
+
 
 (*Specific class which adds an empty main function and
   changes the name of the previous function called main (if it exists)
