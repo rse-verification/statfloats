@@ -9,7 +9,13 @@ open Prob_contract
 let type_distribution type_ctxt loc l =
   let res = List.map (type_ctxt.type_term type_ctxt (Lenv.empty())) l in
   Ext_terms res
-  (* Ext_annot ("Distribution", res) *)
+
+let type_equation type_ctxt loc [target; expression] =
+  let env = Lenv.empty () in
+  Ext_terms [
+    type_ctxt.type_term type_ctxt env target;
+    type_ctxt.type_term type_ctxt env expression
+  ]
 
 
 
@@ -52,6 +58,57 @@ let get_nearest_float_from_lreal_constant t = match t with
     lr.r_nearest
   | _ -> Kernel.fatal "not lreal constant term"
 
+let range_bound_to_int t =
+  let rec constant_value t =
+    match t.term_node with
+    | TConst (Integer (value, _)) -> value
+    | TCast (_, _, inner) -> constant_value inner
+    | _ ->
+      Kernel.fatal "array distribution bounds must be integer constants: %a"
+        Printer.pp_term t
+  in
+  try Z.to_int (constant_value t)
+  with Z.Overflow ->
+    Kernel.fatal "array distribution bound is outside the supported integer range"
+
+let expand_distribution_var term =
+  let rec expand_offset = function
+    | TNoOffset -> [TNoOffset]
+    | TField (field, rest) ->
+      List.map (fun rest' -> TField (field, rest')) (expand_offset rest)
+    | TModel _ ->
+      Kernel.fatal "array distributions do not support model fields"
+    | TIndex (index, rest) ->
+      let indices =
+        match index.term_node with
+        | Trange (Some low, Some high) ->
+          let low = range_bound_to_int low in
+          let high = range_bound_to_int high in
+          if high < low then
+            Kernel.fatal "array distribution range has descending bounds";
+          let count =
+            try Z.to_int (Z.succ (Z.sub (Z.of_int high) (Z.of_int low)))
+            with Z.Overflow ->
+              Kernel.fatal "array distribution range is too large"
+          in
+          List.init count (fun offset ->
+            Logic_const.tinteger (low + offset))
+        | Trange _ ->
+          Kernel.fatal "array distribution ranges require constant lower and upper bounds"
+        | _ -> [index]
+      in
+      List.concat_map
+        (fun index ->
+          List.map (fun rest' -> TIndex (index, rest')) (expand_offset rest))
+        indices
+  in
+  match term.term_node with
+  | TLval (host, offset) ->
+    List.map
+      (fun offset -> {term with term_node = TLval (host, offset)})
+      (expand_offset offset)
+  | _ ->
+    Kernel.fatal "distribution target must be an lvalue: %a" Printer.pp_term term
 
 
 let is_dummy_stmt s = match s.skind with
@@ -83,6 +140,8 @@ class mpfr_contracts_parser
   val mutable entry_vi = None
 
   val mutable dists = []
+  val mutable equations = []
+  val mutable entry_float_args = []
 
   val mutable is_in_old = false
 
@@ -111,6 +170,16 @@ class mpfr_contracts_parser
 
   method add_dist d = dists <- d::dists
   method get_dists () = dists
+  method add_equation target expression =
+    let target_name = Format.asprintf "%a" Printer.pp_term target in
+    let is_same_target existing =
+      Format.asprintf "%a" Printer.pp_term existing = target_name
+    in
+    if List.exists (fun dist -> is_same_target dist.dvar) dists then
+      Kernel.fatal "equation target also has a distribution: %s" target_name;
+    if List.exists (fun (existing, _) -> is_same_target existing) equations then
+      Kernel.fatal "equation target is defined more than once: %s" target_name;
+    equations <- equations @ [target, expression]
 
   method init_from_transformer (vis:Flostat_visitor.flostat_transformer): unit =
     self#set_tmp_var_queue (vis#get_tmp_var_queue ());
@@ -125,6 +194,103 @@ class mpfr_contracts_parser
         Self.debug ~level:3 "x: %a x2: %a" Printer.pp_logic_var lv Printer.pp_varinfo vi;
         self#get_global_mpfr vi
       | None -> Kernel.fatal "only c-logic vars supperted yet"
+
+  method entry_arg_for vi =
+    match List.find_opt
+      (fun arg -> arg.vorig_name = vi.vorig_name)
+      entry_float_args
+    with
+    | Some arg -> arg
+    | None ->
+      Kernel.fatal "equations can only reference entry-point arguments: %s"
+        vi.vorig_name
+
+  method entry_lval_of_term term =
+    let lval = Logic_to_c.term_to_lval term in
+    match fst lval with
+    | Var vi -> Var (self#entry_arg_for vi), snd lval
+    | _ -> Kernel.fatal "equation targets and inputs must be entry-point arguments"
+
+  method equation_rhs_to_mpfr term =
+    let kf = Option.get self#current_kf in
+    match term.term_node with
+    | TConst (LReal {r_nearest; r_literal; _}) ->
+      let tmp = self#fetch_tmp_var kf in
+      let instr = mpfr_set_const_str_instr r_literal tmp rnd_exp in
+      [instr], var_to_exp tmp
+    | TConst (Integer (value, _)) ->
+      let tmp = self#fetch_tmp_var kf in
+      [mpfr_set_const_str_instr (Z.to_string value) tmp rnd_exp],
+      var_to_exp tmp
+    | TCast (_, _, inner) -> self#equation_rhs_to_mpfr inner
+    | TUnOp (Neg, inner) ->
+      let instrs, operand = self#equation_rhs_to_mpfr inner in
+      let tmp = self#fetch_tmp_var kf in
+      instrs @ [make_unop_mpfr operand (var_to_exp tmp) Neg rnd_exp],
+      var_to_exp tmp
+    | TBinOp (operator, left, right) ->
+      let left_instrs, left_exp = self#equation_rhs_to_mpfr left in
+      let right_instrs, right_exp = self#equation_rhs_to_mpfr right in
+      let tmp = self#fetch_tmp_var kf in
+      left_instrs @ right_instrs @
+        [make_binop_mpfr left_exp right_exp (var_to_exp tmp) operator rnd_exp],
+      var_to_exp tmp
+    | Tapp (logic_info, _, [argument]) ->
+      let fname = logic_info.l_var_info.lv_name in
+      let mpfr_name = match fname with
+        | "\\sin" | "sin" -> "mpfr_sin"
+        | "\\cos" | "cos" -> "mpfr_cos"
+        | _ -> Kernel.fatal "equation function not supported: %s" fname
+      in
+      let argument_instrs, argument_exp =
+        self#equation_rhs_to_mpfr argument
+      in
+      let tmp = self#fetch_tmp_var kf in
+      let function_vi = make_fn_vi
+        {tnode = TFun(Cil_const.intType,
+          Some [("rop", mpfr_type, []); ("op", mpfr_type, []);
+                ("rnd", mpfr_rnd_type, [])], false); tattr = []}
+        mpfr_name
+      in
+      argument_instrs @
+        [make_fun_call_instr function_vi
+          [var_to_exp tmp; argument_exp; rnd_exp]],
+      var_to_exp tmp
+    | TLval _ ->
+      let c_lval = Logic_to_c.term_to_lval term in
+      let mapped_lval =
+        match fst c_lval with
+        | Var vi -> Var (self#entry_arg_for vi), snd c_lval
+        | _ -> Kernel.fatal "equation expressions must use entry-point arguments"
+      in
+      [], self#lval_to_mpfr_exp mapped_lval
+    | _ ->
+      Kernel.fatal "unsupported equation expression: %a"
+        Printer.pp_term term
+
+  method equation_to_instrs (target, expression) =
+    let target_lval = self#entry_lval_of_term target in
+    if not (Ast_types.is_float (Cil.typeOfLval target_lval)) then
+      Kernel.fatal "equation target must have floating-point type: %a"
+        Printer.pp_term target;
+    let target_mpfr_exp = self#lval_to_mpfr_exp target_lval in
+    let rhs_instrs, rhs_exp = self#equation_rhs_to_mpfr expression in
+    let set_mpfr = mpfr_set_instr target_mpfr_exp rhs_exp rnd_exp in
+    let get_flt_vi = make_fn_vi
+      {tnode = TFun(Cil_const.floatType,
+        Some [("op", mpfr_type, []); ("rnd", mpfr_rnd_type, [])], false);
+       tattr = []}
+      "mpfr_get_flt"
+    in
+    let round_to_float = make_fun_call_instr
+      ~res:(Some target_lval) get_flt_vi
+      [target_mpfr_exp; rnd_exp]
+    in
+    let reset_mpfr_from_float =
+      mpfr_set_flt_instr (lval_to_exp target_lval)
+        target_mpfr_exp rnd_exp
+    in
+    rhs_instrs @ [set_mpfr; round_to_float; reset_mpfr_from_float]
 
   method term_to_instrs ?(res_vi=None) t =
     match t.term_node with
@@ -384,6 +550,7 @@ class mpfr_contracts_parser
     let fl_args = List.map (fun vi -> Cil.makeLocalVar f vi.vorig_name vi.vtype)
         (Cil.getFormalsDecl (Option.get entry_vi))
     in
+    entry_float_args <- fl_args;
     let mpfr_args = List.map (self#get_local_mpfr kf) fl_args in
     let entry_type = (Option.get entry_vi).vtype in
     let res_vi = if Ast_types.is_void (Cil.getReturnType entry_type) then None
@@ -428,8 +595,12 @@ class mpfr_contracts_parser
     let call_instr = self#get_entry_call_instr res_vi fl_args in
     let pre_instrs, post_instrs =
       self#pred_to_spec res_vi mpfr_res_vi dfp sfp in
+    let equation_instrs =
+      List.concat_map self#equation_to_instrs equations
+    in
     let body = List.map Cil.mkStmtOneInstr
-        (pre_instrs @ [mpfr_call_instr;call_instr] @ post_instrs)
+        (pre_instrs @ equation_instrs @
+          [mpfr_call_instr;call_instr] @ post_instrs)
     in
     (*Make loop*)
     let loop_stmt = Cil.mkForIncr ~iter:i
@@ -481,12 +652,24 @@ class mpfr_contracts_parser
               | Ext_terms
                  [var_term; {term_node=TConst (LStr "Uniform"); _}; lo_t; hi_t]
                   ->
-                  self#add_dist
-                    {dvar=var_term;dname="Uniform";dparams=[lo_t;hi_t]}
+                  List.iter
+                    (fun var_term ->
+                      self#add_dist
+                        {dvar=var_term;dname="Uniform";dparams=[lo_t;hi_t]})
+                    (List.rev (expand_distribution_var var_term))
               | ext -> Kernel.fatal "Not a correct distribution %a"
                           Printer.pp_extended dist
             )
             (List.rev spec_dists);
+          List.iter
+            (fun equation ->
+              match equation.ext_kind with
+              | Ext_terms [target; expression] ->
+                self#add_equation target expression
+              | _ -> Kernel.fatal "equation expects a target and expression")
+            (List.filter
+              (fun extension -> extension.ext_name = "equation")
+              l);
           Cil.DoChildren
         | _ -> Kernel.fatal "multiple behaviors not supported"
         )

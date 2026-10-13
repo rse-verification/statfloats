@@ -60,6 +60,98 @@ postcondition currently supports `\flteq(result, reference, tolerance)`.
 Distributions currently support `"Uniform"` with real-constant lower and
 upper bounds.
 
+Use `\flostat::equation target, expression;` to define an input from other
+sampled inputs. Equation expressions are evaluated in MPFR before either
+program execution; each result is rounded once to `float`, then that same
+rounded value is supplied to both the native and MPFR executions. This lets
+you generate correlated inputs without including equation-evaluation rounding
+in the measured function difference:
+
+```c
+/*@
+  \flostat::distribution input.angle, "Uniform", -3.14159, 3.14159;
+  \flostat::equation input.x, 0.01 * \cos(input.angle);
+*/
+```
+
+Equation targets must be floating-point entry-point arguments and should not
+also have distributions. The supported right-hand-side forms are floating
+constants, entry-point argument fields, unary negation, `+`, `-`, `*`, `/`,
+and one-argument `\sin(...)` / `\cos(...)`. Equations execute in declaration
+order, so a later equation can use a target assigned by an earlier equation.
+Only the distribution targets appear as columns in `samples.csv`; equation
+targets are calculated after those columns have been read.
+
+To sample a fresh value for every element of a fixed-size array, use an
+inclusive ACSL range in the distribution target. Each expanded element becomes
+its own sample column, and the full row is used for one execution:
+
+```c
+typedef struct {
+  float values[100];
+} inputs_t;
+
+/*@
+  \flostat::distribution inputs.values[0..99], "Uniform", 0.0, 1.0;
+  \flostat::prob_ensures 0.99, 0.001,
+    \flteq(\result, 0.0, 100.0);
+*/
+float sum_inputs(inputs_t inputs) {
+  float sum = 0.0f;
+  for (int i = 0; i < 100; i++) {
+    sum += inputs.values[i];
+  }
+  return sum;
+}
+```
+
+Range endpoints must be integer constants, and the target must be an lvalue
+that FloStat can convert to a C array element. Bounds are inclusive, so
+`[0..99]` expands to 100 independently sampled elements. MPFR arrays embedded
+in structs are initialized element-by-element during comparison.
+
+The `vesc/foc_observer_output.c` harness samples the motor's initial d/q
+currents, speed, and electrical angle; motor parameters, sample period, and
+voltage command are fixed for each run. It uses the electrical and mechanical
+plant equations extracted into `vesc/vesc_virtual_motor_model.c` from
+[VESC's virtual motor](https://github.com/vedderb/bldc/blob/master/motor/virtual_motor.c),
+simulates 100 steps, and derives observer currents from the simulated motor
+state. It does not run the VESC current controller or hardware/ADC simulation;
+it is an equation-driven open-loop plant test with fixed pole-pair count, bus
+voltage, and current limit.
+
+`vesc/foc_observer_single_output.c` calls `foc_observer_update()` exactly once
+with sampled voltage, current, and flux-angle inputs. FloStat equations derive
+the observer flux state from that angle, current, and the fixed inductance and
+flux linkage. The timestep, observer gain, and motor resistance, inductance,
+and flux linkage are fixed constants. This isolates rounding differences in
+the observer call from arithmetic used to derive its inputs.
+The observer mode is fixed to the original Ortega implementation, with
+saturation, saliency, and temperature compensation disabled; consequently,
+d/q-current fields and observer fields unused by that mode are not sampled.
+The remaining sampled voltage, current, and flux angle values are independent;
+the equation clauses enforce the flux/current relationship, but do not model a
+complete controller-generated motor snapshot.
+
+The `vesc/virtual_motor_observer_output.c` variant preserves the firmware-style
+`virtual_motor_int_handler(v_alpha, v_beta)` loop. It includes the first
+harness to reuse its observer implementation and the same extracted plant
+model. The motor equations and inverse-Park/Clarke transforms have been
+factored into `vesc/vesc_virtual_motor_model.c`, a parameterized extraction of
+the matching sections in VESC's `motor/virtual_motor.c`; the source file marks
+the original functions and identifies the hardware-dependent behavior left
+out. The local handler mock calls that plant step, reconstructs ideal alpha/beta
+current readings from simulated phase currents, updates the observer, and
+supplies the next open-loop voltage command. The mock does not run VESC's ADC
+hardware setup or current controller, and it omits ADC count quantization,
+analog scaling, and sensor noise. Select `virtual_motor_harness` with `-main`
+when running FloStat on this file.
+
+Both harnesses initialize the persistent plant state through
+`vesc_virtual_motor_init()`. It applies each sampled initial condition and
+derives `id_integral` so the model's next d-axis update starts from the chosen
+`id`; fixed motor parameters remain explicit in each harness.
+
 ## Supported C syntax and limitations
 
 FloStat operates on the Frama-C C AST; source must first be accepted by the

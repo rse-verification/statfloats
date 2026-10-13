@@ -97,10 +97,10 @@ let split_into_dist_and_pred l =
   in
   let dists = List.rev (List.tl rev_l) in
   List.iter (fun x -> match x with
-    | {ext_name="distribution";_} -> ()
+    | {ext_name="distribution";_} | {ext_name="equation";_} -> ()
     | _ -> Kernel.fatal "Not a distribution where expected one")
     dists;
-  (dists, pred)
+  (List.filter (fun x -> x.ext_name = "distribution") dists, pred)
 
 
 let is_transendental_fun vi = Hashtbl.mem trans_func_names vi.vorig_name
@@ -423,25 +423,38 @@ let mpfr_exps_from_struct_vi vi =
     | Field (f, rest) -> Field (f, append_offset rest suffix)
     | Index (e, rest) -> Index (e, append_offset rest suffix)
   in
-  let rec collect_fields prefix fields =
-    List.concat_map (fun f ->
-      let offset = append_offset prefix (Field (f, NoOffset)) in
-      if f.ftype = mpfr_type then [var_offs_to_exp vi offset]
-      else
-        match Ast_types.unroll_node f.ftype with
-        | TComp ci ->
-          (match ci.cfields with
-          | Some nested_fields -> collect_fields offset nested_fields
-          | None -> [])
-        | _ -> []
-    ) fields
+  let rec collect_type prefix typ =
+    if typ = mpfr_type then
+      [var_offs_to_exp vi prefix]
+    else
+      match Ast_types.unroll_node typ with
+      | TComp ci ->
+        (match ci.cfields with
+        | Some fields ->
+          List.concat_map (fun f ->
+            collect_type (append_offset prefix (Field (f, NoOffset))) f.ftype
+          ) fields
+        | None -> [])
+      | TArray (element_type, Some length) ->
+        (match length.enode with
+        | Const (CInt64 (length, _, _)) when Z.sign length >= 0 ->
+          let length =
+            try Z.to_int length
+            with Z.Overflow -> Kernel.fatal "MPFR array is too large to initialize"
+          in
+          List.concat_map (fun index ->
+            collect_type
+              (append_offset prefix
+                (Index (Cil.integer ~loc:unknown_loc index, NoOffset)))
+              element_type
+          ) (List.init length Fun.id)
+        | _ -> Kernel.fatal "MPFR arrays require a constant length")
+      | TArray (_, None) -> []
+      | _ -> []
   in
   match Ast_types.unroll_node vi.vtype with
-    | TComp ci ->
-        (match ci.cfields with
-        | Some fields -> collect_fields NoOffset fields
-        | None -> [])
-    | _ -> Kernel.fatal "Dont call this function with non-cinfo vi"
+  | TComp _ -> collect_type NoOffset vi.vtype
+  | _ -> Kernel.fatal "Dont call this function with non-cinfo vi"
 
 
 

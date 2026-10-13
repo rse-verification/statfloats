@@ -221,5 +221,6 @@ let () = Acsl_extension.register_behavior "probPred" type_probPred false ~plugin
 let () = Acsl_extension.register_behavior "prob" type_prob false ~plugin:"flostat"
 let () = Acsl_extension.register_behavior "confLevel" type_conf false ~plugin:"flostat"
 let () = Acsl_extension.register_behavior "distribution" type_distribution false ~plugin:"flostat"
+let () = Acsl_extension.register_behavior "equation" type_equation false ~plugin:"flostat"
 let () = Acsl_extension.register_behavior "prob_ensures" type_probContract false ~plugin:"flostat"
 let () = Boot.Main.extend run
