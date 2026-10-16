@@ -1,0 +1,1799 @@
+=== Results for satire_lo ===
+
+===== Running file: bsplines0.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/bsplines0.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines0.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/bsplines0.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 4
+Post : 2
+Total number of nodes pre-processing: 6
+Total number of nodes post-processing: 6
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+4 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 5.960828393845375e-08
+REAL_INTERVAL : [-6.103329360490628e-05, 0.16669718424479202]
+FP_INTERVAL : [-6.109290188884474e-05, 0.16669724385307597]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.00106048583984375
+
+PreProcessing time : 0.00014472007751464844
+
+Analysis time : 0.08951973915100098
+
+Full time : 0.0927422046661377
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines0.txt"
+	User time (seconds): 0.79
+	System time (seconds): 2.23
+	Percent of CPU this job got: 745%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53428
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 17938
+	Voluntary context switches: 139
+	Involuntary context switches: 46918
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/bsplines0.txt ===
+===================================
+
+===== Running file: bsplines1.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/bsplines1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines1.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/bsplines1.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 6
+Post : 2
+Total number of nodes pre-processing: 8
+Total number of nodes post-processing: 8
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+6 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.881200381240321e-07
+REAL_INTERVAL : [0.16657511952011372, 0.6667887369791671]
+FP_INTERVAL : [0.1665748314000756, 0.6667890250992052]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0010960102081298828
+
+PreProcessing time : 0.00014925003051757812
+
+Analysis time : 0.07373309135437012
+
+Full time : 0.07704329490661621
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines1.txt"
+	User time (seconds): 0.75
+	System time (seconds): 3.41
+	Percent of CPU this job got: 1010%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53460
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 17924
+	Voluntary context switches: 153
+	Involuntary context switches: 84270
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/bsplines1.txt ===
+===================================
+
+===== Running file: bsplines2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/bsplines2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/bsplines2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 7
+Post : 2
+Total number of nodes pre-processing: 10
+Total number of nodes post-processing: 10
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+7 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.881218565583447e-07
+REAL_INTERVAL : [0.1666514078776045, 0.6667582138132204]
+FP_INTERVAL : [0.16665111975574792, 0.666758501935077]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0012407302856445312
+
+PreProcessing time : 0.00015592575073242188
+
+Analysis time : 0.08372640609741211
+
+Full time : 0.0872349739074707
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines2.txt"
+	User time (seconds): 0.73
+	System time (seconds): 2.81
+	Percent of CPU this job got: 863%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53420
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 17966
+	Voluntary context switches: 159
+	Involuntary context switches: 54672
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/bsplines2.txt ===
+===================================
+
+===== Running file: bsplines3.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/bsplines3.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines3.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/bsplines3.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 4
+Post : 2
+Total number of nodes pre-processing: 4
+Total number of nodes post-processing: 4
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+4 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 5.960464477539062e-08
+REAL_INTERVAL : [-0.16666666666666702, 0.0]
+FP_INTERVAL : [-0.1666667262713118, 5.960464477539062e-08]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0009391307830810547
+
+PreProcessing time : 0.00014543533325195312
+
+Analysis time : 0.06000638008117676
+
+Full time : 0.06438565254211426
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/bsplines3.txt"
+	User time (seconds): 0.72
+	System time (seconds): 3.04
+	Percent of CPU this job got: 958%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53276
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 17637
+	Voluntary context switches: 180
+	Involuntary context switches: 91209
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/bsplines3.txt ===
+===================================
+
+===== Running file: classIDX0.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/classIDX0.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/classIDX0.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/classIDX0.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 5
+Post : 5
+Total number of nodes pre-processing: 15
+Total number of nodes post-processing: 15
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 8.582696177072464e-06
+REAL_INTERVAL : [-23.197996380811887, 24.733403199929757]
+FP_INTERVAL : [-23.198004963508065, 24.733411782625936]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.00238800048828125
+
+PreProcessing time : 0.00015783309936523438
+
+Analysis time : 0.1612107753753662
+
+Full time : 0.16575360298156738
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/classIDX0.txt"
+	User time (seconds): 1.18
+	System time (seconds): 2.91
+	Percent of CPU this job got: 828%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.49
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53680
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18524
+	Voluntary context switches: 143
+	Involuntary context switches: 88063
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/classIDX0.txt ===
+===================================
+
+===== Running file: classIDX1.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/classIDX1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/classIDX1.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/classIDX1.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 5
+Post : 5
+Total number of nodes pre-processing: 15
+Total number of nodes post-processing: 15
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 4.277664778207345e-06
+REAL_INTERVAL : [-10.19965152103395, 12.046717634729399]
+FP_INTERVAL : [-10.199655798698728, 12.046721912394178]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.002400636672973633
+
+PreProcessing time : 0.0001575946807861328
+
+Analysis time : 0.1695871353149414
+
+Full time : 0.1740870475769043
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/classIDX1.txt"
+	User time (seconds): 1.28
+	System time (seconds): 3.25
+	Percent of CPU this job got: 887%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53712
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18495
+	Voluntary context switches: 144
+	Involuntary context switches: 120056
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/classIDX1.txt ===
+===================================
+
+===== Running file: classIDX2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/classIDX2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/classIDX2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/classIDX2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 5
+Post : 5
+Total number of nodes pre-processing: 15
+Total number of nodes post-processing: 15
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 6.780785149077513e-06
+REAL_INTERVAL : [-16.72541204374451, 13.34293911093111]
+FP_INTERVAL : [-16.72541882452966, 13.34294589171626]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0023474693298339844
+
+PreProcessing time : 0.00015473365783691406
+
+Analysis time : 0.1693427562713623
+
+Full time : 0.17386078834533691
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/classIDX2.txt"
+	User time (seconds): 1.15
+	System time (seconds): 2.40
+	Percent of CPU this job got: 733%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.48
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53712
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18521
+	Voluntary context switches: 151
+	Involuntary context switches: 65040
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/classIDX2.txt ===
+===================================
+
+===== Running file: doppler1.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/doppler1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/doppler1.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/doppler1.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 5
+Post : 5
+Total number of nodes pre-processing: 8
+Total number of nodes post-processing: 8
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.00016734960635102526
+REAL_INTERVAL : [-166.64994381594317, -0.03392186742860018]
+FP_INTERVAL : [-166.65011116554953, -0.033754517822249155]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0015683174133300781
+
+PreProcessing time : 0.00015044212341308594
+
+Analysis time : 0.41083359718322754
+
+Full time : 0.41452598571777344
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/doppler1.txt"
+	User time (seconds): 1.88
+	System time (seconds): 2.50
+	Percent of CPU this job got: 597%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 54148
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 19982
+	Voluntary context switches: 162
+	Involuntary context switches: 60301
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/doppler1.txt ===
+===================================
+
+===== Running file: doppler2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/doppler2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/doppler2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/doppler2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 5
+Post : 5
+Total number of nodes pre-processing: 8
+Total number of nodes post-processing: 8
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.01155069084563089
+REAL_INTERVAL : [-973.156921325947, -0.022704212478082762]
+FP_INTERVAL : [-973.1684720167926, -0.011153521632451872]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0015783309936523438
+
+PreProcessing time : 0.0001583099365234375
+
+Analysis time : 0.4246041774749756
+
+Full time : 0.42931056022644043
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/doppler2.txt"
+	User time (seconds): 2.30
+	System time (seconds): 4.05
+	Percent of CPU this job got: 814%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.78
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 54144
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 19961
+	Voluntary context switches: 139
+	Involuntary context switches: 170010
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/doppler2.txt ===
+===================================
+
+===== Running file: doppler3.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/doppler3.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/doppler3.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/doppler3.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 5
+Post : 5
+Total number of nodes pre-processing: 8
+Total number of nodes post-processing: 8
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 5.09127439170778e-05
+REAL_INTERVAL : [-85.15023390850757, -0.5074304349949319]
+FP_INTERVAL : [-85.15028482125149, -0.5073795222510148]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0015549659729003906
+
+PreProcessing time : 0.00016617774963378906
+
+Analysis time : 0.40750551223754883
+
+Full time : 0.41219520568847656
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/doppler3.txt"
+	User time (seconds): 2.00
+	System time (seconds): 3.21
+	Percent of CPU this job got: 693%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 54260
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 19993
+	Voluntary context switches: 135
+	Involuntary context switches: 116873
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/doppler3.txt ===
+===================================
+
+===== Running file: filter1.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/filter1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter1.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/filter1.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 1
+Post : 2
+Total number of nodes pre-processing: 1
+Total number of nodes post-processing: 1
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+1 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 1.6689300537109377e-07
+REAL_INTERVAL : [-1.4000000000000001, 1.4000000000000001]
+FP_INTERVAL : [-1.4000001668930055, 1.4000001668930055]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0005881786346435547
+
+PreProcessing time : 9.846687316894531e-05
+
+Analysis time : 0.053930044174194336
+
+Full time : 0.056198835372924805
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter1.txt"
+	User time (seconds): 0.88
+	System time (seconds): 3.66
+	Percent of CPU this job got: 1219%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.37
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53528
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 17607
+	Voluntary context switches: 134
+	Involuntary context switches: 190402
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/filter1.txt ===
+===================================
+
+===== Running file: filter2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/filter2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/filter2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 3
+Const expr -> 0
+MaxDepth -> 3
+Post : 3
+Total number of nodes pre-processing: 6
+Total number of nodes post-processing: 6
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+3 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 9.536743164062504e-07
+REAL_INTERVAL : [-2.0400000000000005, 2.0400000000000005]
+FP_INTERVAL : [-2.040000953674317, 2.040000953674317]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0009641647338867188
+
+PreProcessing time : 0.00011539459228515625
+
+Analysis time : 0.06283974647521973
+
+Full time : 0.0654757022857666
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter2.txt"
+	User time (seconds): 0.89
+	System time (seconds): 3.82
+	Percent of CPU this job got: 1232%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.38
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53580
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 17877
+	Voluntary context switches: 158
+	Involuntary context switches: 167260
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/filter2.txt ===
+===================================
+
+===== Running file: filter3.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/filter3.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter3.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/filter3.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 6
+Post : 5
+Total number of nodes pre-processing: 15
+Total number of nodes post-processing: 15
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+6 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.7937889099121115e-06
+REAL_INTERVAL : [-2.3640000000000003, 2.3640000000000003]
+FP_INTERVAL : [-2.3640027937889103, 2.3640027937889103]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.00228118896484375
+
+PreProcessing time : 0.00015354156494140625
+
+Analysis time : 0.09165310859680176
+
+Full time : 0.09607195854187012
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter3.txt"
+	User time (seconds): 0.73
+	System time (seconds): 2.94
+	Percent of CPU this job got: 875%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53720
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18184
+	Voluntary context switches: 155
+	Involuntary context switches: 95082
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/filter3.txt ===
+===================================
+
+===== Running file: filter4.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/filter4.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter4.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/filter4.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 6
+Const expr -> 0
+MaxDepth -> 9
+Post : 6
+Total number of nodes pre-processing: 25
+Total number of nodes post-processing: 25
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+9 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 5.0091463839635316e-06
+REAL_INTERVAL : [-3.2656000000000005, 3.2656000000000005]
+FP_INTERVAL : [-3.2656050091463844, 3.2656050091463844]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.003098011016845703
+
+PreProcessing time : 0.00020384788513183594
+
+Analysis time : 0.1303541660308838
+
+Full time : 0.1374506950378418
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/filter4.txt"
+	User time (seconds): 0.78
+	System time (seconds): 2.35
+	Percent of CPU this job got: 701%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53780
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18491
+	Voluntary context switches: 139
+	Involuntary context switches: 67281
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/filter4.txt ===
+===================================
+
+===== Running file: lorenz2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 14
+Const expr -> 0
+MaxDepth -> 10
+Post : 11
+Total number of nodes pre-processing: 29
+Total number of nodes post-processing: 20
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+10 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 4.2991784216752044e-07
+REAL_INTERVAL : [-9.946090380350751e-05, 1.5372023254871374]
+FP_INTERVAL : [-9.989082164567503e-05, 1.5372027554049796]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0029921531677246094
+
+PreProcessing time : 0.00019216537475585938
+
+Analysis time : 0.1964282989501953
+
+Full time : 0.20160865783691406
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz2.txt"
+	User time (seconds): 1.07
+	System time (seconds): 3.43
+	Percent of CPU this job got: 834%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.54
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 54632
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 19392
+	Voluntary context switches: 146
+	Involuntary context switches: 83104
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 152
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz2.txt ===
+===================================
+
+===== Running file: lorenz4.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz4.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz4.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz4.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 20
+Const expr -> 0
+MaxDepth -> 19
+Post : 17
+Total number of nodes pre-processing: 57
+Total number of nodes post-processing: 48
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+19 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 9.520552086536892e-07
+REAL_INTERVAL : [-9.983401632985426e-05, 2.092514656079044]
+FP_INTERVAL : [-0.00010078607153850795, 2.0925156081342524]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.004509449005126953
+
+PreProcessing time : 0.0002617835998535156
+
+Analysis time : 57.3336238861084
+
+Full time : 57.340824604034424
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz4.txt"
+	User time (seconds): 110.48
+	System time (seconds): 6.06
+	Percent of CPU this job got: 202%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:57.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 341884
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 729026
+	Voluntary context switches: 368
+	Involuntary context switches: 35726
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3280
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz4.txt ===
+===================================
+
+===== Running file: rigidBody1.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/rigidBody1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/rigidBody1.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/rigidBody1.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 4
+Const expr -> 0
+MaxDepth -> 5
+Post : 4
+Total number of nodes pre-processing: 7
+Total number of nodes post-processing: 7
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.0002726912498474121
+REAL_INTERVAL : [-705, 705.0]
+FP_INTERVAL : [-705.0002726912498, 705.0002726912498]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0014142990112304688
+
+PreProcessing time : 0.0001442432403564453
+
+Analysis time : 0.07965087890625
+
+Full time : 0.08321285247802734
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/rigidBody1.txt"
+	User time (seconds): 0.87
+	System time (seconds): 3.97
+	Percent of CPU this job got: 1114%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53488
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18068
+	Voluntary context switches: 145
+	Involuntary context switches: 78739
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/rigidBody1.txt ===
+===================================
+
+===== Running file: rigidBody2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/rigidBody2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/rigidBody2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/rigidBody2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 6
+Const expr -> 0
+MaxDepth -> 7
+Post : 6
+Total number of nodes pre-processing: 10
+Total number of nodes post-processing: 10
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+7 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.034763216972351074
+REAL_INTERVAL : [-56013.885902404785, 58740.0]
+FP_INTERVAL : [-56013.92066562176, 58740.03476321697]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0015995502471923828
+
+PreProcessing time : 0.00025391578674316406
+
+Analysis time : 0.10182690620422363
+
+Full time : 0.10572004318237305
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/rigidBody2.txt"
+	User time (seconds): 0.99
+	System time (seconds): 3.62
+	Percent of CPU this job got: 1038%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53612
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18502
+	Voluntary context switches: 162
+	Involuntary context switches: 82710
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/rigidBody2.txt ===
+===================================
+
+===== Running file: sine.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/sine.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/sine.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/sine.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 8
+Post : 2
+Total number of nodes pre-processing: 18
+Total number of nodes post-processing: 18
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+8 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.9691077130544984e-07
+REAL_INTERVAL : [-1.0000127624034323, 1.0000181338343923]
+FP_INTERVAL : [-1.0000130593142036, 1.0000184307451636]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0015292167663574219
+
+PreProcessing time : 0.00017547607421875
+
+Analysis time : 0.08864498138427734
+
+Full time : 0.09368348121643066
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/sine.txt"
+	User time (seconds): 1.09
+	System time (seconds): 4.28
+	Percent of CPU this job got: 1210%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53580
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18318
+	Voluntary context switches: 141
+	Involuntary context switches: 145427
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/sine.txt ===
+===================================
+
+===== Running file: solveCubic.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/solveCubic.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/solveCubic.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/solveCubic.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 4
+Const expr -> 0
+MaxDepth -> 6
+Post : 4
+Total number of nodes pre-processing: 14
+Total number of nodes post-processing: 14
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+6 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.391077578067782e-05
+REAL_INTERVAL : [-0.9260022198712559, 48.14814814814811]
+FP_INTERVAL : [-0.9260261306470365, 48.14817205892389]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0010008811950683594
+
+PreProcessing time : 0.0001494884490966797
+
+Analysis time : 0.16648602485656738
+
+Full time : 0.16959810256958008
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/solveCubic.txt"
+	User time (seconds): 1.47
+	System time (seconds): 4.15
+	Percent of CPU this job got: 1098%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 52992
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18710
+	Voluntary context switches: 160
+	Involuntary context switches: 120581
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/solveCubic.txt ===
+===================================
+
+===== Running file: sqrt.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/sqrt.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/sqrt.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/sqrt.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 2
+Const expr -> 0
+MaxDepth -> 5
+Post : 2
+Total number of nodes pre-processing: 14
+Total number of nodes post-processing: 14
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+5 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.00021328677769383297
+REAL_INTERVAL : [-334.64379704004386, 1.4824161908250884]
+FP_INTERVAL : [-334.64401032682156, 1.4826294776027822]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0015368461608886719
+
+PreProcessing time : 0.0002734661102294922
+
+Analysis time : 0.08273100852966309
+
+Full time : 0.08770036697387695
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/sqrt.txt"
+	User time (seconds): 0.79
+	System time (seconds): 3.09
+	Percent of CPU this job got: 935%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53548
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18015
+	Voluntary context switches: 141
+	Involuntary context switches: 139461
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/sqrt.txt ===
+===================================
+
+===== Running file: traincar1.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/traincar1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar1.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/traincar1.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 4
+Const expr -> 0
+MaxDepth -> 4
+Post : 4
+Total number of nodes pre-processing: 6
+Total number of nodes post-processing: 6
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+4 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.001873587909763394
+REAL_INTERVAL : [-2672.864955838932, 5443.881624161071]
+FP_INTERVAL : [-2672.866829426842, 5443.8834977489805]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0014963150024414062
+
+PreProcessing time : 0.0001575946807861328
+
+Analysis time : 0.11403226852416992
+
+Full time : 0.1176600456237793
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar1.txt"
+	User time (seconds): 0.90
+	System time (seconds): 3.32
+	Percent of CPU this job got: 931%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53572
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18031
+	Voluntary context switches: 133
+	Involuntary context switches: 103165
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/traincar1.txt ===
+===================================
+
+===== Running file: traincar2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/traincar2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/traincar2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 6
+Const expr -> 0
+MaxDepth -> 6
+Post : 6
+Total number of nodes pre-processing: 10
+Total number of nodes post-processing: 10
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+6 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.0012948906211572113
+REAL_INTERVAL : [-3645.755199161528, 3845.6029681586015]
+FP_INTERVAL : [-3645.756494052149, 3845.6042630492225]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.002064943313598633
+
+PreProcessing time : 0.00015807151794433594
+
+Analysis time : 0.18720483779907227
+
+Full time : 0.19150686264038086
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar2.txt"
+	User time (seconds): 1.26
+	System time (seconds): 2.27
+	Percent of CPU this job got: 714%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.49
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53688
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18531
+	Voluntary context switches: 129
+	Involuntary context switches: 93354
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/traincar2.txt ===
+===================================
+
+===== Running file: traincar3.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/traincar3.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar3.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/traincar3.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 8
+Const expr -> 0
+MaxDepth -> 8
+Post : 8
+Total number of nodes pre-processing: 17
+Total number of nodes post-processing: 17
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+8 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.02112500210246166
+REAL_INTERVAL : [-66966.97583980023, 67314.4003024541]
+FP_INTERVAL : [-66966.99696480234, 67314.42142745621]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0030553340911865234
+
+PreProcessing time : 0.0001761913299560547
+
+Analysis time : 0.2484424114227295
+
+Full time : 0.2536022663116455
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar3.txt"
+	User time (seconds): 1.76
+	System time (seconds): 3.75
+	Percent of CPU this job got: 922%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53796
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18728
+	Voluntary context switches: 137
+	Involuntary context switches: 104878
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/traincar3.txt ===
+===================================
+
+===== Running file: traincar4.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/traincar4.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar4.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/traincar4.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 10
+Const expr -> 0
+MaxDepth -> 10
+Post : 10
+Total number of nodes pre-processing: 18
+Total number of nodes post-processing: 18
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+10 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.2336881989568672
+REAL_INTERVAL : [-584294.3905503356, 569108.6094496645]
+FP_INTERVAL : [-584294.6242385346, 569108.8431378634]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.003358125686645508
+
+PreProcessing time : 0.00018787384033203125
+
+Analysis time : 0.29010939598083496
+
+Full time : 0.29561591148376465
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/traincar4.txt"
+	User time (seconds): 1.85
+	System time (seconds): 3.76
+	Percent of CPU this job got: 880%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.63
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53956
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 19131
+	Voluntary context switches: 128
+	Involuntary context switches: 188745
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/traincar4.txt ===
+===================================
+
+===== Running file: trid.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/trid.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/trid.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 3
+Const expr -> 0
+MaxDepth -> 4
+Post : 3
+Total number of nodes pre-processing: 9
+Total number of nodes post-processing: 9
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+4 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.008453094067363054
+REAL_INTERVAL : [-12801.796875, 12602.025382041931]
+FP_INTERVAL : [-12801.805328094068, 12602.033835135999]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0007865428924560547
+
+PreProcessing time : 0.00014472007751464844
+
+Analysis time : 0.1365516185760498
+
+Full time : 0.13940954208374023
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid.txt"
+	User time (seconds): 1.21
+	System time (seconds): 3.82
+	Percent of CPU this job got: 1049%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.48
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 52776
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18045
+	Voluntary context switches: 126
+	Involuntary context switches: 175283
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/trid.txt ===
+===================================
+
+===== Running file: trid2.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/trid2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid2.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/trid2.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 4
+Const expr -> 0
+MaxDepth -> 6
+Post : 4
+Total number of nodes pre-processing: 15
+Total number of nodes post-processing: 15
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+6 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.01492599227253777
+REAL_INTERVAL : [-32603.62890625, 14317.9375]
+FP_INTERVAL : [-32603.643832242273, 14317.952425992273]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0011487007141113281
+
+PreProcessing time : 0.00016760826110839844
+
+Analysis time : 0.21718597412109375
+
+Full time : 0.22102117538452148
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid2.txt"
+	User time (seconds): 1.09
+	System time (seconds): 2.31
+	Percent of CPU this job got: 642%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.53
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53108
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18703
+	Voluntary context switches: 146
+	Involuntary context switches: 69255
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/trid2.txt ===
+===================================
+
+===== Running file: trid3.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/trid3.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid3.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/trid3.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 5
+Const expr -> 0
+MaxDepth -> 8
+Post : 5
+Total number of nodes pre-processing: 21
+Total number of nodes post-processing: 21
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+8 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.0251428282077768
+REAL_INTERVAL : [-52816.03125, 23920.0]
+FP_INTERVAL : [-52816.056392828206, 23920.025142828206]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0014743804931640625
+
+PreProcessing time : 0.0001773834228515625
+
+Analysis time : 0.29033327102661133
+
+Full time : 0.29428887367248535
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid3.txt"
+	User time (seconds): 1.68
+	System time (seconds): 2.28
+	Percent of CPU this job got: 652%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 52988
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18820
+	Voluntary context switches: 124
+	Involuntary context switches: 93844
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/trid3.txt ===
+===================================
+
+===== Running file: trid4.txt =====
+Command: run_satire_lo 28800 /workspace/testfiles/satire/trid4.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid4.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/trid4.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 6
+Const expr -> 0
+MaxDepth -> 10
+Post : 6
+Total number of nodes pre-processing: 27
+Total number of nodes post-processing: 27
+Abstraction Enabled... 
+
+Bypassing abstraction
+
+10 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 0.0377058070152998
+REAL_INTERVAL : [-72813.75, 42661.0]
+FP_INTERVAL : [-72813.78770580702, 42661.037705807015]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.00176239013671875
+
+PreProcessing time : 0.00017523765563964844
+
+Analysis time : 0.38158726692199707
+
+Full time : 0.38547658920288086
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/trid4.txt"
+	User time (seconds): 2.34
+	System time (seconds): 4.23
+	Percent of CPU this job got: 890%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53784
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 19187
+	Voluntary context switches: 147
+	Involuntary context switches: 172203
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 128
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/trid4.txt ===
+===================================

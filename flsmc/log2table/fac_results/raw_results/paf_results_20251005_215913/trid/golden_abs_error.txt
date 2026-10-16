@@ -1,0 +1,24 @@
+###### Info about CDF ABS Error Analysis with Golden with num. bins: 317#######:
+
+Starting from value 7.576090865768492e-10
+
+
+Range: [7.576090865768492e-10,8.87643328421947e-05] contains 25.0% of the distribution.
+
+Range: [7.576090865768492e-10,0.00021697838595668422] contains 50.0% of the distribution.
+
+Range: [7.576090865768492e-10,0.0004635438727153179] contains 75.0% of the distribution.
+
+Range: [7.576090865768492e-10,0.0006410710231815342] contains 85.0% of the distribution.
+
+Range: [7.576090865768492e-10,0.0009862627046436213] contains 95.0% of the distribution.
+
+Range: [7.576090865768492e-10,0.0014202179613388166] contains 99.0% of the distribution.
+
+Range: [7.576090865768492e-10,0.0026727706340726755] contains 99.99% of the distribution.
+
+Range: [7.576090865768492e-10,0.0031165885102382163] contains 100% of the distribution.
+
+###########################################
+
+

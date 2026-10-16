@@ -1,0 +1,480 @@
+=== Results for paf ===
+
+===== Running file: bsplines0.txt =====
+Command: run_paf 7200 /workspace/testfiles/paf/bsplines0.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 7200 python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines0.txt
+Execution Time:1532.3967096805573s
+
+###### Info about CDF Range Analysis with PAF using PBox Discretization#######:
+
+(Left to Right) Starting range analysis from: -0.00000000077883455679418935337784162753219851409745
+
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.00773973253424192948925523324019768438049288732432] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.03241864626386072565503169846484392214355711153246] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.10133314804740082800462070318006988150918250442958] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.14054553662771849412812824115846310722995224499577] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains 100% of the distribution.
+
+###########################################
+
+(Right to Left) Starting range analysis from: 0.16666672627132032385156953153389113321064103956823
+
+Range: [0.05707943732654191920677660894255562974801084482506,0.16666672627132032385156953153389113321064103956823] contains at least 25.00% of the distribution (with 100% prob).
+
+Range: [0.01055351547680440413874536847317172574671189134294,0.16666672627132032385156953153389113321064103956823] contains at least 50.0% of the distribution (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 75.00% of the distribution (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 85.00% of the distribution (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 95.00% of the distribution (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 99.00% of the distribution (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 99.900% of the distribution (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains 100% of the distribution.
+
+#############
+
+(Mode) Starting range analysis from box: [-0.00000000077883455679418935337784162753219851409745, 0.00365866202875580839450816456142797675116705747205]
+
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.01357617472162980118295432963339531004843072153609] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains at least 99.900% of the distribution  (with 100% prob).
+
+Range: [-0.00000000077883455679418935337784162753219851409745,0.16666672627132032385156953153389113321064103956823] contains 100% of the distribution.
+
+###########################################
+
+
+#### Error values with Gelpia ####
+
+0.99:[-0.00000005713567219547783282720943437500000000000001, 0.00000005713567219547783282720943437500000000000002]
+#############
+
+/root/.local/lib/python3.7/site-packages/pacal/interpolation.py:52: UserWarning: Compiled interpolation routine not available
+  warnings.warn("Compiled interpolation routine not available")
+src/main.py:79: UserWarning: Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)
+
+  warnings.warn("Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)\n")
+WARNING: Token 'if' defined, but not used
+WARNING: There is 1 unused token
+Generating LALR tables
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+	Command being timed: "python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines0.txt"
+	User time (seconds): 5636.73
+	System time (seconds): 5771.94
+	Percent of CPU this job got: 714%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 26:36.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 824216
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 19961
+	Minor (reclaiming a frame) page faults: 240289173
+	Voluntary context switches: 2305719
+	Involuntary context switches: 808811
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3384
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/paf/bsplines0.txt ===
+===================================
+
+===== Running file: bsplines1.txt =====
+Command: run_paf 7200 /workspace/testfiles/paf/bsplines1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 7200 python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines1.txt
+Execution Time:2184.3141713142395s
+
+###### Info about CDF Range Analysis with PAF using PBox Discretization#######:
+
+(Left to Right) Starting range analysis from: 0.16520278614663562686258977594393792590438326867958
+
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.41921983491848705130660138754806654356011955004826] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.55008560759698611537753717390050580304876064483831] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains 100% of the distribution.
+
+###########################################
+
+(Right to Left) Starting range analysis from: 0.66678881744887807026678482276263451108329832734717
+
+Range: [0.57856870528838510336384458788589341907375113934135,0.66678881744887807026678482276263451108329832734717] contains at least 25.00% of the distribution (with 100% prob).
+
+Range: [0.43905105500519673893693276326194934914649073148917,0.66678881744887807026678482276263451108329832734717] contains at least 50.0% of the distribution (with 100% prob).
+
+Range: [0.21827456742605387208714210829420936140200737503279,0.66678881744887807026678482276263451108329832734717] contains at least 75.00% of the distribution (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 85.00% of the distribution (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 95.00% of the distribution (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 99.00% of the distribution (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 99.900% of the distribution (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains 100% of the distribution.
+
+#############
+
+(Mode) Starting range analysis from box: [0.63817447709493780996782164587904401862154055986409, 0.66678881744887807026678482276263451108329832734717]
+
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains at least 99.900% of the distribution  (with 100% prob).
+
+Range: [0.16520278614663562686258977594393792590438326867958,0.66678881744887807026678482276263451108329832734717] contains 100% of the distribution.
+
+###########################################
+
+
+#### Error values with Gelpia ####
+
+0.99:[-0.00000018642444703231852522294621386718750000000002, 0.00000018642444703231852522294621386718750000000002]
+#############
+
+/root/.local/lib/python3.7/site-packages/pacal/interpolation.py:52: UserWarning: Compiled interpolation routine not available
+  warnings.warn("Compiled interpolation routine not available")
+src/main.py:79: UserWarning: Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)
+
+  warnings.warn("Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)\n")
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+	Command being timed: "python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines1.txt"
+	User time (seconds): 6721.99
+	System time (seconds): 8201.32
+	Percent of CPU this job got: 663%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 37:28.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 897124
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 30007
+	Minor (reclaiming a frame) page faults: 322101219
+	Voluntary context switches: 3057385
+	Involuntary context switches: 1091910
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 2984
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/paf/bsplines1.txt ===
+===================================
+
+===== Running file: bsplines2.txt =====
+Command: run_paf 7200 /workspace/testfiles/paf/bsplines2.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 7200 python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines2.txt
+Execution Time:3058.2054834365845s
+
+###### Info about CDF Range Analysis with PAF using PBox Discretization#######:
+
+(Left to Right) Starting range analysis from: 0.16654457214215405014441068929351985072457598498551
+
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.36361211013714216897489560588653630023970442446499] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.53658463926727649552588066294406836019006850328946] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.64400384731923214996350230525362909728939590390960] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 99.900% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains 100% of the distribution.
+
+###########################################
+
+(Right to Left) Starting range analysis from: 0.66733805673524092907342561369343882497517540406661
+
+Range: [0.50624796787917899376387616425856466658547322408289,0.66733805673524092907342561369343882497517540406661] contains at least 25.00% of the distribution (with 100% prob).
+
+Range: [0.38830247116463075195455489722338775168435110892453,0.66733805673524092907342561369343882497517540406661] contains at least 50.0% of the distribution (with 100% prob).
+
+Range: [0.22763047600123380268354898112685517080411226147483,0.66733805673524092907342561369343882497517540406661] contains at least 75.00% of the distribution (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 85.00% of the distribution (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 95.00% of the distribution (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 99.00% of the distribution (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 99.900% of the distribution (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains 100% of the distribution.
+
+#############
+
+(Mode) Starting range analysis from box: [0.16654457214215405014441068929351985072457598498551, 0.23992579204047673451910200405315177799130508784940]
+
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains at least 99.900% of the distribution  (with 100% prob).
+
+Range: [0.16654457214215405014441068929351985072457598498551,0.66733805673524092907342561369343882497517540406661] contains 100% of the distribution.
+
+###########################################
+
+
+#### Error values with Gelpia ####
+
+0.99:[-0.00000019416088820981941113132182421875000000000001, 0.00000019416088820981941113132182421875000000000002]
+#############
+
+/root/.local/lib/python3.7/site-packages/pacal/interpolation.py:52: UserWarning: Compiled interpolation routine not available
+  warnings.warn("Compiled interpolation routine not available")
+src/main.py:79: UserWarning: Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)
+
+  warnings.warn("Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)\n")
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+	Command being timed: "python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines2.txt"
+	User time (seconds): 11640.71
+	System time (seconds): 12925.52
+	Percent of CPU this job got: 786%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 52:02.70
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 931492
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 45554
+	Minor (reclaiming a frame) page faults: 477907514
+	Voluntary context switches: 4367811
+	Involuntary context switches: 1912648
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3704
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/paf/bsplines2.txt ===
+===================================
+
+===== Running file: bsplines3.txt =====
+Command: run_paf 7200 /workspace/testfiles/paf/bsplines3.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 7200 python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines3.txt
+Execution Time:1273.3641202449799s
+
+###### Info about CDF Range Analysis with PAF using PBox Discretization#######:
+
+(Left to Right) Starting range analysis from: -0.16666672627132032385156953153389113321064103956823
+
+
+Range: [-0.16666672627132032385156953153389113321064103956823,-0.05277148115642243521438619018527967067296548450535] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,-0.01391813765199671157743346877064891026209991764517] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,-0.00066986674400838317025494289104494906583857522018] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains 100% of the distribution.
+
+###########################################
+
+(Right to Left) Starting range analysis from: 0.00000000000000000000000000000000000000000000000000
+
+Range: [-0.00466461371561145090890042548578340740704156577720,0.00000000000000000000000000000000000000000000000000] contains at least 25.00% of the distribution (with 100% prob).
+
+Range: [-0.03254960097157472194740505881714307624657378984100,0.00000000000000000000000000000000000000000000000000] contains at least 50.0% of the distribution (with 100% prob).
+
+Range: [-0.08792587680624687674823051068378817919484003588521,0.00000000000000000000000000000000000000000000000000] contains at least 75.00% of the distribution (with 100% prob).
+
+Range: [-0.12778001546406820959224204651216574461541808964588,0.00000000000000000000000000000000000000000000000000] contains at least 85.00% of the distribution (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 95.00% of the distribution (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 99.00% of the distribution (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 99.900% of the distribution (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains 100% of the distribution.
+
+#############
+
+(Mode) Starting range analysis from box: [-0.00045393499022873039719447756597758507327104464223, 0.00000000000000000000000000000000000000000000000000]
+
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains at least 99.900% of the distribution  (with 100% prob).
+
+Range: [-0.16666672627132032385156953153389113321064103956823,0.00000000000000000000000000000000000000000000000000] contains 100% of the distribution.
+
+###########################################
+
+
+#### Error values with Gelpia ####
+
+0.99:[-0.00000004221995745605038572587869589843750000000001, 0.00000004221995745605038572587869589843750000000002]
+#############
+
+/root/.local/lib/python3.7/site-packages/pacal/interpolation.py:52: UserWarning: Compiled interpolation routine not available
+  warnings.warn("Compiled interpolation routine not available")
+src/main.py:79: UserWarning: Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)
+
+  warnings.warn("Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)\n")
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+	Command being timed: "python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/bsplines3.txt"
+	User time (seconds): 3565.86
+	System time (seconds): 4380.67
+	Percent of CPU this job got: 594%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 22:17.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 803040
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 16395
+	Minor (reclaiming a frame) page faults: 180922376
+	Voluntary context switches: 1701461
+	Involuntary context switches: 605018
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1784
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/paf/bsplines3.txt ===
+===================================

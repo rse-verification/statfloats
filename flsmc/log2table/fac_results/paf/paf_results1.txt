@@ -1,0 +1,113 @@
+=== Results for paf ===
+
+===== Running file: filter1.txt =====
+Command: run_paf 100000 /workspace/testfiles/paf/filter1.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 100000 python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/filter1.txt
+/root/.local/lib/python3.7/site-packages/pacal/interpolation.py:52: UserWarning: Compiled interpolation routine not available
+  warnings.warn("Compiled interpolation routine not available")
+src/main.py:79: UserWarning: Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)
+
+  warnings.warn("Mantissa with implicit bit of sign. In gmpy2 set precision=p includes also sign bit. (e.g. Float32 is mantissa=24 and exp=8)\n")
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+/workspace/tools/paf/src/error_model/fast_typical_error_model.py:67: FutureWarning: PDF doesnt integrate to 1. Normalized to integrate to 1.
+  self.hidden_err_model = normalizeDistribution(self.hidden_err_model, init=True)
+	Command being timed: "python3.7 -u src/main.py -m 24 -e 8 -d 50 -prob 0.99 /workspace/testfiles/paf/filter1.txt"
+
+Execution Time:551.5232729911804s
+
+###### Info about CDF Range Analysis with PAF using PBox Discretization#######:
+
+(Left to Right) Starting range analysis from: -1.40000014305114959259187257812341924623224057674412
+
+
+Range: [-1.40000014305114959259187257812341924623224057674412,-0.50400002986907964976907863760117666242923251812556] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,0.16800001476287872925313109653957591051149373509558] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,0.84000002574920646267133778108681594528717957121652] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.12000000762939429782421963680771804508604641271210] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains 100% of the distribution.
+
+###########################################
+
+(Right to Left) Starting range analysis from: 1.40000014305114959259187257812341924623224057674413
+
+Range: [0.56000003051757834562174928348435709880162667107096,1.40000014305114959259187257812341924623224057674413] contains at least 25.00% of the distribution (with 100% prob).
+
+Range: [-0.11200001037597663414199573913559215506885078101176,1.40000014305114959259187257812341924623224057674413] contains at least 50.0% of the distribution (with 100% prob).
+
+Range: [-0.78400002777099600728154177550278082653749522299512,1.40000014305114959259187257812341924623224057674413] contains at least 75.00% of the distribution (with 100% prob).
+
+Range: [-1.12000000762939429781301963686493850572257917031893,1.40000014305114959259187257812341924623224057674413] contains at least 85.00% of the distribution (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 95.00% of the distribution (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 99.00% of the distribution (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 99.900% of the distribution (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains 100% of the distribution.
+
+#############
+
+(Mode) Starting range analysis from box: [-0.16800001476287857381643743774178039252127758705954, 0.05600000545501721379351938690580628508264392210150]
+
+
+Range: [-0.39200002696990985424599242200352405035566930646714,1.40000014305114959259187257812341924623224057674413] contains at least 25.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 50.0% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 75.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 85.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 95.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 99.00% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains at least 99.900% of the distribution  (with 100% prob).
+
+Range: [-1.40000014305114959259187257812341924623224057674412,1.40000014305114959259187257812341924623224057674413] contains 100% of the distribution.
+
+###########################################
+
+
+#### Error values with Gelpia ####
+
+0.99:[-0.00000012516975473886305093765258789062500000000002, 0.00000012516975473886305093765258789062500000000002]
+#############
+
+  User time (seconds): 1690.18
+  System time (seconds): 1108.25
+  Percent of CPU this job got: 454%
+  Elapsed (wall clock) time (h:mm:ss or m:ss): 10:15.42
+  Average shared text size (kbytes): 0
+  Average unshared data size (kbytes): 0
+  Average stack size (kbytes): 0
+  Average total size (kbytes): 0
+  Maximum resident set size (kbytes): 782668
+  Average resident set size (kbytes): 0
+  Major (requiring I/O) page faults: 760
+  Minor (reclaiming a frame) page faults: 47722222
+  Voluntary context switches: 633139
+  Involuntary context switches: 9898
+  Swaps: 0
+  File system inputs: 0
+  File system outputs: 872
+  Socket messages sent: 0
+  Socket messages received: 0
+  Signals delivered: 0
+  Page size (bytes): 4096
+  Exit status: 0
+
+[Success]
+=== done with /workspace/testfiles/paf/filter1.txt ===
+===================================

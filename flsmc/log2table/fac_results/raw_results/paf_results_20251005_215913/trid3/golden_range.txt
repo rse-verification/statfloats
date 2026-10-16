@@ -1,0 +1,24 @@
+###### Info about CDF Range Analysis with Golden with num. bins: 185#######:
+
+Starting from value -50054.08517218522
+
+
+Range: [-50054.08517218522,-10960.243279725983] contains 25.0% of the distribution.
+
+Range: [-50054.08517218522,-5078.868835727684] contains 50.0% of the distribution.
+
+Range: [-50054.08517218522,-581.3472020819318] contains 75.0% of the distribution.
+
+Range: [-50054.08517218522,1840.395216035009] contains 85.0% of the distribution.
+
+Range: [-50054.08517218522,5991.953647092632] contains 95.0% of the distribution.
+
+Range: [-50054.08517218522,10143.512078150248] contains 99.0% of the distribution.
+
+Range: [-50054.08517218522,13603.144104031599] contains 99.99% of the distribution.
+
+Range: [-50054.08517218522,13603.144104031599] contains 100% of the distribution.
+
+###########################################
+
+

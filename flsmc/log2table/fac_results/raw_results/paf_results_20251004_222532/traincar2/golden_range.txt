@@ -1,0 +1,24 @@
+###### Info about CDF Range Analysis with Golden with num. bins: 131#######:
+
+Starting from value -3524.8452050912174
+
+
+Range: [-3524.8452050912174,-725.8257462368069] contains 25.0% of the distribution.
+
+Range: [-3524.8452050912174,169.8604805966047] contains 50.0% of the distribution.
+
+Range: [-3524.8452050912174,1121.5270966071039] contains 75.0% of the distribution.
+
+Range: [-3524.8452050912174,1569.3702100238097] contains 85.0% of the distribution.
+
+Range: [-3524.8452050912174,2241.1348801488684] contains 95.0% of the distribution.
+
+Range: [-3524.8452050912174,2856.919161096839] contains 99.0% of the distribution.
+
+Range: [-3524.8452050912174,3584.664220398986] contains 99.99% of the distribution.
+
+Range: [-3524.8452050912174,3752.6053879302503] contains 100% of the distribution.
+
+###########################################
+
+
