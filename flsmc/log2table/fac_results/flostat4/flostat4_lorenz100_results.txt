@@ -1,0 +1,50 @@
+=== Results for flostat4 ===
+
+===== Running file: lorenz100.c =====
+Tool: flostat4
+Command: run_flostat 40000 /workspace/testfiles/flostat4/lorenz100.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 40000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-save-samples -fs-no-save-diffs -fs-seed 42 /workspace/testfiles/flostat4/lorenz100.c
+[kernel] Parsing testfiles/flostat4/lorenz100.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat4/lorenz100.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.1737, Execs n: 100000
+[fs] requested diff: 7.6e-06
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 18370  Executions: 100000 
+   Measured probability: 0.8163  Requested probability: 0.99
+/workspace/testfiles/flostat4/lorenz100_2026-01-29_12-58-48/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat4/lorenz100_2026-01-29_12-58-48/mpfr_out.c:2890:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 2890 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-save-samples -fs-no-save-diffs -fs-seed 42 /workspace/testfiles/flostat4/lorenz100.c"
+	User time (seconds): 66.83
+	System time (seconds): 4.20
+	Percent of CPU this job got: 105%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:07.56
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 394424
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 939
+	Minor (reclaiming a frame) page faults: 110746
+	Voluntary context switches: 1036
+	Involuntary context switches: 384836
+	Swaps: 0
+	File system inputs: 54704
+	File system outputs: 389464
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat4/lorenz100.c ===
+===================================

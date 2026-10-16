@@ -1,0 +1,3310 @@
+
+===== Iteration 0 =====
+[Wed Oct  8 20:11:43 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-11-44/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-11-44/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.69
+	System time (seconds): 6.93
+	Percent of CPU this job got: 211%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212256
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57224
+	Voluntary context switches: 166
+	Involuntary context switches: 98516
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176032
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:11:50 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-11-50/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-11-50/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.69
+	System time (seconds): 6.56
+	Percent of CPU this job got: 192%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212260
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57224
+	Voluntary context switches: 216
+	Involuntary context switches: 106611
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:11:57 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-11-58/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-11-58/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 8.56
+	System time (seconds): 6.53
+	Percent of CPU this job got: 181%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.29
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212804
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57265
+	Voluntary context switches: 180
+	Involuntary context switches: 110451
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:12:05 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-12-06/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-12-06/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 10.36
+	System time (seconds): 6.72
+	Percent of CPU this job got: 166%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.25
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212720
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57304
+	Voluntary context switches: 211
+	Involuntary context switches: 76116
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:12:16 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-12-16/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-12-16/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 15.53
+	System time (seconds): 6.82
+	Percent of CPU this job got: 144%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212528
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57297
+	Voluntary context switches: 236
+	Involuntary context switches: 91521
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:12:31 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-12-32/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-12-32/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 29.13
+	System time (seconds): 6.94
+	Percent of CPU this job got: 124%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:28.90
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212524
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57298
+	Voluntary context switches: 181
+	Involuntary context switches: 60096
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:13:00 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples0/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-13-01/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-13-01/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples0/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 73.58
+	System time (seconds): 6.86
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:13.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212828
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57338
+	Voluntary context switches: 320
+	Involuntary context switches: 45349
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 1 =====
+[Wed Oct  8 20:14:14 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-14/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-14/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.89
+	System time (seconds): 6.76
+	Percent of CPU this job got: 205%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212264
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57190
+	Voluntary context switches: 211
+	Involuntary context switches: 99742
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:14:20 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-21/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-21/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 8.56
+	System time (seconds): 6.81
+	Percent of CPU this job got: 175%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.77
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212744
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 10
+	Minor (reclaiming a frame) page faults: 57245
+	Voluntary context switches: 218
+	Involuntary context switches: 216980
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:14:29 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-30/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-30/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 10.14
+	System time (seconds): 6.66
+	Percent of CPU this job got: 163%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.29
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212728
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 57283
+	Voluntary context switches: 244
+	Involuntary context switches: 156425
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:14:39 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-40/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-40/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 11.18
+	System time (seconds): 6.79
+	Percent of CPU this job got: 161%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.12
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212812
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57254
+	Voluntary context switches: 258
+	Involuntary context switches: 89593
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:14:51 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-51/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-14-51/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 15.36
+	System time (seconds): 7.00
+	Percent of CPU this job got: 139%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.99
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212596
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57343
+	Voluntary context switches: 334
+	Involuntary context switches: 68060
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:15:07 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-15-07/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-15-07/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 25.41
+	System time (seconds): 6.91
+	Percent of CPU this job got: 120%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.90
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212192
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57250
+	Voluntary context switches: 481
+	Involuntary context switches: 70225
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:15:34 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples1/samples.csv
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-15-34/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-15-34/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples1/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 64.01
+	System time (seconds): 6.77
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:04.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212676
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57328
+	Voluntary context switches: 312
+	Involuntary context switches: 64613
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 2 =====
+[Wed Oct  8 20:16:38 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-16-39/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-16-39/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.19
+	System time (seconds): 6.63
+	Percent of CPU this job got: 189%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.28
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212696
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 57222
+	Voluntary context switches: 187
+	Involuntary context switches: 180386
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:16:46 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-16-46/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-16-46/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.32
+	System time (seconds): 7.08
+	Percent of CPU this job got: 199%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.23
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212608
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57229
+	Voluntary context switches: 252
+	Involuntary context switches: 21080
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:16:53 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-16-54/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-16-54/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 9.45
+	System time (seconds): 6.76
+	Percent of CPU this job got: 176%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.19
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212860
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 19
+	Minor (reclaiming a frame) page faults: 57263
+	Voluntary context switches: 185
+	Involuntary context switches: 78312
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:17:02 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-17-03/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-17-03/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 11.46
+	System time (seconds): 6.75
+	Percent of CPU this job got: 151%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.04
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212764
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 57272
+	Voluntary context switches: 235
+	Involuntary context switches: 134521
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:17:14 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-17-15/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-17-15/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 15.38
+	System time (seconds): 6.69
+	Percent of CPU this job got: 142%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212596
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57239
+	Voluntary context switches: 213
+	Involuntary context switches: 130714
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:17:30 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-17-30/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-17-30/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 31.61
+	System time (seconds): 6.87
+	Percent of CPU this job got: 115%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:33.27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212236
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57360
+	Voluntary context switches: 469
+	Involuntary context switches: 93664
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:18:03 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples2/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-18-04/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-18-04/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples2/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 70.72
+	System time (seconds): 7.04
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:11.21
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212448
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57294
+	Voluntary context switches: 258
+	Involuntary context switches: 57977
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176056
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 3 =====
+[Wed Oct  8 20:19:14 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-15/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-15/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.78
+	System time (seconds): 6.56
+	Percent of CPU this job got: 203%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.57
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212516
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57265
+	Voluntary context switches: 187
+	Involuntary context switches: 129730
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176056
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:19:21 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-22/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-22/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.58
+	System time (seconds): 6.74
+	Percent of CPU this job got: 197%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.25
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212640
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57312
+	Voluntary context switches: 163
+	Involuntary context switches: 84740
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:19:28 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-29/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-29/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 10.01
+	System time (seconds): 6.52
+	Percent of CPU this job got: 167%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.90
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212588
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57275
+	Voluntary context switches: 210
+	Involuntary context switches: 106736
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:19:38 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-39/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-39/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 12.37
+	System time (seconds): 6.79
+	Percent of CPU this job got: 156%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.25
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212276
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57207
+	Voluntary context switches: 180
+	Involuntary context switches: 137903
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:19:50 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-51/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-19-51/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 15.20
+	System time (seconds): 7.27
+	Percent of CPU this job got: 142%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212720
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 57296
+	Voluntary context switches: 229
+	Involuntary context switches: 92385
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:20:06 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-20-07/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-20-07/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 27.64
+	System time (seconds): 7.01
+	Percent of CPU this job got: 123%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:28.01
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212244
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57233
+	Voluntary context switches: 248
+	Involuntary context switches: 74734
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:20:34 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples3/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-20-35/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-20-35/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples3/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 78.55
+	System time (seconds): 7.23
+	Percent of CPU this job got: 108%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:18.82
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212508
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57312
+	Voluntary context switches: 244
+	Involuntary context switches: 35684
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 4 =====
+[Wed Oct  8 20:21:53 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-21-54/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-21-54/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.71
+	System time (seconds): 6.67
+	Percent of CPU this job got: 190%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212584
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57272
+	Voluntary context switches: 183
+	Involuntary context switches: 179024
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:22:01 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-01/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-01/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.67
+	System time (seconds): 6.60
+	Percent of CPU this job got: 194%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.34
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212520
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57278
+	Voluntary context switches: 175
+	Involuntary context switches: 160775
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:22:08 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-09/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-09/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 11.73
+	System time (seconds): 6.86
+	Percent of CPU this job got: 154%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212788
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57256
+	Voluntary context switches: 228
+	Involuntary context switches: 133799
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:22:20 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-21/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-21/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 13.48
+	System time (seconds): 6.77
+	Percent of CPU this job got: 151%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212444
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57323
+	Voluntary context switches: 194
+	Involuntary context switches: 108569
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:22:34 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-34/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-34/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 17.13
+	System time (seconds): 6.77
+	Percent of CPU this job got: 135%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:17.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212768
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 57253
+	Voluntary context switches: 235
+	Involuntary context switches: 119523
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:22:51 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-52/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-22-52/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 30.23
+	System time (seconds): 6.93
+	Percent of CPU this job got: 118%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:31.34
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212544
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57241
+	Voluntary context switches: 248
+	Involuntary context switches: 84561
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:23:23 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples4/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-23-23/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-23-23/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples4/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 80.52
+	System time (seconds): 6.95
+	Percent of CPU this job got: 107%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:21.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212728
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 57276
+	Voluntary context switches: 314
+	Involuntary context switches: 148152
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 5 =====
+[Wed Oct  8 20:24:44 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-24-45/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-24-45/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.75
+	System time (seconds): 6.54
+	Percent of CPU this job got: 209%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212736
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57273
+	Voluntary context switches: 150
+	Involuntary context switches: 135380
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:24:51 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-24-52/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-24-52/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 8.40
+	System time (seconds): 7.02
+	Percent of CPU this job got: 184%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.37
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212240
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57310
+	Voluntary context switches: 180
+	Involuntary context switches: 108902
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:24:59 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-00/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-00/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 9.41
+	System time (seconds): 6.78
+	Percent of CPU this job got: 179%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212780
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 57304
+	Voluntary context switches: 181
+	Involuntary context switches: 76420
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:25:08 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-09/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-09/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 11.97
+	System time (seconds): 6.81
+	Percent of CPU this job got: 160%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.71
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212188
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57223
+	Voluntary context switches: 166
+	Involuntary context switches: 96212
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:25:20 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-21/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-21/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 14.41
+	System time (seconds): 6.99
+	Percent of CPU this job got: 148%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212820
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57241
+	Voluntary context switches: 239
+	Involuntary context switches: 63698
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:25:34 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-35/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-25-35/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 25.09
+	System time (seconds): 6.88
+	Percent of CPU this job got: 126%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:25.27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212536
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57287
+	Voluntary context switches: 272
+	Involuntary context switches: 96159
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:26:00 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples5/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-26-01/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-26-01/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples5/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 69.73
+	System time (seconds): 7.05
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:10.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212536
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57347
+	Voluntary context switches: 304
+	Involuntary context switches: 38194
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 6 =====
+[Wed Oct  8 20:27:10 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-11/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-11/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.62
+	System time (seconds): 6.60
+	Percent of CPU this job got: 203%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.49
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212792
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57280
+	Voluntary context switches: 179
+	Involuntary context switches: 134329
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:27:17 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-18/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-18/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.94
+	System time (seconds): 6.72
+	Percent of CPU this job got: 192%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212616
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57291
+	Voluntary context switches: 168
+	Involuntary context switches: 126487
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176032
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:27:24 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-25/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-25/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 8.81
+	System time (seconds): 7.04
+	Percent of CPU this job got: 180%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.79
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212368
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57214
+	Voluntary context switches: 220
+	Involuntary context switches: 70259
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:27:33 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-34/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-34/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 11.98
+	System time (seconds): 6.84
+	Percent of CPU this job got: 155%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212380
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57259
+	Voluntary context switches: 189
+	Involuntary context switches: 133700
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:27:45 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-46/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-27-46/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 14.75
+	System time (seconds): 6.79
+	Percent of CPU this job got: 144%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.92
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212772
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57268
+	Voluntary context switches: 222
+	Involuntary context switches: 163309
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:28:00 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-28-01/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-28-01/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 26.57
+	System time (seconds): 7.03
+	Percent of CPU this job got: 126%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212476
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57269
+	Voluntary context switches: 200
+	Involuntary context switches: 24431
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:28:27 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples6/samples.csv
+[fs] Epsilon: 0.00998, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.23264e-09   
+   Number of violations: 2  Executions: 100000 
+   Measured probability: 0.99998  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-28-28/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-28-28/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples6/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 67.14
+	System time (seconds): 6.65
+	Percent of CPU this job got: 107%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:08.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212676
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 57328
+	Voluntary context switches: 309
+	Involuntary context switches: 107767
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 7 =====
+[Wed Oct  8 20:29:35 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-29-36/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-29-36/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 8.34
+	System time (seconds): 6.60
+	Percent of CPU this job got: 185%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.06
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212636
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57226
+	Voluntary context switches: 263
+	Involuntary context switches: 140454
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:29:43 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-29-44/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-29-44/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 8.59
+	System time (seconds): 6.56
+	Percent of CPU this job got: 182%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.29
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212764
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 57322
+	Voluntary context switches: 144
+	Involuntary context switches: 118460
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:29:52 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-29-53/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-29-53/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 11.39
+	System time (seconds): 6.76
+	Percent of CPU this job got: 151%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.95
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212872
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 57309
+	Voluntary context switches: 258
+	Involuntary context switches: 113856
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:30:04 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-30-05/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-30-05/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 10.86
+	System time (seconds): 6.76
+	Percent of CPU this job got: 160%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.98
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212540
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57276
+	Voluntary context switches: 207
+	Involuntary context switches: 167719
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:30:15 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-30-16/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-30-16/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 17.63
+	System time (seconds): 6.96
+	Percent of CPU this job got: 137%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:17.92
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212644
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 57275
+	Voluntary context switches: 204
+	Involuntary context switches: 72575
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:30:33 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-30-34/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-30-34/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 29.02
+	System time (seconds): 6.99
+	Percent of CPU this job got: 122%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:29.34
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212360
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57284
+	Voluntary context switches: 224
+	Involuntary context switches: 104841
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176072
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:31:02 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples7/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-31-03/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-31-03/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples7/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 68.20
+	System time (seconds): 6.92
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:08.56
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212760
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57316
+	Voluntary context switches: 233
+	Involuntary context switches: 119139
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176056
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 8 =====
+[Wed Oct  8 20:32:11 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-12/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-12/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.74
+	System time (seconds): 6.79
+	Percent of CPU this job got: 206%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.54
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212780
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57221
+	Voluntary context switches: 153
+	Involuntary context switches: 110177
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:32:17 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-18/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-18/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.41
+	System time (seconds): 6.92
+	Percent of CPU this job got: 195%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212556
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57264
+	Voluntary context switches: 190
+	Involuntary context switches: 106683
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:32:25 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-26/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-26/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 9.92
+	System time (seconds): 6.69
+	Percent of CPU this job got: 169%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.81
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212660
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 57280
+	Voluntary context switches: 202
+	Involuntary context switches: 130058
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:32:35 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-35/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-35/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 12.36
+	System time (seconds): 6.52
+	Percent of CPU this job got: 150%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212588
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57288
+	Voluntary context switches: 244
+	Involuntary context switches: 144524
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:32:47 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-48/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-32-48/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 19.99
+	System time (seconds): 6.98
+	Percent of CPU this job got: 129%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:20.77
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212776
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 57276
+	Voluntary context switches: 256
+	Involuntary context switches: 107525
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:33:08 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-33-09/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-33-09/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 31.18
+	System time (seconds): 6.74
+	Percent of CPU this job got: 119%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:31.71
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212764
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 57351
+	Voluntary context switches: 247
+	Involuntary context switches: 132303
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:33:40 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples8/samples.csv
+[fs] Epsilon: 0.00999, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.14523e-09   
+   Number of violations: 1  Executions: 100000 
+   Measured probability: 0.99999  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-33-40/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-33-40/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples8/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 69.71
+	System time (seconds): 6.95
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:10.31
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212652
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 57331
+	Voluntary context switches: 247
+	Involuntary context switches: 72168
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176056
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+
+===== Iteration 9 =====
+[Wed Oct  8 20:34:50 UTC 2025] Running precision 64
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-34-51/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-34-51/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 64 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 6.39
+	System time (seconds): 6.95
+	Percent of CPU this job got: 218%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212660
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57302
+	Voluntary context switches: 154
+	Involuntary context switches: 64070
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:34:56 UTC 2025] Running precision 128
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-34-57/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-34-57/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 128 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 7.62
+	System time (seconds): 6.96
+	Percent of CPU this job got: 198%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212768
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57220
+	Voluntary context switches: 143
+	Involuntary context switches: 76116
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:35:04 UTC 2025] Running precision 256
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-04/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-04/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 256 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 9.02
+	System time (seconds): 6.83
+	Percent of CPU this job got: 175%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.01
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212624
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57277
+	Voluntary context switches: 224
+	Involuntary context switches: 86035
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176040
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:35:13 UTC 2025] Running precision 512
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-13/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-13/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 512 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 12.04
+	System time (seconds): 7.05
+	Percent of CPU this job got: 151%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212576
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57270
+	Voluntary context switches: 284
+	Involuntary context switches: 25247
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:35:25 UTC 2025] Running precision 1024
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-26/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-26/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 1024 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 14.59
+	System time (seconds): 6.98
+	Percent of CPU this job got: 149%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212548
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57323
+	Voluntary context switches: 276
+	Involuntary context switches: 45287
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:35:40 UTC 2025] Running precision 2048
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-41/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-35-41/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 2048 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 33.81
+	System time (seconds): 5.23
+	Percent of CPU this job got: 109%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.71
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212692
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57354
+	Voluntary context switches: 334
+	Involuntary context switches: 172540
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176064
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================
+[Wed Oct  8 20:36:16 UTC 2025] Running precision 4096
+=========================================
+===== Running file: testfiles/other/working_real_model_reference_fixed.c =====
+running command: taskset -c 0-63 time -v frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main           -fs-execs NR_EXECS -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv           -fs-no-save-samples -fs-no-save-diffs
+[kernel] Parsing res_prec_20251008_201046/working_real_model_reference_fixed.c (with preprocessing)
+[kernel:parser:decimal-float] res_prec_20251008_201046/working_real_model_reference_fixed.c:209: Warning: 
+  Floating-point constant 0.1247f is not represented exactly. Will use 0x1.fec56e0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file: res_prec_20251008_201046/samples9/samples.csv
+[fs] Epsilon: 0.00994, Execs n: 100000
+[fs] requested diff: 8e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.61835e-09   
+   Number of violations: 6  Executions: 100000 
+   Measured probability: 0.99994  Requested probability: 0.99
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-36-16/mpfr_out.c: In function 'main':
+/workspace/res_prec_20251008_201046/working_real_model_reference_fixed_2025-10-08_20-36-16/mpfr_out.c:1120:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1120 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc res_prec_20251008_201046/working_real_model_reference_fixed.c -main main -fs-execs 100000 -fs-prec 4096 -fs-sample-file res_prec_20251008_201046/samples9/samples.csv -fs-no-save-samples -fs-no-save-diffs"
+	User time (seconds): 79.95
+	System time (seconds): 7.35
+	Percent of CPU this job got: 107%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:21.57
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 212588
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 57291
+	Voluntary context switches: 317
+	Involuntary context switches: 67923
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+=== done with testfiles/other/working_real_model_reference_fixed.c ===
+=========================================

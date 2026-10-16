@@ -1,0 +1,2033 @@
+=== Results for flostat8 with seed 8 ===
+
+===== Running file: bsplines0.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/bsplines0.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines0.c
+[kernel] Parsing testfiles/flostat8/bsplines0.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.13415, Execs n: 100000
+[fs] requested diff: 7.1375e-09
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 14415  Executions: 100000 
+   Measured probability: 0.85585  Requested probability: 0.99
+/workspace/testfiles/flostat8/bsplines0_2026-01-19_21-32-28/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/bsplines0_2026-01-19_21-32-28/mpfr_out.c:70:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   70 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines0.c"
+	User time (seconds): 4.22
+	System time (seconds): 2.55
+	Percent of CPU this job got: 140%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.81
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 255548
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60475
+	Voluntary context switches: 146
+	Involuntary context switches: 1028864
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 143520
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/bsplines0.c ===
+===================================
+
+===== Running file: bsplines1.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/bsplines1.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines1.c
+[kernel] Parsing testfiles/flostat8/bsplines1.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.29463, Execs n: 100000
+[fs] requested diff: 2.325e-08
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 30463  Executions: 100000 
+   Measured probability: 0.69537  Requested probability: 0.99
+/workspace/testfiles/flostat8/bsplines1_2026-01-19_21-32-28/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/bsplines1_2026-01-19_21-32-28/mpfr_out.c:76:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   76 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines1.c"
+	User time (seconds): 4.28
+	System time (seconds): 2.11
+	Percent of CPU this job got: 121%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.26
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 255048
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60465
+	Voluntary context switches: 158
+	Involuntary context switches: 607946
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 143520
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/bsplines1.c ===
+===================================
+
+===== Running file: bsplines2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/bsplines2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines2.c
+[kernel] Parsing testfiles/flostat8/bsplines2.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.21495, Execs n: 100000
+[fs] requested diff: 2.425e-08
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 22495  Executions: 100000 
+   Measured probability: 0.77505  Requested probability: 0.99
+/workspace/testfiles/flostat8/bsplines2_2026-01-19_21-32-30/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/bsplines2_2026-01-19_21-32-30/mpfr_out.c:82:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   82 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines2.c"
+	User time (seconds): 4.04
+	System time (seconds): 1.81
+	Percent of CPU this job got: 119%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 255420
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60496
+	Voluntary context switches: 157
+	Involuntary context switches: 808088
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 143520
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/bsplines2.c ===
+===================================
+
+===== Running file: bsplines3.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/bsplines3.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines3.c
+[kernel] Parsing testfiles/flostat8/bsplines3.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.17273, Execs n: 100000
+[fs] requested diff: 5.275e-09
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 18273  Executions: 100000 
+   Measured probability: 0.81727  Requested probability: 0.99
+/workspace/testfiles/flostat8/bsplines3_2026-01-19_21-32-31/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/bsplines3_2026-01-19_21-32-31/mpfr_out.c:65:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   65 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/bsplines3.c"
+	User time (seconds): 3.91
+	System time (seconds): 1.87
+	Percent of CPU this job got: 105%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 254948
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60360
+	Voluntary context switches: 130
+	Involuntary context switches: 589593
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 143912
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/bsplines3.c ===
+===================================
+
+===== Running file: filter1.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/filter1.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter1.c
+[kernel] Parsing testfiles/flostat8/filter1.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/filter1.c:9: Warning: 
+  Floating-point constant 0.7f is not represented exactly. Will use 0x1.6666660000000p-1.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.47094, Execs n: 100000
+[fs] requested diff: 1.5625e-08
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 48094  Executions: 100000 
+   Measured probability: 0.51906  Requested probability: 0.99
+/workspace/testfiles/flostat8/filter1_2026-01-19_21-32-35/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/filter1_2026-01-19_21-32-35/mpfr_out.c:57:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   57 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter1.c"
+	User time (seconds): 3.78
+	System time (seconds): 1.99
+	Percent of CPU this job got: 112%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.15
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 255264
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60409
+	Voluntary context switches: 205
+	Involuntary context switches: 789261
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 143800
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/filter1.c ===
+===================================
+
+===== Running file: filter2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/filter2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter2.c
+[kernel] Parsing testfiles/flostat8/filter2.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/filter2.c:9: Warning: 
+  Floating-point constant 0.7f is not represented exactly. Will use 0x1.6666660000000p-1.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.1221, Execs n: 100000
+[fs] requested diff: 9.9125e-08
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 13210  Executions: 100000 
+   Measured probability: 0.8679  Requested probability: 0.99
+/workspace/testfiles/flostat8/filter2_2026-01-19_21-32-35/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/filter2_2026-01-19_21-32-35/mpfr_out.c:75:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   75 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter2.c"
+	User time (seconds): 6.47
+	System time (seconds): 2.59
+	Percent of CPU this job got: 117%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 322100
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 77266
+	Voluntary context switches: 177
+	Involuntary context switches: 937707
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 265584
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/filter2.c ===
+===================================
+
+===== Running file: doppler1.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/doppler1.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/doppler1.c
+[kernel] Parsing testfiles/flostat8/doppler1.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/doppler1.c:11: Warning: 
+  Floating-point constant 331.4f is not represented exactly. Will use 0x1.4b66660000000p8.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 9.9375e-06
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/testfiles/flostat8/doppler1_2026-01-19_21-32-34/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/doppler1_2026-01-19_21-32-34/mpfr_out.c:89:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   89 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/doppler1.c"
+	User time (seconds): 7.29
+	System time (seconds): 1.35
+	Percent of CPU this job got: 91%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.49
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389364
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93950
+	Voluntary context switches: 167
+	Involuntary context switches: 314183
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387760
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/doppler1.c ===
+===================================
+
+===== Running file: doppler3.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/doppler3.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/doppler3.c
+[kernel] Parsing testfiles/flostat8/doppler3.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/doppler3.c:11: Warning: 
+  Floating-point constant 331.4f is not represented exactly. Will use 0x1.4b66660000000p8.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00886, Execs n: 100000
+[fs] requested diff: 5.6875e-06
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 1.51919e-07   
+   Number of violations: 114  Executions: 100000 
+   Measured probability: 0.99886  Requested probability: 0.99
+/workspace/testfiles/flostat8/doppler3_2026-01-19_21-32-34/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/doppler3_2026-01-19_21-32-34/mpfr_out.c:89:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   89 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/doppler3.c"
+	User time (seconds): 7.46
+	System time (seconds): 2.25
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.72
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389616
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93994
+	Voluntary context switches: 177
+	Involuntary context switches: 721431
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387744
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/doppler3.c ===
+===================================
+
+===== Running file: doppler2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/doppler2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/doppler2.c
+[kernel] Parsing testfiles/flostat8/doppler2.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/doppler2.c:11: Warning: 
+  Floating-point constant 331.4f is not represented exactly. Will use 0x1.4b66660000000p8.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 1.7875e-05
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/testfiles/flostat8/doppler2_2026-01-19_21-32-34/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/doppler2_2026-01-19_21-32-34/mpfr_out.c:89:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   89 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/doppler2.c"
+	User time (seconds): 7.92
+	System time (seconds): 2.33
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.52
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389200
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93977
+	Voluntary context switches: 204
+	Involuntary context switches: 705385
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387776
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/doppler2.c ===
+===================================
+
+===== Running file: classIDX0.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/classIDX0.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/classIDX0.c
+[kernel] Parsing testfiles/flostat8/classIDX0.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/classIDX0.c:19: Warning: 
+  Floating-point constant 0.85073072819636686f is not represented exactly. Will use 0x1.b392fa0000000p-1.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.14543, Execs n: 100000
+[fs] requested diff: 8.6625e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 15543  Executions: 100000 
+   Measured probability: 0.84457  Requested probability: 0.99
+/workspace/testfiles/flostat8/classIDX0_2026-01-19_21-32-32/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/classIDX0_2026-01-19_21-32-32/mpfr_out.c:121:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  121 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/classIDX0.c"
+	User time (seconds): 11.00
+	System time (seconds): 2.55
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 455460
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 110559
+	Voluntary context switches: 169
+	Involuntary context switches: 664378
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 508944
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/classIDX0.c ===
+===================================
+
+===== Running file: classIDX1.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/classIDX1.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/classIDX1.c
+[kernel] Parsing testfiles/flostat8/classIDX1.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/classIDX1.c:18: Warning: 
+  Floating-point constant 0.18424469636214999 is not represented exactly. Will use 0x1.7955488ab1f07p-3.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.04497, Execs n: 100000
+[fs] requested diff: 4.6375e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 5497  Executions: 100000 
+   Measured probability: 0.94503  Requested probability: 0.99
+/workspace/testfiles/flostat8/classIDX1_2026-01-19_21-32-33/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/classIDX1_2026-01-19_21-32-33/mpfr_out.c:121:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  121 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/classIDX1.c"
+	User time (seconds): 10.25
+	System time (seconds): 1.99
+	Percent of CPU this job got: 89%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 455280
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 110574
+	Voluntary context switches: 175
+	Involuntary context switches: 544418
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 508800
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/classIDX1.c ===
+===================================
+
+===== Running file: filter3.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/filter3.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter3.c
+[kernel] Parsing testfiles/flostat8/filter3.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/filter3.c:12: Warning: 
+  Floating-point constant 0.7f is not represented exactly. Will use 0x1.6666660000000p-1.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.06645, Execs n: 100000
+[fs] requested diff: 2.925e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 7645  Executions: 100000 
+   Measured probability: 0.92355  Requested probability: 0.99
+/workspace/testfiles/flostat8/filter3_2026-01-19_21-32-36/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/filter3_2026-01-19_21-32-36/mpfr_out.c:115:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  115 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter3.c"
+	User time (seconds): 8.87
+	System time (seconds): 1.49
+	Percent of CPU this job got: 96%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388356
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93866
+	Voluntary context switches: 173
+	Involuntary context switches: 384893
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387408
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/filter3.c ===
+===================================
+
+===== Running file: classIDX2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/classIDX2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/classIDX2.c
+[kernel] Parsing testfiles/flostat8/classIDX2.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/classIDX2.c:18: Warning: 
+  Floating-point constant 0.052100253064028955 is not represented exactly. Will use 0x1.aace2660bf1abp-5.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.02817, Execs n: 100000
+[fs] requested diff: 6.5375e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 3817  Executions: 100000 
+   Measured probability: 0.96183  Requested probability: 0.99
+/workspace/testfiles/flostat8/classIDX2_2026-01-19_21-32-33/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/classIDX2_2026-01-19_21-32-33/mpfr_out.c:121:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  121 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/classIDX2.c"
+	User time (seconds): 10.73
+	System time (seconds): 2.65
+	Percent of CPU this job got: 92%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 455740
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 110635
+	Voluntary context switches: 152
+	Involuntary context switches: 965721
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 508904
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/classIDX2.c ===
+===================================
+
+===== Running file: lorenz2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz2.c
+[kernel] Parsing testfiles/flostat8/lorenz2.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz2.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.20941, Execs n: 100000
+[fs] requested diff: 4.36365e-08
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 21941  Executions: 100000 
+   Measured probability: 0.78059  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz2_2026-01-19_21-32-41/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz2_2026-01-19_21-32-41/mpfr_out.c:129:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  129 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz2.c"
+	User time (seconds): 8.01
+	System time (seconds): 2.00
+	Percent of CPU this job got: 93%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 387788
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93849
+	Voluntary context switches: 172
+	Involuntary context switches: 673898
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 386944
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz2.c ===
+===================================
+
+===== Running file: filter4.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/filter4.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter4.c
+[kernel] Parsing testfiles/flostat8/filter4.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/filter4.c:15: Warning: 
+  Floating-point constant 0.7f is not represented exactly. Will use 0x1.6666660000000p-1.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.06307, Execs n: 100000
+[fs] requested diff: 5.1875e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 7307  Executions: 100000 
+   Measured probability: 0.92693  Requested probability: 0.99
+/workspace/testfiles/flostat8/filter4_2026-01-19_21-32-36/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/filter4_2026-01-19_21-32-36/mpfr_out.c:157:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  157 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/filter4.c"
+	User time (seconds): 11.87
+	System time (seconds): 1.63
+	Percent of CPU this job got: 84%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:16.00
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 455080
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 110614
+	Voluntary context switches: 142
+	Involuntary context switches: 450923
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 509216
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/filter4.c ===
+===================================
+
+===== Running file: lorenz10.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz10.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz10.c
+[kernel] Parsing testfiles/flostat8/lorenz10.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz10.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00145, Execs n: 100000
+[fs] requested diff: 5.74411e-07
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 0.656718   
+   Number of violations: 855  Executions: 100000 
+   Measured probability: 0.99145  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz10_2026-01-19_21-32-38/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz10_2026-01-19_21-32-38/mpfr_out.c:363:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  363 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz10.c"
+	User time (seconds): 12.22
+	System time (seconds): 2.16
+	Percent of CPU this job got: 90%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.83
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389108
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 95409
+	Voluntary context switches: 137
+	Involuntary context switches: 595840
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387096
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz10.c ===
+===================================
+
+===== Running file: lorenz4.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz4.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz4.c
+[kernel] Parsing testfiles/flostat8/lorenz4.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz4.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.0844, Execs n: 100000
+[fs] requested diff: 1.06e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 9440  Executions: 100000 
+   Measured probability: 0.9056  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz4_2026-01-19_21-32-44/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz4_2026-01-19_21-32-44/mpfr_out.c:195:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  195 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz4.c"
+	User time (seconds): 9.13
+	System time (seconds): 1.71
+	Percent of CPU this job got: 86%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.53
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388852
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94408
+	Voluntary context switches: 172
+	Involuntary context switches: 631987
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 386984
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz4.c ===
+===================================
+
+===== Running file: sine.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/sine.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/sine.c
+[kernel] Parsing testfiles/flostat8/sine.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.29387, Execs n: 100000
+[fs] requested diff: 2.95898e-08
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 30387  Executions: 100000 
+   Measured probability: 0.69613  Requested probability: 0.99
+/workspace/testfiles/flostat8/sine_2026-01-19_21-32-50/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/sine_2026-01-19_21-32-50/mpfr_out.c:103:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  103 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/sine.c"
+	User time (seconds): 5.10
+	System time (seconds): 2.15
+	Percent of CPU this job got: 110%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 256136
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60620
+	Voluntary context switches: 178
+	Involuntary context switches: 786771
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 143816
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/sine.c ===
+===================================
+
+===== Running file: rigidBody1.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/rigidBody1.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/rigidBody1.c
+[kernel] Parsing testfiles/flostat8/rigidBody1.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.24504, Execs n: 100000
+[fs] requested diff: 1.97887e-05
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 25504  Executions: 100000 
+   Measured probability: 0.74496  Requested probability: 0.99
+/workspace/testfiles/flostat8/rigidBody1_2026-01-19_21-32-48/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/rigidBody1_2026-01-19_21-32-48/mpfr_out.c:82:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   82 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/rigidBody1.c"
+	User time (seconds): 7.03
+	System time (seconds): 1.75
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.81
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388540
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93879
+	Voluntary context switches: 135
+	Involuntary context switches: 435853
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 388112
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/rigidBody1.c ===
+===================================
+
+===== Running file: sqrt.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/sqrt.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/sqrt.c
+[kernel] Parsing testfiles/flostat8/sqrt.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.10721, Execs n: 100000
+[fs] requested diff: 1.92387e-05
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 11721  Executions: 100000 
+   Measured probability: 0.88279  Requested probability: 0.99
+/workspace/testfiles/flostat8/sqrt_2026-01-19_21-32-52/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/sqrt_2026-01-19_21-32-52/mpfr_out.c:89:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   89 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/sqrt.c"
+	User time (seconds): 4.64
+	System time (seconds): 1.03
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.83
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 255796
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 60752
+	Voluntary context switches: 294
+	Involuntary context switches: 415392
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 144088
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/sqrt.c ===
+===================================
+
+===== Running file: lorenz5.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz5.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz5.c
+[kernel] Parsing testfiles/flostat8/lorenz5.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz5.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.06074, Execs n: 100000
+[fs] requested diff: 1.47712e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 7074  Executions: 100000 
+   Measured probability: 0.92926  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz5_2026-01-19_21-32-46/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz5_2026-01-19_21-32-46/mpfr_out.c:223:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  223 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz5.c"
+	User time (seconds): 9.70
+	System time (seconds): 2.00
+	Percent of CPU this job got: 91%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388860
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94494
+	Voluntary context switches: 138
+	Involuntary context switches: 609285
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387016
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz5.c ===
+===================================
+
+===== Running file: rigidBody2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/rigidBody2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/rigidBody2.c
+[kernel] Parsing testfiles/flostat8/rigidBody2.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.11081, Execs n: 100000
+[fs] requested diff: 0.00242037
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 12081  Executions: 100000 
+   Measured probability: 0.87919  Requested probability: 0.99
+/workspace/testfiles/flostat8/rigidBody2_2026-01-19_21-32-49/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/rigidBody2_2026-01-19_21-32-49/mpfr_out.c:100:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  100 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/rigidBody2.c"
+	User time (seconds): 7.35
+	System time (seconds): 1.73
+	Percent of CPU this job got: 94%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.67
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388412
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93897
+	Voluntary context switches: 138
+	Involuntary context switches: 569954
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 388488
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/rigidBody2.c ===
+===================================
+
+===== Running file: solveCubic.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/solveCubic.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/solveCubic.c
+[kernel] Parsing testfiles/flostat8/solveCubic.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.22154, Execs n: 100000
+[fs] requested diff: 2.14522e-06
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 23154  Executions: 100000 
+   Measured probability: 0.76846  Requested probability: 0.99
+/workspace/testfiles/flostat8/solveCubic_2026-01-19_21-32-51/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/solveCubic_2026-01-19_21-32-51/mpfr_out.c:95:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   95 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/solveCubic.c"
+	User time (seconds): 7.49
+	System time (seconds): 2.12
+	Percent of CPU this job got: 92%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388844
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93901
+	Voluntary context switches: 149
+	Involuntary context switches: 439355
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387208
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/solveCubic.c ===
+===================================
+
+===== Running file: lorenz8.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz8.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz8.c
+[kernel] Parsing testfiles/flostat8/lorenz8.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz8.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01274, Execs n: 100000
+[fs] requested diff: 3.50498e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 2274  Executions: 100000 
+   Measured probability: 0.97726  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz8_2026-01-19_21-32-48/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz8_2026-01-19_21-32-48/mpfr_out.c:307:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  307 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz8.c"
+	User time (seconds): 11.05
+	System time (seconds): 1.90
+	Percent of CPU this job got: 88%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389264
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 95156
+	Voluntary context switches: 168
+	Involuntary context switches: 578312
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz8.c ===
+===================================
+
+===== Running file: traincar1.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/traincar1.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar1.c
+[kernel] Parsing testfiles/flostat8/traincar1.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/traincar1.c:14: Warning: 
+  Floating-point constant 3.795323e2 is not represented exactly. Will use 0x1.7b8844d013a93p8.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01508, Execs n: 100000
+[fs] requested diff: 0.00022
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 2508  Executions: 100000 
+   Measured probability: 0.97492  Requested probability: 0.99
+/workspace/testfiles/flostat8/traincar1_2026-01-19_21-32-52/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/traincar1_2026-01-19_21-32-52/mpfr_out.c:87:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   87 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar1.c"
+	User time (seconds): 7.71
+	System time (seconds): 1.38
+	Percent of CPU this job got: 85%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388932
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 93946
+	Voluntary context switches: 165
+	Involuntary context switches: 356900
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 388008
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/traincar1.c ===
+===================================
+
+===== Running file: trid.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/trid.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid.c
+[kernel] Parsing testfiles/flostat8/trid.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 0.0012875
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/testfiles/flostat8/trid_2026-01-19_21-32-57/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/trid_2026-01-19_21-32-57/mpfr_out.c:83:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+   83 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid.c"
+	User time (seconds): 5.22
+	System time (seconds): 1.41
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.62
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 322952
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 77421
+	Voluntary context switches: 198
+	Involuntary context switches: 370040
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 266368
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/trid.c ===
+===================================
+
+===== Running file: lorenz20.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz20.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz20.c
+[kernel] Parsing testfiles/flostat8/lorenz20.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz20.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.35495, Execs n: 100000
+[fs] requested diff: 5.3125e-07
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 36495  Executions: 100000 
+   Measured probability: 0.63505  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz20_2026-01-19_21-32-43/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz20_2026-01-19_21-32-43/mpfr_out.c:645:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  645 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz20.c"
+	User time (seconds): 16.86
+	System time (seconds): 1.54
+	Percent of CPU this job got: 83%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:21.95
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388140
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 96871
+	Voluntary context switches: 139
+	Involuntary context switches: 484187
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387368
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz20.c ===
+===================================
+
+===== Running file: trid2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/trid2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid2.c
+[kernel] Parsing testfiles/flostat8/trid2.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00173, Execs n: 100000
+[fs] requested diff: 0.0012875
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 0.549592   
+   Number of violations: 827  Executions: 100000 
+   Measured probability: 0.99173  Requested probability: 0.99
+/workspace/testfiles/flostat8/trid2_2026-01-19_21-32-57/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/trid2_2026-01-19_21-32-57/mpfr_out.c:102:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  102 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid2.c"
+	User time (seconds): 7.40
+	System time (seconds): 1.83
+	Percent of CPU this job got: 92%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.95
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388728
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94041
+	Voluntary context switches: 160
+	Involuntary context switches: 595235
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 388184
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/trid2.c ===
+===================================
+
+===== Running file: traincar2.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/traincar2.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar2.c
+[kernel] Parsing testfiles/flostat8/traincar2.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/traincar2.c:19: Warning: 
+  Floating-point constant 2.9829300077345002E+00f is not represented exactly. Will use 0x1.7dd0a60000000p1.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.10115, Execs n: 100000
+[fs] requested diff: 0.00013
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 11115  Executions: 100000 
+   Measured probability: 0.88885  Requested probability: 0.99
+/workspace/testfiles/flostat8/traincar2_2026-01-19_21-32-53/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/traincar2_2026-01-19_21-32-53/mpfr_out.c:107:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  107 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar2.c"
+	User time (seconds): 11.30
+	System time (seconds): 1.82
+	Percent of CPU this job got: 84%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.47
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 522368
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 127248
+	Voluntary context switches: 147
+	Involuntary context switches: 351123
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 630968
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/traincar2.c ===
+===================================
+
+===== Running file: trid3.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/trid3.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid3.c
+[kernel] Parsing testfiles/flostat8/trid3.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00908, Execs n: 100000
+[fs] requested diff: 0.0021875
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 6.89917e-08   
+   Number of violations: 92  Executions: 100000 
+   Measured probability: 0.99908  Requested probability: 0.99
+/workspace/testfiles/flostat8/trid3_2026-01-19_21-32-58/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/trid3_2026-01-19_21-32-58/mpfr_out.c:119:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  119 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid3.c"
+	User time (seconds): 9.25
+	System time (seconds): 2.64
+	Percent of CPU this job got: 94%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 454640
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 110516
+	Voluntary context switches: 162
+	Involuntary context switches: 535379
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 509960
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/trid3.c ===
+===================================
+
+===== Running file: lorenz30.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz30.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz30.c
+[kernel] Parsing testfiles/flostat8/lorenz30.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz30.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 1.06875e-05
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz30_2026-01-19_21-32-43/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz30_2026-01-19_21-32-43/mpfr_out.c:925:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  925 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz30.c"
+	User time (seconds): 21.80
+	System time (seconds): 1.49
+	Percent of CPU this job got: 85%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:27.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 390312
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 99163
+	Voluntary context switches: 161
+	Involuntary context switches: 386764
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387800
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz30.c ===
+===================================
+
+===== Running file: trid4.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/trid4.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid4.c
+[kernel] Parsing testfiles/flostat8/trid4.c (with preprocessing)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01, Execs n: 100000
+[fs] requested diff: 0.0033625
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 2.06115e-09   
+   Number of violations: 0  Executions: 100000 
+   Measured probability: 1  Requested probability: 0.99
+/workspace/testfiles/flostat8/trid4_2026-01-19_21-32-59/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/trid4_2026-01-19_21-32-59/mpfr_out.c:136:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  136 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/trid4.c"
+	User time (seconds): 10.79
+	System time (seconds): 2.14
+	Percent of CPU this job got: 92%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.95
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 522072
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 127247
+	Voluntary context switches: 149
+	Involuntary context switches: 655803
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 631760
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/trid4.c ===
+===================================
+
+===== Running file: traincar3.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/traincar3.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar3.c
+[kernel] Parsing testfiles/flostat8/traincar3.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/traincar3.c:25: Warning: 
+  Floating-point constant 3.7377847506227999E+02f is not represented exactly. Will use 0x1.75c74a0000000p8.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.05456, Execs n: 100000
+[fs] requested diff: 0.0021875
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 6456  Executions: 100000 
+   Measured probability: 0.93544  Requested probability: 0.99
+/workspace/testfiles/flostat8/traincar3_2026-01-19_21-32-54/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/traincar3_2026-01-19_21-32-54/mpfr_out.c:137:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  137 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar3.c"
+	User time (seconds): 15.42
+	System time (seconds): 2.62
+	Percent of CPU this job got: 89%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:20.12
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 654752
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 160515
+	Voluntary context switches: 235
+	Involuntary context switches: 596962
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 874960
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/traincar3.c ===
+===================================
+
+===== Running file: lorenz40.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz40.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz40.c
+[kernel] Parsing testfiles/flostat8/lorenz40.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz40.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.36958, Execs n: 100000
+[fs] requested diff: 3.075e-06
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 37958  Executions: 100000 
+   Measured probability: 0.62042  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz40_2026-01-19_21-32-44/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz40_2026-01-19_21-32-44/mpfr_out.c:1205:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 1205 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz40.c"
+	User time (seconds): 27.04
+	System time (seconds): 1.66
+	Percent of CPU this job got: 83%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:34.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 390236
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 100327
+	Voluntary context switches: 168
+	Involuntary context switches: 475742
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 388080
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz40.c ===
+===================================
+
+===== Running file: traincar4.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/traincar4.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar4.c
+[kernel] Parsing testfiles/flostat8/traincar4.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/traincar4.c:28: Warning: 
+  Floating-point constant 1.3415999999999998E+04f is not represented exactly. Will use 0x1.a340000000000p13.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00088, Execs n: 100000
+[fs] requested diff: 0.022625
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 0.856518   
+   Number of violations: 912  Executions: 100000 
+   Measured probability: 0.99088  Requested probability: 0.99
+/workspace/testfiles/flostat8/traincar4_2026-01-19_21-32-56/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/traincar4_2026-01-19_21-32-56/mpfr_out.c:147:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  147 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/traincar4.c"
+	User time (seconds): 17.53
+	System time (seconds): 2.69
+	Percent of CPU this job got: 84%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:23.89
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 788144
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 193825
+	Voluntary context switches: 135
+	Involuntary context switches: 482010
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1119016
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/traincar4.c ===
+===================================
+
+===== Running file: lorenz70.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz70.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz70.c
+[kernel] Parsing testfiles/flostat8/lorenz70.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz70.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.4307, Execs n: 100000
+[fs] requested diff: 3.25e-06
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 44070  Executions: 100000 
+   Measured probability: 0.5593  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz70_2026-01-19_21-32-47/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz70_2026-01-19_21-32-47/mpfr_out.c:2047:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 2047 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz70.c"
+	User time (seconds): 43.39
+	System time (seconds): 2.12
+	Percent of CPU this job got: 86%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:52.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 391816
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 106454
+	Voluntary context switches: 140
+	Involuntary context switches: 743405
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 388920
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz70.c ===
+===================================
+
+===== Running file: lorenzloop100.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenzloop100.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenzloop100.c
+[kernel] Parsing testfiles/flostat8/lorenzloop100.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenzloop100.c:12: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.48945, Execs n: 100000
+[fs] requested diff: 3.8e-06
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 49945  Executions: 100000 
+   Measured probability: 0.50055  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenzloop100_2026-01-19_21-32-48/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenzloop100_2026-01-19_21-32-48/mpfr_out.c:133:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  133 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenzloop100.c"
+	User time (seconds): 52.03
+	System time (seconds): 2.19
+	Percent of CPU this job got: 83%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:04.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 387820
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 93767
+	Voluntary context switches: 230
+	Involuntary context switches: 727694
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387360
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenzloop100.c ===
+===================================
+
+===== Running file: lorenz100.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz100.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz100.c
+[kernel] Parsing testfiles/flostat8/lorenz100.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz100.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.48945, Execs n: 100000
+[fs] requested diff: 3.8e-06
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 49945  Executions: 100000 
+   Measured probability: 0.50055  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz100_2026-01-19_21-32-39/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz100_2026-01-19_21-32-39/mpfr_out.c:2890:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+ 2890 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz100.c"
+	User time (seconds): 60.39
+	System time (seconds): 1.73
+	Percent of CPU this job got: 82%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:15.14
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 394384
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 110842
+	Voluntary context switches: 128
+	Involuntary context switches: 408408
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 389464
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz100.c ===
+===================================
+
+===== Running file: lorenz200.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz200.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz200.c
+[kernel] Parsing testfiles/flostat8/lorenz200.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz200.c:12: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00957, Execs n: 100000
+[fs] requested diff: 0.00085625
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 1.10927e-08   
+   Number of violations: 43  Executions: 100000 
+   Measured probability: 0.99957  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz200_2026-01-19_21-32-43/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz200_2026-01-19_21-32-43/mpfr_out.c:133:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  133 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz200.c"
+	User time (seconds): 96.87
+	System time (seconds): 2.72
+	Percent of CPU this job got: 83%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:59.49
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389252
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94072
+	Voluntary context switches: 220
+	Involuntary context switches: 812408
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387112
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz200.c ===
+===================================
+
+===== Running file: lorenz400.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz400.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz400.c
+[kernel] Parsing testfiles/flostat8/lorenz400.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz400.c:11: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00835, Execs n: 100000
+[fs] requested diff: 0.027875
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 8.78983e-07   
+   Number of violations: 165  Executions: 100000 
+   Measured probability: 0.99835  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz400_2026-01-19_21-32-45/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz400_2026-01-19_21-32-45/mpfr_out.c:133:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  133 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz400.c"
+	User time (seconds): 185.46
+	System time (seconds): 2.63
+	Percent of CPU this job got: 83%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:44.78
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389044
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94066
+	Voluntary context switches: 232
+	Involuntary context switches: 1018021
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387384
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz400.c ===
+===================================
+
+===== Running file: lorenz700.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz700.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz700.c
+[kernel] Parsing testfiles/flostat8/lorenz700.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz700.c:12: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.00659, Execs n: 100000
+[fs] requested diff: 0.725
+[fs] Success!
+[fs] Stats
+  Measured confidence level: 0.000168999   
+   Number of violations: 341  Executions: 100000 
+   Measured probability: 0.99659  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz700_2026-01-19_21-32-47/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz700_2026-01-19_21-32-47/mpfr_out.c:133:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  133 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz700.c"
+	User time (seconds): 317.81
+	System time (seconds): 2.42
+	Percent of CPU this job got: 86%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:11.00
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 389436
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94127
+	Voluntary context switches: 262
+	Involuntary context switches: 776533
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387296
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz700.c ===
+===================================
+
+===== Running file: lorenz1000.c =====
+Tool: flostat8
+Command: run_flostat 10000 /workspace/testfiles/flostat8/lorenz1000.c
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 10000 frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz1000.c
+[kernel] Parsing testfiles/flostat8/lorenz1000.c (with preprocessing)
+[kernel:parser:decimal-float] testfiles/flostat8/lorenz1000.c:12: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[fs] Starting FloSMC, the statistical model checker for floats
+[fs] Please note that implicit type casting may not be correctly supported
+[fs] user smaple file:
+[fs] Epsilon: 0.01326, Execs n: 100000
+[fs] requested diff: 2.775
+[fs] Failure!
+  The measured probability is smaller than the specified 
+  Number of violations: 2326  Executions: 100000 
+   Measured probability: 0.97674  Requested probability: 0.99
+/workspace/testfiles/flostat8/lorenz1000_2026-01-19_21-32-40/mpfr_out.c: In function 'main':
+/workspace/testfiles/flostat8/lorenz1000_2026-01-19_21-32-40/mpfr_out.c:133:3: warning: ignoring return value of 'fscanf' declared with attribute 'warn_unused_result' [-Wunused-result]
+  133 |   fscanf(sfp,"%*[^\n]\n");
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+	Command being timed: "frama-c -flosmc -fs-execs 100000 -fs-prec 2048 -fs-no-save-samples -fs-no-save-diffs -fs-seed 8 /workspace/testfiles/flostat8/lorenz1000.c"
+	User time (seconds): 449.94
+	System time (seconds): 2.89
+	Percent of CPU this job got: 90%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:22.09
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 388620
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 94086
+	Voluntary context switches: 208
+	Involuntary context switches: 989528
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 387248
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/flostat8/lorenz1000.c ===
+===================================

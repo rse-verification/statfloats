@@ -1,0 +1,837 @@
+=== Results for satire_lo ===
+
+===== Running file: lorenz5.txt =====
+Tool: satire_lo
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz5.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz5.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz5.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 23
+Const expr -> 0
+MaxDepth -> 23
+Post : 20
+Total number of nodes pre-processing: 71
+Total number of nodes post-processing: 62
+Abstraction Enabled... 
+
+CURRENT AST_DEPTH = : 23
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+Bypassing abstraction
+
+9 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 448.69518831740555
+REAL_INTERVAL : [-0.0002482645337344835, 2.3940917378625928]
+FP_INTERVAL : [-448.6954365819393, 451.08928005526815]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.0027332305908203125
+
+PreProcessing time : 0.0001270771026611328
+
+Analysis time : 4.7452497482299805
+
+Full time : 4.749390125274658
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz5.txt"
+	User time (seconds): 9.00
+	System time (seconds): 3.75
+	Percent of CPU this job got: 253%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 73364
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 73623
+	Voluntary context switches: 463
+	Involuntary context switches: 205796
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1344
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz5.txt ===
+===================================
+
+===== Running file: lorenz8.txt =====
+Tool: satire_lo
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz8.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz8.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz8.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 38
+Const expr -> 0
+MaxDepth -> 46
+Post : 35
+Total number of nodes pre-processing: 141
+Total number of nodes post-processing: 132
+Abstraction Enabled... 
+
+CURRENT AST_DEPTH = : 46
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 31
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 18
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+Bypassing abstraction
+
+4 18 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.277917174330733e+20
+REAL_INTERVAL : [-0.0007242492533438095, 4.3614174812659305]
+FP_INTERVAL : [-2.277917174330733e+20, 2.277917174330733e+20]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.008760929107666016
+
+PreProcessing time : 0.0003566741943359375
+
+Analysis time : 14.924412250518799
+
+Full time : 14.93563723564148
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz8.txt"
+	User time (seconds): 33.32
+	System time (seconds): 4.60
+	Percent of CPU this job got: 248%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 73980
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 175080
+	Voluntary context switches: 1072
+	Involuntary context switches: 68743
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3664
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz8.txt ===
+===================================
+
+===== Running file: lorenz10.txt =====
+Tool: satire_lo
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz10.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz10.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz10.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 38
+Const expr -> 0
+MaxDepth -> 46
+Post : 35
+Total number of nodes pre-processing: 141
+Total number of nodes post-processing: 132
+Abstraction Enabled... 
+
+CURRENT AST_DEPTH = : 46
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 31
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 18
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+Bypassing abstraction
+
+4 18 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 2.277917174330733e+20
+REAL_INTERVAL : [-0.0007242492533438095, 4.3614174812659305]
+FP_INTERVAL : [-2.277917174330733e+20, 2.277917174330733e+20]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.009155750274658203
+
+PreProcessing time : 0.00035953521728515625
+
+Analysis time : 14.008145332336426
+
+Full time : 14.020575761795044
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz10.txt"
+	User time (seconds): 32.27
+	System time (seconds): 5.12
+	Percent of CPU this job got: 259%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 74052
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 175035
+	Voluntary context switches: 1034
+	Involuntary context switches: 308025
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3664
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz10.txt ===
+===================================
+
+===== Running file: lorenz20.txt =====
+Tool: satire_lo
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz20.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz20.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz20.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 68
+Const expr -> 0
+MaxDepth -> 91
+Post : 65
+Total number of nodes pre-processing: 281
+Total number of nodes post-processing: 272
+Abstraction Enabled... 
+
+CURRENT AST_DEPTH = : 91
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 76
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 63
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 49
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 36
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 22
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+Bypassing abstraction
+
+9 20 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 1.1329571633937911e+47
+REAL_INTERVAL : [-0.0029551360565166617, 13.347637994081106]
+FP_INTERVAL : [-1.1329571633937911e+47, 1.1329571633937911e+47]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.014884710311889648
+
+PreProcessing time : 0.00051116943359375
+
+Analysis time : 31.410510063171387
+
+Full time : 31.42789387702942
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz20.txt"
+	User time (seconds): 70.58
+	System time (seconds): 7.71
+	Percent of CPU this job got: 246%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:31.79
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 74048
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 10
+	Minor (reclaiming a frame) page faults: 332147
+	Voluntary context switches: 2091
+	Involuntary context switches: 197482
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 7360
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz20.txt ===
+===================================
+
+===== Running file: lorenz40.txt =====
+Tool: satire_lo
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz40.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz40.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz40.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 128
+Const expr -> 0
+MaxDepth -> 181
+Post : 125
+Total number of nodes pre-processing: 561
+Total number of nodes post-processing: 552
+Abstraction Enabled... 
+
+CURRENT AST_DEPTH = : 181
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 166
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 153
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 139
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 126
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 112
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 99
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 85
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 72
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 58
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 45
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 31
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 18
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+Bypassing abstraction
+
+4 18 10
+setup outputs: 536870912
+
+//-------------------------------------
+VAR : return
+ABSOLUTE_ERROR : 7.396701704514884e+109
+REAL_INTERVAL : [-78.84550241702887, 79.0180495558855]
+FP_INTERVAL : [-7.396701704514884e+109, 7.396701704514884e+109]
+//-------------------------------------
+
+Optimizer Calls: 0
+Parsing time : 0.019990205764770508
+
+PreProcessing time : 0.0005946159362792969
+
+Analysis time : 72.15793085098267
+
+Full time : 72.17993998527527
+
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz40.txt"
+	User time (seconds): 178.63
+	System time (seconds): 15.75
+	Percent of CPU this job got: 268%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:12.48
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 74540
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 679530
+	Voluntary context switches: 4206
+	Involuntary context switches: 243611
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 15704
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/satire/lorenz40.txt ===
+===================================
+
+===== Running file: lorenz70.txt =====
+Tool: satire_lo
+Command: run_satire_lo 28800 /workspace/testfiles/satire/lorenz70.txt
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz70.txt
+Namespace(compress=False, empirical=0, enable_abstraction=True, file='/workspace/testfiles/satire/lorenz70.txt', gverbose=False, logfile='default.log', maxdepth=20, mindepth=10, outfile='outfile.txt', parallel=False, simplify=False, sound=False, std=True)
+Inside Program
+Num LHS exprs -> 218
+Const expr -> 0
+MaxDepth -> 316
+Post : 215
+Total number of nodes pre-processing: 981
+Total number of nodes post-processing: 972
+Abstraction Enabled... 
+
+CURRENT AST_DEPTH = : 316
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 301
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 288
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 274
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 261
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 247
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 234
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 220
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 207
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 193
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 180
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 166
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 153
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 139
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 126
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 112
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 99
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 85
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 72
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 58
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 45
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+
+********* Rebuilding AST post abstracttion ********
+
+Synthesizing expression with fresh FreeVars .... 
+CURRENT AST_DEPTH = : 31
+ABSTRACTION_DEPTH : 14
+Canidate List Length: 3
+setup outputs: 536870912
+setup outputs: 536870912
+setup outputs: 536870912
+ERROR: lexed_to_parsed: Line 1: Syntax error at Token(type='FLOAT', value='.0', lineno=1, index=5211)
+ERROR: lexed_to_parsed: Line 1: Syntax error at Token(type='FLOAT', value='.0', lineno=1, index=5211)
+Command exited with non-zero status 255
+	Command being timed: "python3.7 /workspace/tools/Satire/src/satire.py --std --enable-abstraction --mindepth 10 --maxdepth 20 --file /workspace/testfiles/satire/lorenz70.txt"
+	User time (seconds): 320.05
+	System time (seconds): 26.29
+	Percent of CPU this job got: 286%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:00.93
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 75332
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 1089968
+	Voluntary context switches: 6473
+	Involuntary context switches: 89069
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 25288
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 255
+[Error] Exit code 255
+=== done with /workspace/testfiles/satire/lorenz70.txt ===
+===================================

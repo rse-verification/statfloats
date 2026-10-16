@@ -1,0 +1,1512 @@
+=== Results for daisy ===
+
+===== Running file: bsplines0.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/bsplines0.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines0.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: bspline0
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] bspline0
+[[34m  Info  [0m]   Absolute error: 8.69234485871102e-08
+[[34m  Info  [0m]   Real range:     [0.0, 0.16666666666666666]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      5 ms, Dataflow error:     55 ms, functions:      8 ms, Specs processing:     14 ms, Scala extraction:   2318 ms, total:   2403 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines0.scala'"
+	User time (seconds): 13.68
+	System time (seconds): 1.09
+	Percent of CPU this job got: 343%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.30
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 312428
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 16
+	Minor (reclaiming a frame) page faults: 83255
+	Voluntary context switches: 27031
+	Involuntary context switches: 145
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3656
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/bsplines0.scala ===
+===================================
+
+===== Running file: bsplines1.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/bsplines1.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines1.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: bspline1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] bspline1
+[[34m  Info  [0m]   Absolute error: 4.2716663302873797e-07
+[[34m  Info  [0m]   Real range:     [-0.3333333333333333, 1.1666666666666667]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     72 ms, functions:      8 ms, Specs processing:     14 ms, Scala extraction:   2546 ms, total:   2650 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines1.scala'"
+	User time (seconds): 13.49
+	System time (seconds): 1.03
+	Percent of CPU this job got: 313%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.64
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 336488
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 86453
+	Voluntary context switches: 28059
+	Involuntary context switches: 206
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/bsplines1.scala ===
+===================================
+
+===== Running file: bsplines2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/bsplines2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: bspline2
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] bspline2
+[[34m  Info  [0m]   Absolute error: 3.973643085686263e-07
+[[34m  Info  [0m]   Real range:     [-0.3333333333333333, 1.1666666666666667]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:     54 ms, functions:      5 ms, Specs processing:     10 ms, Scala extraction:   2579 ms, total:   2656 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines2.scala'"
+	User time (seconds): 13.56
+	System time (seconds): 1.01
+	Percent of CPU this job got: 319%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.56
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 333268
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 86938
+	Voluntary context switches: 28146
+	Involuntary context switches: 181
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/bsplines2.scala ===
+===================================
+
+===== Running file: bsplines3.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/bsplines3.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines3.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: bspline3
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] bspline3
+[[34m  Info  [0m]   Absolute error: 5.712112027822517e-08
+[[34m  Info  [0m]   Real range:     [-0.16666666666666666, 0.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     51 ms, functions:      6 ms, Specs processing:     15 ms, Scala extraction:   2650 ms, total:   2732 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/bsplines3.scala'"
+	User time (seconds): 13.38
+	System time (seconds): 1.05
+	Percent of CPU this job got: 313%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.61
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 311668
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 81639
+	Voluntary context switches: 27329
+	Involuntary context switches: 131
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/bsplines3.scala ===
+===================================
+
+===== Running file: classIDX0.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/classIDX0.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/classIDX0.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: classIDX0
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] classIDX0
+[[34m  Info  [0m]   Absolute error: 9.472642565455658e-06
+[[34m  Info  [0m]   Real range:     [-23.197996199131012, 24.733403384685516]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     93 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   2798 ms, total:   2924 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/classIDX0.scala'"
+	User time (seconds): 15.56
+	System time (seconds): 1.01
+	Percent of CPU this job got: 340%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.86
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 338132
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 16
+	Minor (reclaiming a frame) page faults: 88990
+	Voluntary context switches: 30622
+	Involuntary context switches: 188
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3656
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/classIDX0.scala ===
+===================================
+
+===== Running file: classIDX1.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/classIDX1.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/classIDX1.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: classIDX1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] classIDX1
+[[34m  Info  [0m]   Absolute error: 5.52214104622371e-06
+[[34m  Info  [0m]   Real range:     [-12.54045373346613, 14.38751984716162]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      7 ms, Dataflow error:     92 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   2847 ms, total:   2973 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/classIDX1.scala'"
+	User time (seconds): 15.45
+	System time (seconds): 1.08
+	Percent of CPU this job got: 348%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 332396
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 86871
+	Voluntary context switches: 29612
+	Involuntary context switches: 131
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/classIDX1.scala ===
+===================================
+
+===== Running file: classIDX2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/classIDX2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/classIDX2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: classIDX1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] classIDX1
+[[34m  Info  [0m]   Absolute error: 8.510891234605633e-06
+[[34m  Info  [0m]   Real range:     [-24.71262233328114, 21.330149400467732]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:     61 ms, functions:      4 ms, Specs processing:      9 ms, Scala extraction:   1877 ms, total:   1958 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/classIDX2.scala'"
+	User time (seconds): 14.09
+	System time (seconds): 1.16
+	Percent of CPU this job got: 395%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 359268
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 91334
+	Voluntary context switches: 30508
+	Involuntary context switches: 138
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3624
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/classIDX2.scala ===
+===================================
+
+===== Running file: doppler1.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/doppler1.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/doppler1.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: doppler1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] doppler1
+[[34m  Info  [0m]   Absolute error: 0.00022501381411965077
+[[34m  Info  [0m]   Real range:     [-158.7191444098274, -0.02944244059231351]
+[[34m  Info  [0m]   Relative error: 0.007642498705708342
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      7 ms, Dataflow error:    131 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   2785 ms, total:   2951 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/doppler1.scala'"
+	User time (seconds): 15.79
+	System time (seconds): 1.29
+	Percent of CPU this job got: 347%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 374504
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 96467
+	Voluntary context switches: 31583
+	Involuntary context switches: 179
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3624
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/doppler1.scala ===
+===================================
+
+===== Running file: doppler2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/doppler2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/doppler2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: doppler2
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] doppler2
+[[34m  Info  [0m]   Absolute error: 0.0005621645452141711
+[[34m  Info  [0m]   Real range:     [-276.0765331640505, -0.019017745606492446]
+[[34m  Info  [0m]   Relative error: 0.02955999921579845
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      7 ms, Dataflow error:    137 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   2508 ms, total:   2679 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/doppler2.scala'"
+	User time (seconds): 15.16
+	System time (seconds): 0.97
+	Percent of CPU this job got: 353%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.56
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 372360
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 18
+	Minor (reclaiming a frame) page faults: 95769
+	Voluntary context switches: 29263
+	Involuntary context switches: 105
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3664
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/doppler2.scala ===
+===================================
+
+===== Running file: doppler3.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/doppler3.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/doppler3.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: doppler3
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] doppler3
+[[34m  Info  [0m]   Absolute error: 9.035163030209256e-05
+[[34m  Info  [0m]   Real range:     [-96.29400542724778, -0.43773074947775303]
+[[34m  Info  [0m]   Relative error: 0.00020640914628430632
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      7 ms, Dataflow error:    133 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   2448 ms, total:   2615 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/doppler3.scala'"
+	User time (seconds): 15.05
+	System time (seconds): 1.22
+	Percent of CPU this job got: 355%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 394532
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 100311
+	Voluntary context switches: 30646
+	Involuntary context switches: 130
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/doppler3.scala ===
+===================================
+
+===== Running file: filter1.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/filter1.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter1.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: filter1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] filter1
+[[34m  Info  [0m]   Absolute error: 2.026557957890418e-07
+[[34m  Info  [0m]   Real range:     [-1.4, 1.4]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      5 ms, Dataflow error:     34 ms, functions:      5 ms, Specs processing:     14 ms, Scala extraction:   1915 ms, total:   1978 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter1.scala'"
+	User time (seconds): 12.39
+	System time (seconds): 1.07
+	Percent of CPU this job got: 351%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.83
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 303664
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 78610
+	Voluntary context switches: 28206
+	Involuntary context switches: 102
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3624
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/filter1.scala ===
+===================================
+
+===== Running file: filter2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/filter2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: filter2
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] filter2
+[[34m  Info  [0m]   Absolute error: 1.2660026753508191e-06
+[[34m  Info  [0m]   Real range:     [-5.959999814033509, 5.959999814033509]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     59 ms, functions:      6 ms, Specs processing:     18 ms, Scala extraction:   2386 ms, total:   2478 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter2.scala'"
+	User time (seconds): 13.92
+	System time (seconds): 1.17
+	Percent of CPU this job got: 343%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 314280
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 83073
+	Voluntary context switches: 28838
+	Involuntary context switches: 171
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/filter2.scala ===
+===================================
+
+===== Running file: filter3.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/filter3.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter3.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: filter3
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] filter3
+[[34m  Info  [0m]   Absolute error: 4.589796163230631e-06
+[[34m  Info  [0m]   Real range:     [-15.523999492645268, 15.523999492645268]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:     72 ms, functions:      4 ms, Specs processing:     12 ms, Scala extraction:   2285 ms, total:   2381 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter3.scala'"
+	User time (seconds): 14.62
+	System time (seconds): 1.09
+	Percent of CPU this job got: 364%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.31
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 382728
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 98109
+	Voluntary context switches: 30398
+	Involuntary context switches: 88
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/filter3.scala ===
+===================================
+
+===== Running file: filter4.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/filter4.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter4.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: filter4
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] filter4
+[[34m  Info  [0m]   Absolute error: 1.1850929587691899e-05
+[[34m  Info  [0m]   Real range:     [-32.10559864683153, 32.10559864683153]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      7 ms, Dataflow error:    214 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   2223 ms, total:   2471 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/filter4.scala'"
+	User time (seconds): 16.44
+	System time (seconds): 1.14
+	Percent of CPU this job got: 461%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.81
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 420192
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 106907
+	Voluntary context switches: 32484
+	Involuntary context switches: 92
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3624
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/filter4.scala ===
+===================================
+
+===== Running file: lorenz2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/lorenz2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: lorenz
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorenz
+[[34m  Info  [0m]   Absolute error: 3.4909167672212794e-07
+[[34m  Info  [0m]   Real range:     [-0.050826666666666666, 1.5883933333333333]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:    180 ms, functions:      4 ms, Specs processing:     12 ms, Scala extraction:   1754 ms, total:   1958 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz2.scala'"
+	User time (seconds): 14.66
+	System time (seconds): 1.11
+	Percent of CPU this job got: 404%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.89
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 453896
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 17
+	Minor (reclaiming a frame) page faults: 115000
+	Voluntary context switches: 29364
+	Involuntary context switches: 102
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3656
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/lorenz2.scala ===
+===================================
+
+===== Running file: lorenz4.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/lorenz4.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz4.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: lorenz
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorenz
+[[34m  Info  [0m]   Absolute error: 8.480037203768115e-07
+[[34m  Info  [0m]   Real range:     [-0.2407265547489672, 2.335716270285044]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:   2679 ms, functions:      9 ms, Specs processing:     17 ms, Scala extraction:   1830 ms, total:   4542 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz4.scala'"
+	User time (seconds): 18.26
+	System time (seconds): 1.67
+	Percent of CPU this job got: 304%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.54
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 897380
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 17
+	Minor (reclaiming a frame) page faults: 227971
+	Voluntary context switches: 30948
+	Involuntary context switches: 168
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3648
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/lorenz4.scala ===
+===================================
+
+===== Running file: rigidBody1.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/rigidBody1.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/rigidBody1.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: rigidBody1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] rigidBody1
+[[34m  Info  [0m]   Absolute error: 0.00015830993720555853
+[[34m  Info  [0m]   Real range:     [-705.0, 705.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     46 ms, functions:      6 ms, Specs processing:     16 ms, Scala extraction:   2600 ms, total:   2678 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/rigidBody1.scala'"
+	User time (seconds): 14.12
+	System time (seconds): 1.03
+	Percent of CPU this job got: 325%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 327776
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 16
+	Minor (reclaiming a frame) page faults: 84962
+	Voluntary context switches: 27819
+	Involuntary context switches: 122
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3656
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/rigidBody1.scala ===
+===================================
+
+===== Running file: rigidBody2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/rigidBody2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/rigidBody2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: rigidBody2
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] rigidBody2
+[[34m  Info  [0m]   Absolute error: 0.01936292698837861
+[[34m  Info  [0m]   Real range:     [-58740.0, 58740.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     71 ms, functions:      6 ms, Specs processing:     16 ms, Scala extraction:   2485 ms, total:   2588 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/rigidBody2.scala'"
+	User time (seconds): 14.69
+	System time (seconds): 1.06
+	Percent of CPU this job got: 348%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 334020
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 85377
+	Voluntary context switches: 29206
+	Involuntary context switches: 141
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/rigidBody2.scala ===
+===================================
+
+===== Running file: sine.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/sine.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/sine.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: sine
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] sine
+[[34m  Info  [0m]   Absolute error: 6.064885588214318e-07
+[[34m  Info  [0m]   Real range:     [-2.3011348046703466, 2.3011348046703466]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:    141 ms, functions:      8 ms, Specs processing:     15 ms, Scala extraction:   2563 ms, total:   2737 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/sine.scala'"
+	User time (seconds): 14.59
+	System time (seconds): 1.00
+	Percent of CPU this job got: 335%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 355892
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 19
+	Minor (reclaiming a frame) page faults: 93454
+	Voluntary context switches: 27621
+	Involuntary context switches: 80
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3688
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/sine.scala ===
+===================================
+
+===== Running file: solveCubic.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/solveCubic.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/solveCubic.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: solveCubic
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] solveCubic
+[[34m  Info  [0m]   Absolute error: 1.716172291750169e-05
+[[34m  Info  [0m]   Real range:     [-5.092592592592593, 48.148148148148145]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:    101 ms, functions:      7 ms, Specs processing:     16 ms, Scala extraction:   1973 ms, total:   2107 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/solveCubic.scala'"
+	User time (seconds): 14.38
+	System time (seconds): 1.07
+	Percent of CPU this job got: 383%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 343868
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 88950
+	Voluntary context switches: 30625
+	Involuntary context switches: 218
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/solveCubic.scala ===
+===================================
+
+===== Running file: sqrt.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/sqrt.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/sqrt.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: sine
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] sine
+[[34m  Info  [0m]   Absolute error: 0.00016415120157375925
+[[34m  Info  [0m]   Real range:     [-402.125, 68.5]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     82 ms, functions:      8 ms, Specs processing:     15 ms, Scala extraction:   2554 ms, total:   2669 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/sqrt.scala'"
+	User time (seconds): 15.09
+	System time (seconds): 0.95
+	Percent of CPU this job got: 349%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 338424
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 14
+	Minor (reclaiming a frame) page faults: 87752
+	Voluntary context switches: 28554
+	Involuntary context switches: 112
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3632
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/sqrt.scala ===
+===================================
+
+===== Running file: traincar1.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/traincar1.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar1.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: out1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] out1
+[[34m  Info  [0m]   Absolute error: 0.0021200447044189786
+[[34m  Info  [0m]   Real range:     [-2672.864955838925, 5443.881624161075]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     52 ms, functions:      6 ms, Specs processing:     16 ms, Scala extraction:   2603 ms, total:   2686 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar1.scala'"
+	User time (seconds): 14.16
+	System time (seconds): 1.21
+	Percent of CPU this job got: 337%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 325996
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 84576
+	Voluntary context switches: 28690
+	Involuntary context switches: 195
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/traincar1.scala ===
+===================================
+
+===== Running file: traincar2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/traincar2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: out1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] out1
+[[34m  Info  [0m]   Absolute error: 0.0014277685343319108
+[[34m  Info  [0m]   Real range:     [-3645.755199161527, 3845.6029681585987]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     58 ms, functions:      5 ms, Specs processing:     14 ms, Scala extraction:   2738 ms, total:   2825 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar2.scala'"
+	User time (seconds): 15.37
+	System time (seconds): 1.24
+	Percent of CPU this job got: 345%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.80
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 353268
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 91627
+	Voluntary context switches: 29005
+	Involuntary context switches: 79
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3584
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/traincar2.scala ===
+===================================
+
+===== Running file: traincar3.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/traincar3.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar3.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: out1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] out1
+[[34m  Info  [0m]   Absolute error: 0.02292150643510899
+[[34m  Info  [0m]   Real range:     [-66966.97583980022, 67314.40030245407]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      7 ms, Dataflow error:     87 ms, functions:      7 ms, Specs processing:     18 ms, Scala extraction:   2334 ms, total:   2457 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar3.scala'"
+	User time (seconds): 15.78
+	System time (seconds): 1.04
+	Percent of CPU this job got: 381%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 378972
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 95132
+	Voluntary context switches: 31172
+	Involuntary context switches: 85
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3584
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/traincar3.scala ===
+===================================
+
+===== Running file: traincar4.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/traincar4.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar4.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: out1
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] out1
+[[34m  Info  [0m]   Absolute error: 0.22986960445996374
+[[34m  Info  [0m]   Real range:     [-584294.3905503355, 569108.6094496645]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, Dataflow error:     90 ms, functions:      7 ms, Specs processing:     20 ms, Scala extraction:   2978 ms, total:   3104 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/traincar4.scala'"
+	User time (seconds): 16.15
+	System time (seconds): 1.37
+	Percent of CPU this job got: 348%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.02
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 374960
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 96087
+	Voluntary context switches: 31019
+	Involuntary context switches: 250
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3584
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/traincar4.scala ===
+===================================
+
+===== Running file: trid.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/trid.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: trid
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] trid
+[[34m  Info  [0m]   Absolute error: 0.007263183695613407
+[[34m  Info  [0m]   Real range:     [-30200.0, 30200.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:     31 ms, Dataflow error:     53 ms, functions:      7 ms, Specs processing:     17 ms, Scala extraction:   2418 ms, total:   2530 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid.scala'"
+	User time (seconds): 13.02
+	System time (seconds): 0.97
+	Percent of CPU this job got: 313%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 317780
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 13
+	Minor (reclaiming a frame) page faults: 81690
+	Voluntary context switches: 27802
+	Involuntary context switches: 350
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3640
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/trid.scala ===
+===================================
+
+===== Running file: trid2.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/trid2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: trid2
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] trid2
+[[34m  Info  [0m]   Absolute error: 0.014450073416810483
+[[34m  Info  [0m]   Real range:     [-50401.0, 50199.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      5 ms, Dataflow error:     61 ms, functions:      7 ms, Specs processing:     15 ms, Scala extraction:   1931 ms, total:   2022 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid2.scala'"
+	User time (seconds): 13.27
+	System time (seconds): 0.99
+	Percent of CPU this job got: 370%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 323432
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 83831
+	Voluntary context switches: 29310
+	Involuntary context switches: 136
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3584
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/trid2.scala ===
+===================================
+
+===== Running file: trid3.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/trid3.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid3.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: trid3
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] trid3
+[[34m  Info  [0m]   Absolute error: 0.02359008813800756
+[[34m  Info  [0m]   Real range:     [-70602.0, 70198.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:     44 ms, functions:      4 ms, Specs processing:     10 ms, Scala extraction:   1671 ms, total:   1735 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid3.scala'"
+	User time (seconds): 13.35
+	System time (seconds): 1.06
+	Percent of CPU this job got: 422%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 357760
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 91416
+	Voluntary context switches: 29376
+	Involuntary context switches: 83
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3584
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/trid3.scala ===
+===================================
+
+===== Running file: trid4.scala =====
+Command: run_daisy 28800 /workspace/testfiles/daisy/trid4.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 28800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid4.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: trid4
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] trid4
+[[34m  Info  [0m]   Absolute error: 0.034683227859204635
+[[34m  Info  [0m]   Real range:     [-90803.0, 90197.0]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      4 ms, Dataflow error:     50 ms, functions:      5 ms, Specs processing:     10 ms, Scala extraction:   2349 ms, total:   2422 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/trid4.scala'"
+	User time (seconds): 14.16
+	System time (seconds): 1.03
+	Percent of CPU this job got: 352%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.31
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 349848
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 88079
+	Voluntary context switches: 29326
+	Involuntary context switches: 105
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy/trid4.scala ===
+===================================

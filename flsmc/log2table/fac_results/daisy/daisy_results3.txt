@@ -1,0 +1,93 @@
+=== Results for daisy ===
+
+===== Running file: lorenz20.scala =====
+Tool: daisy
+Command: run_daisy 604800 /workspace/testfiles/daisy/lorenz20.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz20.scala'
+[[34m  Info  [0m]
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: lorenz
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+[Timeout] Benchmark exceeded 604800 seconds
+=== done with /workspace/testfiles/daisy/lorenz20.scala ===
+===================================
+
+===== Running file: lorenz40.scala =====
+Tool: daisy
+Command: run_daisy 604800 /workspace/testfiles/daisy/lorenz40.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz40.scala'
+[[34m  Info  [0m]
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval foalltoolsr ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: lorenz
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+[Timeout] Benchmark exceeded 604800 seconds
+=== done with /workspace/testfiles/daisy/lorenz40.scala ===
+===================================
+
+===== Running file: lorenz100.scala =====
+Tool: daisy
+Command: run_daisy 604800 /workspace/testfiles/daisy/lorenz100.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz100.scala'
+[[34m  Info  [0m]
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: lorenz
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+[Timeout] Benchmark exceeded 604800 seconds
+=== done with /workspace/testfiles/daisy/lorenz100.scala ===
+===================================
+
+===== Running file: lorenz70.scala =====
+Tool: daisy
+Command: run_daisy 604800 /workspace/testfiles/daisy/lorenz70.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --precision=Float32 '/workspace/testfiles/daisy/lorenz70.scala'
+[[34m  Info  [0m]
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting functions phase
+[[34m  Info  [0m]
+[[34m  Info  [0m] Starting Dataflow error phase
+[[34m  Info  [0m] using interval for ranges, affine for errors
+[[34m  Info  [0m] analyzing fnc: lorenz
+[[34m  Info  [0m] error analysis for uniform Float32 precision
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+[Timeout] Benchmark exceeded 604800 seconds
+=== done with /workspace/testfiles/daisy/lorenz70.scala ===
+===================================

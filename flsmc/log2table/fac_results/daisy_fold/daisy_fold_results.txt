@@ -1,0 +1,607 @@
+=== Results for daisy_fold ===
+
+===== Running file: lorenz2.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz2.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz2.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m]   Absolute error: 6.89675522713186e-07
+[[34m  Info  [0m]   Real range:     [0.812, 3.10719]
+[[34m  Info  [0m]   Relative error: 8.493540920113129e-07
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:     23 ms, DSPhase-lorentz:    501 ms, DS Abstraction:    503 ms, Specs processing:     19 ms, Scala extraction:   2823 ms, total:   3372 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz2.scala'"
+	User time (seconds): 16.58
+	System time (seconds): 0.92
+	Percent of CPU this job got: 322%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 365888
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 96673
+	Voluntary context switches: 25944
+	Involuntary context switches: 2997
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz2.scala ===
+===================================
+
+===== Running file: lorenz5.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz5.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz5.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m]   Absolute error: 2.438653469578676e-06
+[[34m  Info  [0m]   Real range:     [0.5196762381090294, 5.1560607950468835]
+[[34m  Info  [0m]   Relative error: 4.692639937612542e-06
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      6 ms, DSPhase-lorentz:    735 ms, DS Abstraction:    737 ms, Specs processing:     17 ms, Scala extraction:   2828 ms, total:   3594 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz5.scala'"
+	User time (seconds): 17.98
+	System time (seconds): 1.04
+	Percent of CPU this job got: 339%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 380104
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 102988
+	Voluntary context switches: 24463
+	Involuntary context switches: 4050
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz5.scala ===
+===================================
+
+===== Running file: lorenz4.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz4.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz4.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m]   Absolute error: 1.693948199602799e-06
+[[34m  Info  [0m]   Real range:     [0.6321197187288888, 4.395963591464371]
+[[34m  Info  [0m]   Relative error: 2.6797901559045017e-06
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:     13 ms, DSPhase-lorentz:    719 ms, DS Abstraction:    722 ms, Specs processing:     17 ms, Scala extraction:   2933 ms, total:   3690 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz4.scala'"
+	User time (seconds): 15.83
+	System time (seconds): 1.00
+	Percent of CPU this job got: 296%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.67
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 426652
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 116062
+	Voluntary context switches: 23155
+	Involuntary context switches: 2631
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz4.scala ===
+===================================
+
+===== Running file: lorenz8.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz8.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz8.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m]   Absolute error: 6.093784573985279e-06
+[[34m  Info  [0m]   Real range:     [-0.057615451731214226, 8.175605891239764]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      8 ms, DSPhase-lorentz:    875 ms, DS Abstraction:    877 ms, Specs processing:     18 ms, Scala extraction:   2847 ms, total:   3754 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz8.scala'"
+	User time (seconds): 16.40
+	System time (seconds): 1.28
+	Percent of CPU this job got: 306%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.77
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 569852
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 148405
+	Voluntary context switches: 23996
+	Involuntary context switches: 2060
+	Swaps: 0
+	File system inputs: 80
+	File system outputs: 3616
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz8.scala ===
+===================================
+
+===== Running file: lorenz10.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz10.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz10.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m]   Absolute error: 1.0972221157618668e-05
+[[34m  Info  [0m]   Real range:     [-0.8207013207364998, 11.12381376487138]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:      3 ms, DSPhase-lorentz:    949 ms, DS Abstraction:    951 ms, Specs processing:     17 ms, Scala extraction:   2886 ms, total:   3861 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz10.scala'"
+	User time (seconds): 16.89
+	System time (seconds): 1.16
+	Percent of CPU this job got: 305%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 553244
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 146444
+	Voluntary context switches: 26557
+	Involuntary context switches: 3059
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz10.scala ===
+===================================
+
+===== Running file: lorenz20.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz20.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz20.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Info phase
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m]   Absolute error: 0.0003530678219505498
+[[34m  Info  [0m]   Real range:     [-58.3941600468273, 77.6870100161137]
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] Info:     15 ms, DSPhase-lorentz:   1489 ms, DS Abstraction:   1491 ms, Specs processing:     20 ms, Scala extraction:   2878 ms, total:   4408 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz20.scala'"
+	User time (seconds): 20.89
+	System time (seconds): 1.34
+	Percent of CPU this job got: 342%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.48
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 828084
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 216972
+	Voluntary context switches: 28366
+	Involuntary context switches: 3994
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz20.scala ===
+===================================
+
+===== Running file: lorenz40.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz40.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz40.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297983017 ms, DS Abstraction: -1769297983016 ms, Specs processing:     18 ms, Scala extraction:   3002 ms, total:   4976 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz40.scala'"
+	User time (seconds): 26.03
+	System time (seconds): 1.47
+	Percent of CPU this job got: 387%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 747808
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 192319
+	Voluntary context switches: 31899
+	Involuntary context switches: 3169
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz40.scala ===
+===================================
+
+===== Running file: lorenz200.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz200.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz200.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297983018 ms, DS Abstraction: -1769297983012 ms, Specs processing:     24 ms, Scala extraction:   2978 ms, total:   5006 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz200.scala'"
+	User time (seconds): 24.27
+	System time (seconds): 1.47
+	Percent of CPU this job got: 359%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.16
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 747884
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 192515
+	Voluntary context switches: 30484
+	Involuntary context switches: 3770
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz200.scala ===
+===================================
+
+===== Running file: lorenz100.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz100.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz100.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297982931 ms, DS Abstraction: -1769297982930 ms, Specs processing:     25 ms, Scala extraction:   2916 ms, total:   5084 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz100.scala'"
+	User time (seconds): 24.77
+	System time (seconds): 1.63
+	Percent of CPU this job got: 364%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.24
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 954172
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 245509
+	Voluntary context switches: 30564
+	Involuntary context switches: 3748
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz100.scala ===
+===================================
+
+===== Running file: lorenz700.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz700.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz700.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297983011 ms, DS Abstraction: -1769297983010 ms, Specs processing:     24 ms, Scala extraction:   3002 ms, total:   5346 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz700.scala'"
+	User time (seconds): 25.84
+	System time (seconds): 1.51
+	Percent of CPU this job got: 368%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.41
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 734916
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 191040
+	Voluntary context switches: 33161
+	Involuntary context switches: 5378
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz700.scala ===
+===================================
+
+===== Running file: lorenz400.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz400.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz400.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297983126 ms, DS Abstraction: -1769297983125 ms, Specs processing:     37 ms, Scala extraction:   3067 ms, total:   5314 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz400.scala'"
+	User time (seconds): 26.15
+	System time (seconds): 1.52
+	Percent of CPU this job got: 372%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 780992
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 202823
+	Voluntary context switches: 33838
+	Involuntary context switches: 3739
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz400.scala ===
+===================================
+
+===== Running file: lorenz70.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz70.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz70.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297982987 ms, DS Abstraction: -1769297982986 ms, Specs processing:     21 ms, Scala extraction:   2950 ms, total:   5277 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz70.scala'"
+	User time (seconds): 25.24
+	System time (seconds): 1.57
+	Percent of CPU this job got: 359%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 882836
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 225401
+	Voluntary context switches: 31141
+	Involuntary context switches: 4911
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz70.scala ===
+===================================
+
+===== Running file: lorenz1000.scala =====
+Tool: daisy_fold
+Command: run_daisy_fold 604800 /workspace/testfiles/daisy_fold/lorenz1000.scala
+-----------------------------------
+Command: taskset -c 0-63 timeout -k 60 604800 bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz1000.scala'
+[[34m  Info  [0m] 
+[[34m  Info  [0m] ************ Starting Daisy ************
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Scala extraction phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting Specs processing phase
+[[34m  Info  [0m] 
+[[34m  Info  [0m] Starting DS Abstraction phase
+[[34m  Info  [0m] Something really bad happened. Cannot continue: OverflowException: null
+[[34m  Info  [0m] lorentz
+[[34m  Info  [0m] time: 
+[[34m  Info  [0m] DSPhase-lorentz: -1769297982974 ms, DS Abstraction: -1769297982973 ms, Specs processing:     22 ms, Scala extraction:   2931 ms, total:   5476 ms
+./daisy: line 6: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+	Command being timed: "bash -c cd '/workspace/tools/daisy' && ./daisy --ds --precision=Float32 '/workspace/testfiles/daisy_fold/lorenz1000.scala'"
+	User time (seconds): 27.52
+	System time (seconds): 1.70
+	Percent of CPU this job got: 381%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.66
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 958660
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 248624
+	Voluntary context switches: 33199
+	Involuntary context switches: 3510
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3576
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+[Success]
+=== done with /workspace/testfiles/daisy_fold/lorenz1000.scala ===
+===================================
