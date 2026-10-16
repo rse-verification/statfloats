@@ -145,12 +145,21 @@ the observer flux state from that angle, current, and the fixed inductance and
 flux linkage. The timestep, observer gain, and motor resistance, inductance,
 and flux linkage are fixed constants. This isolates rounding differences in
 the observer call from arithmetic used to derive its inputs.
-The observer mode is fixed to the original Ortega implementation, with
-saturation, saliency, and temperature compensation disabled; consequently,
-d/q-current fields and observer fields unused by that mode are not sampled.
+The observer mode is fixed to `FOC_OBSERVER_MXV_LAMBDA_COMP`, with saturation,
+saliency, and temperature compensation disabled. Its initial estimated flux
+linkage is set to the fixed motor flux linkage; it is not sampled.
 The remaining sampled voltage, current, and flux angle values are independent;
 the equation clauses enforce the flux/current relationship, but do not model a
 complete controller-generated motor snapshot.
+`vesc/foc_observer_mxv_lambda_comp_daisy.scala` is a Daisy-format one-update
+specialization of the same mode and input setup.
+For a smaller standalone presentation example of that mode, see
+`vesc/paper_simple_example_mxv.c` (FloStat) and
+`vesc/paper_simple_example_mxv_daisy.scala` (Daisy). Both use the same sampled
+input ranges and fixed motor parameters.
+The `paper_examples/` directory collects three matched FloStat/Daisy
+presentations with independent alpha/beta input box limits of ±400 V and
+±500 A; see its README for the examples and assumptions.
 
 The `vesc/virtual_motor_observer_output.c` variant preserves the firmware-style
 `virtual_motor_int_handler(v_alpha, v_beta)` loop. It includes the first

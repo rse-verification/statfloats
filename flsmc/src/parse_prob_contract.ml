@@ -448,7 +448,7 @@ class mpfr_contracts_parser
           when li.l_var_info.lv_name = "\\round_error" ->
         self#rounding_error_to_spec fl_res_vi mpfr_res_vi dfp sfp t1
 
-      | _ -> Kernel.fatal "not implemented yet other preds"
+      | _ -> Kernel.fatal "not implemented yet: %a" Printer.pp_predicate pred 
 
 
   method private rounding_error_to_spec fl_res_vi mpfr_res_vi dfp sfp t1 =
