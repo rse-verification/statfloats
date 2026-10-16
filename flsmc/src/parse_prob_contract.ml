@@ -18,7 +18,7 @@ let type_equation type_ctxt loc [target; expression] =
   ]
 
 
-
+(*If conf is supplied*)
 (* let foo () = () *)
 let type_probContract type_ctxt loc args =
   Logic_builtin.add flteq_builtin;
@@ -47,8 +47,6 @@ let type_probContract type_ctxt loc args =
   let ext_conf = new_acsl_extension ~plugin:"flostat" "confLevel" unknown_loc false (Ext_terms [conf']) in
   let ext_pred = new_acsl_extension ~plugin:"flostat" "probPred" unknown_loc false (Ext_preds [pred']) in
   Ext_annot ("ProbClause", [ext_prob; ext_conf; ext_pred])
-
-
 
 let type_prob type_ctxt loc [prob] =
   Ext_terms [type_ctxt.type_term type_ctxt (Lenv.empty ()) prob]
@@ -145,7 +143,7 @@ class mpfr_contracts_parser
 
   (* val mutable diff = 0.1 *)
   val mutable prob = 0.1
-  val mutable conf_level = 0.95
+  val mutable conf_level = 1.0
   val mutable pred = None
   val mutable entry_vi = None
 
@@ -454,13 +452,25 @@ class mpfr_contracts_parser
   method private rounding_error_to_spec fl_res_vi mpfr_res_vi dfp sfp t1 =
         let kf = Option.get self#current_kf in
         (* self#set_diff_from_term d; *)
-        let lval_dists = List.map (fun x -> Logic_to_c.term_to_lval x.dvar) dists in
+        let distlvals =
+          List.map (fun x ->(Logic_to_c.term_to_lval x.dvar)) dists
+        in
         (*Read samples*)
-        let pre1 = make_fscanf_instr (var_to_exp sfp) lval_dists in
+        (* let pre1 = make_fscanf_instr (var_to_exp sfp) lval_dists in
         let pres2 = List.map
           (fun lv -> mpfr_set_flt_instr (lval_to_exp lv)
             (self#lval_to_mpfr_exp lv) rnd_exp)
           lval_dists
+        in *)
+        let sample_instrs =
+          List.concat_map
+            (fun dlv ->
+              let m_exp = self#lval_to_mpfr_exp dlv in
+              [make_mpfr_inp_str_instr m_exp (var_to_exp sfp);
+               mpfr_get_d_instr m_exp dlv
+              ]
+            )
+            distlvals
         in
         (*Get expression to check round-off error for*)
         let t1_mexp_vi = self#term_to_instrs ~res_vi:mpfr_res_vi t1 in
@@ -479,8 +489,10 @@ class mpfr_contracts_parser
         self#return_tmp_var kf t1_fl_mvi;
         self#return_tmp_var_exp kf t1_mexp_vi;
         (*Print the result*)
-        let post3 = self#get_mpfr_print_instr t1_fl_mvi (exp_to_vi t1_mexp_vi) r_vi dfp in
-        pre1::pres2, [post1;post2;post3]
+        let post3 =
+          self#get_mpfr_print_instr t1_fl_mvi (exp_to_vi t1_mexp_vi) r_vi dfp
+        in
+        sample_instrs, [post1;post2;post3]
 
 
 
@@ -667,8 +679,12 @@ class mpfr_contracts_parser
           let spec_dists, prpred = split_into_dist_and_pred l in
           (match prpred.ext_kind with
             | Ext_annot ("ProbClause", [prob_ext;conf_ext;pred_ext]) ->
+              Self.feedback "probClause sets a conf level, this is decapretated";
               self#set_prob prob_ext;
               self#set_conf_level conf_ext;
+              self#set_pred pred_ext
+            | Ext_annot ("ProbClause", [prob_ext;pred_ext]) ->
+              self#set_prob prob_ext;
               self#set_pred pred_ext
             | _ -> Kernel.fatal "not a prob clause extension"
           );
@@ -681,6 +697,14 @@ class mpfr_contracts_parser
                     (fun var_term ->
                       self#add_dist
                         {dvar=var_term;dname="Uniform";dparams=[lo_t;hi_t]})
+                    (List.rev (expand_distribution_var var_term))
+              | Ext_terms
+                  [var_term; {term_node=TConst (LStr "Normal"); _}; mu_t; sigma_t]
+                    ->
+                  List.iter
+                    (fun var_term ->
+                      self#add_dist
+                        {dvar=var_term;dname="Normal";dparams=[mu_t;sigma_t]})
                     (List.rev (expand_distribution_var var_term))
               | ext -> Kernel.fatal "Not a correct distribution %a"
                           Printer.pp_extended dist

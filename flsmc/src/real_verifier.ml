@@ -18,7 +18,8 @@ class real_verifier entry = object (self)
       | {b_extended=be;_} ->
         let (_, pred) = split_into_dist_and_pred be in
         (match pred.ext_kind with
-          | Ext_annot ("ProbClause", [_;_;{ext_kind=Ext_preds [p];_}]) ->
+          | Ext_annot ("ProbClause", [_;_;{ext_kind=Ext_preds [p];_}])
+          | Ext_annot ("ProbClause", [_;{ext_kind=Ext_preds [p];_}]) ->
             (match p.pred_content with
               | Papp (li, _, [t1; t2; _]) when li.l_var_info.lv_name = "\\flteq" ->
                 let new_pred = make_id_pred_from_pred_node (Prel (Req, t1, t2)) in

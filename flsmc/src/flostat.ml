@@ -27,6 +27,10 @@ class file_manager = object (self)
   val mutable samples_fname = "samples.csv"
   val mutable user_has_samples = false
 
+  method remove_samples_file () = Sys.remove @@ self#get_samples_path ()
+
+  method remove_diff_file () = Sys.remove @@ self#get_diff_path ()
+
   method handle_user_samples () =
     (*If user provides samples, then we copy the file to the new destination*)
     let usersamples = SampleFile.get () in
@@ -86,7 +90,7 @@ class file_manager = object (self)
 
   method compile_mpfr_file () =
     let compile_cmd =
-      Printf.sprintf "gcc %s -lmpfr -lgmp -lm -o %s"
+      Printf.sprintf "gcc -O3 %s -lmpfr -lgmp -lm -o %s"
         (self#get_mpfr_path ()) (self#get_exec_path ());
     in
     ignore @@ Sys.command compile_cmd
@@ -190,21 +194,29 @@ let generate () =
 
 let run () =
   if (Enabled.get ()) then
-      (let specparser = generate () in
-      !fmgr#compile_mpfr_file ();
-      (* if (AnalyzeEnabled.get ()) then *)
-      let flt_eq = specparser#make_flteq_contract () in
-      let sa = new Statistical_analyser.statistical_analyser !fmgr flt_eq in
-      sa#analyse ();
-      let () =
-        if (PlotDiffsEnabled.get ()) then
-          Plotting.plot_diffs (!fmgr#get_diff_path ())
-        else ()
-      in
-      ()
+      (
+        let specparser = generate () in
+        !fmgr#compile_mpfr_file ();
+        (* if (AnalyzeEnabled.get ()) then *)
+        let flt_eq = specparser#make_flteq_contract () in
+        let sa = new Statistical_analyser.statistical_analyser !fmgr flt_eq in
+        sa#analyse ();
+        let () =
+          if (PlotDiffsEnabled.get ()) then
+            Plotting.plot_diffs (!fmgr#get_diff_path ())
+          else ()
+        in
+        (if (PlotSamplesForVar.get () <> "") then
+          Plotting.plot_csv_histogram
+            (!fmgr#get_samples_path ())
+            (PlotSamplesForVar.get ())
+            1000);
+        if (not (SaveSamples.get ())) then begin !fmgr#remove_samples_file () end;
+        if (not (SaveDiffs.get ())) then begin !fmgr#remove_diff_file () end;
+        ()
       (* if (RealVerificationEnabled.get ()) then
          *)
-  )
+      )
     (* else () *)
   else ()
 

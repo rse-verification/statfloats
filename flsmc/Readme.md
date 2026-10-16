@@ -76,8 +76,8 @@ float calculate(float input) {
 floating-point evaluation of `x` and its MPFR evaluation, equivalent to
 `\abs(x - \real(x))`. The predicate currently supports `\round_error(x) <=
 tolerance`. Both forms compare the requested probability of staying within
-the tolerance. Distributions currently support `"Uniform"` with real-constant
-lower and upper bounds.
+the tolerance. Distributions support `"Uniform"` with real-constant lower and
+upper bounds, and `"Normal"` with a real-constant mean and standard deviation.
 
 Use `\flostat::equation target, expression;` to define an input from other
 sampled inputs. Equation expressions are evaluated in MPFR before either
@@ -140,17 +140,16 @@ it is an equation-driven open-loop plant test with fixed pole-pair count, bus
 voltage, and current limit.
 
 `vesc/foc_observer_single_output.c` calls `foc_observer_update()` exactly once
-with sampled voltage, current, and flux-angle inputs. FloStat equations derive
-the observer flux state from that angle, current, and the fixed inductance and
-flux linkage. The timestep, observer gain, and motor resistance, inductance,
-and flux linkage are fixed constants. This isolates rounding differences in
-the observer call from arithmetic used to derive its inputs.
+with sampled voltage, current, and flux-angle inputs. The program derives the
+observer flux state from that angle, current, and the fixed inductance and flux
+linkage immediately before the observer call, so this setup arithmetic is
+included in the rounding-error analysis. The timestep, observer gain, and
+motor resistance, inductance, and flux linkage are fixed constants.
 The observer mode is fixed to `FOC_OBSERVER_MXV_LAMBDA_COMP`, with saturation,
 saliency, and temperature compensation disabled. Its initial estimated flux
 linkage is set to the fixed motor flux linkage; it is not sampled.
-The remaining sampled voltage, current, and flux angle values are independent;
-the equation clauses enforce the flux/current relationship, but do not model a
-complete controller-generated motor snapshot.
+The sampled voltage, current, and flux angle values are independent; this does
+not model a complete controller-generated motor snapshot.
 `vesc/foc_observer_mxv_lambda_comp_daisy.scala` is a Daisy-format one-update
 specialization of the same mode and input setup.
 For a smaller standalone presentation example of that mode, see

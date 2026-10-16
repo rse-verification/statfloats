@@ -32,31 +32,150 @@ let one_sided_conf_test req_v meas_v n =
     (let eps = meas_v -. req_v in
      Either.Left (conf_level eps n))
 
+class virtual mpfr_sampler (prec:int) = object (self)
+  val rng = Gmp_random.init_default ()
+  val mutable m_sample: Mpfr.t = Mpfr.init2 prec
+  val mutable rng_seeded = false
+
+  method rng_seeded () = rng_seeded
+
+  method seed_default () =
+    let () = Random.self_init () in
+    let () = Gmp_random.seed_ui rng (Random.bits ()) in
+    rng_seeded <- true
+
+  (*Seed from user-provided int*)
+  method seed_from_int x =
+    let () = Gmp_random.seed_ui rng x in
+    rng_seeded <- true
+  method draw_uniform_into (sample:Mpfr.t) =
+    Gmp_random.Mpfr.urandom sample rng Near
+  method virtual draw_sample: unit -> unit
+
+  (*returns the latest drawn sample. NOTE: Does not draw a new sample*)
+  method get_sample () = m_sample
+  (*Draws a sample and returns the sample*)
+  method draw_and_get_sample () = self#draw_sample (); self#get_sample ()
+
+end
+
+class mpfr_uniform_sampler (a:float) (b:float) (prec:int) = object (self)
+  inherit mpfr_sampler prec
+  val mutable m_a =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp a Near in tmp
+  val mutable m_b =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp b Near in tmp
+  val mutable m_asubb =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp (b -. a) Near in
+    tmp
+
+
+  (*Seed mpfr random using ocaml default seed (uses /dev/urandom)*)
+
+  (* returns a + rnd * (b-a) in mpfr format with prec precision
+    stores in m_sample. Note that we always reuse the sample var.
+  *)
+  method draw_sample () =
+    if not (self#rng_seeded ()) then Kernel.warning "rng has not been seeded";
+    Gmp_random.Mpfr.urandom m_sample rng Near;
+    let _ = Mpfr.mul m_sample m_sample m_asubb Near in (* res = rnd*(a-b) *)
+    let _ = Mpfr.add m_sample m_a m_sample Near in (* res = a+rnd*(a-b) *)
+    ()
+end
+
+class mpfr_normal_sampler (mu:float) (sigma:float) (prec:int) = object (self)
+  inherit mpfr_sampler prec
+  val m_mu =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp mu Near in tmp
+  val m_sigma =
+    let tmp = Mpfr.init2 prec in
+    let _ = Mpfr.set_d tmp sigma Near in tmp
+  val m_u1 = Mpfr.init2 prec
+  val m_u2 = Mpfr.init2 prec
+  val m_tmp = Mpfr.init2 prec
+  val m_radius = Mpfr.init2 prec
+  val m_angle = Mpfr.init2 prec
+  val m_cos = Mpfr.init2 prec
+
+  method draw_sample () =
+    if not (self#rng_seeded ()) then Kernel.warning "rng has not been seeded";
+    self#draw_uniform_into m_u1;
+    while Mpfr.zero_p m_u1 do
+      self#draw_uniform_into m_u1
+    done;
+    self#draw_uniform_into m_u2;
+    let _ = Mpfr.log m_tmp m_u1 Near in
+    let _ = Mpfr.neg m_tmp m_tmp Near in
+    let _ = Mpfr.mul_2ui m_tmp m_tmp 1 Near in
+    let _ = Mpfr.sqrt m_radius m_tmp Near in
+    let _ = Mpfr.const_pi m_angle Near in
+    let _ = Mpfr.mul_2ui m_angle m_angle 1 Near in
+    let _ = Mpfr.mul m_angle m_angle m_u2 Near in
+    let _ = Mpfr.cos m_cos m_angle Near in
+    let _ = Mpfr.mul m_sample m_radius m_cos Near in
+    let _ = Mpfr.mul m_sample m_sample m_sigma Near in
+    let _ = Mpfr.add m_sample m_mu m_sample Near in
+    ()
+end
+
+
+(* let mpfr_uniform m_res a b prec rng =
+  let m_tmp = Mpfr.init2 prec in
+  let m_a = Mpfr.init2 prec in
+  let m_b = Mpfr.init2 prec in
+  let _ = Mpfr.set_d m_a a Near in
+  let _ = Mpfr.set_d m_b b Near in
+  let _ = Mpfr.set_d m_tmp (a -. b) Near in
+  Gmp_random.Mpfr.urandom m_res rng Near;
+  let _ = Mpfr.mul m_res m_res m_tmp Near in (* res = rnd*(a-b) *)
+  let _ = Mpfr.add m_res m_a m_res Near in (* res = a+rnd*(a-b) *)
+  m_res *)
 
 class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
-  method get_sample_funs = function
+  method get_samplers = function
     | d::t ->
-      (match d with
+      let (sampler, x) = match d with
         | {dname="Uniform"; dvar=x; dparams=[a;b]} ->
           Self.debug ~level:3 "found dist";
           let [fl_a; fl_b] = List.map term_to_fl_const [a;b] in
-          let f' = (fun () -> Stats.uniform_rvs ~a:fl_a ~b:fl_b) in
-          (x, f')::(self#get_sample_funs t)
-        | {dname=dname;_} -> Kernel.fatal "only uniform dist currenly supported: %s" dname)
+          let sampler =
+            new mpfr_uniform_sampler fl_a fl_b (Selfplugin.MPFRPrec.get ())
+          in
+            (sampler, x)
+        | {dname="Normal"; dvar=x; dparams=[mu;sigma]} ->
+            Self.debug ~level:3 "found dist";
+            let [fl_mu; fl_sigma] = List.map term_to_fl_const [mu;sigma] in
+            let sampler =
+              new mpfr_normal_sampler fl_mu fl_sigma (Selfplugin.MPFRPrec.get ())
+            in
+              (sampler, x)
+        | {dname=dname;_} -> Kernel.fatal "only uniform or normal dist currenly supported: %s" dname
+      in
+        if Selfplugin.Seed.get () = 0 then sampler#seed_default ()
+        else sampler#seed_from_int (Selfplugin.Seed.get ());
+        (x, sampler)::(self#get_samplers t)
     | [] ->
       Self.debug ~level:3 "found  no more dist";
       []
 
   method do_samples n =
     Self.debug ~level:2 "Starting sampling";
-    let sample_fns = self#get_sample_funs (prob_contract#get_dists ()) in
+    let samplers = self#get_samplers (prob_contract#get_dists ()) in
     let samples = List.init n
-      (fun _ -> List.map (fun (_,f') -> string_of_float (f' ())) sample_fns) in
+      (fun _ -> List.map (fun (_,sampler) ->
+        let m_sample = sampler#draw_and_get_sample () in
+
+        Mpfr.to_string m_sample) samplers)
+    in
     let headers = List.map (fun (x, _) ->
-      Format.asprintf "%a" Printer.pp_term x) sample_fns
+      Format.asprintf "%a" Printer.pp_term x) samplers
     in
     (* List.iter (List.iter (fun x -> Self.feedback "%s" x)) (headers::samples); *)
-    Csv.save ~separator:',' (fmgr#get_samples_path ()) (headers::samples)
+    Csv.save ~separator:'\t' (fmgr#get_samples_path ()) (headers::samples)
 
   method run_file n =
     Self.debug ~level:3 "executing path: %s" @@ fmgr#get_exec_path ();
@@ -86,6 +205,10 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
       | _ -> ()
     ) data2;
     let qdata = List.map (fun x -> Q.abs (Q.of_string x)) data2 in
+    Self.debug ~level:1 "Maximum error: %g"
+      (Q.to_float (List.fold_left Q.max Q.zero qdata));
+    Self.debug ~level:1 "Average error: %g"
+      (Q.to_float (Q.div (List.fold_left Q.add Q.zero qdata) (Q.of_int (List.length qdata))));
     let bools = List.filter (fun x -> Q.leq x diff_q) qdata in
     List.length bools, List.length qdata
 
@@ -119,10 +242,10 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
               (* in *)
               Self.feedback
                 "Stats\n\
-                Measured conf level: %g   Requested conf level: %g \n \
+                Measured confidence level: %g   \n \
                 Number of violations: %d  Executions: %d \n \
                 Measured probability: %g  Requested probability: %g"
-                c (prob_contract#get_confLevel ())
+                c
                 viols tots
                 meas_prob (prob_contract#get_prob ())
 

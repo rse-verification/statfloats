@@ -2,10 +2,10 @@
 (name FloFlostat)
 (public_name frama-c-flostat.core)
 (flags -open Frama_c_kernel :standard -w -27-21-26-33-32-8-5)
-(libraries frama-c.kernel csv owl plplot)
+(libraries frama-c.kernel csv owl plplot gmp)
 )
 (plugin
 (optional)
-(name hello)
+(name flostat)
 (libraries frama-c-flostat.core)
 (site (frama-c plugins)))

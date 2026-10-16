@@ -14,13 +14,6 @@ module Enabled = Self.False
   let help = "when on (off by default), " ^ help_msg
 end)
 
-(* module MPFRFile = Self.String(struct
-  let option_name = "-mpfr-file"
-  let default = "/home/jesper/Documents/floats/statfloats/flostat/output_files/out.c"
-  let arg_name = "mpfr_file"
-  let help = "file where the mpfr code is stored."
-end) *)
-
 module OutDir = Self.String(struct
   let option_name = "-fs-out-dir"
   let default = ""
@@ -55,6 +48,14 @@ module MPFRPrec = Self.Int(struct
   let help = "Precision in bits used for the MPFR simulation"
 end)
 
+module Seed = Self.Int(struct
+  let option_name = "-fs-seed"
+  let short_name = "-fs-seed"
+  let default = 0
+  let arg_name = "seed"
+  let help = "Seed for the mpfr random samples. If set to 0 (default), then will use Ocaml default seed. I.e., set to some non-zero value if you want to set the seed."
+end)
+
 module OnlySample = Self.False
   (struct
   let option_name = "-fs-only-sample"
@@ -64,15 +65,23 @@ end)
 
 module StatisticalAnalysisEnabled = Self.True
   (struct
-  let option_name = "-FloStat-statistical-analysis"
-  let short_name = "-FloStat-stat"
+  let option_name = "-fs-statistical-analysis"
+  let short_name = "-fs-stat"
   let help = "when on (on by default), performs statistical analysis of the rounding error"
 end)
 
 module PlotDiffsEnabled = Self.False
   (struct
-  let option_name = "-FloStat-plot-diffs"
-  let help = "when on (off by default), plots diffs"
+  let option_name = "-fs-plot-diffs"
+  let help = "when on (off by default), plots diffs. This may not work."
+end)
+
+module PlotSamplesForVar = Self.String
+  (struct
+  let default = ""
+  let arg_name = "variable"
+  let option_name = "-fs-plot-samples"
+  let help = "when on (off by default), plots samples for the given variable. This may not work."
 end)
 
 module RealVerificationEnabled = Self.True
@@ -86,4 +95,17 @@ module MpfrForExtern = Self.True
   (struct
   let option_name = "-FloStat-extern-mpfr"
   let help = "when on (on by default), creates mpfr-vars for all floats declared with 'extern'"
+end)
+
+
+module SaveSamples = Self.True
+  (struct
+  let option_name = "-fs-save-samples"
+  let help = "when on (on by default), saves the samples in file 'samples.csv'"
+end)
+
+module SaveDiffs = Self.True
+  (struct
+  let option_name = "-fs-save-diffs"
+  let help = "when on (on by default), saves the diffs in file 'diff.csv'"
 end)
