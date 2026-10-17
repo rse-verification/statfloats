@@ -76,6 +76,12 @@ module PlotDiffsEnabled = Self.False
   let help = "when on (off by default), plots diffs. This may not work."
 end)
 
+module MoreStats = Self.False
+  (struct
+  let option_name = "-fs-more-stats"
+  let help = "when on (off by default), prints min, max, and mean absolute measured differences"
+end)
+
 module PlotSamplesForVar = Self.String
   (struct
   let default = ""

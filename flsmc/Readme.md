@@ -38,6 +38,8 @@ Useful options include:
 - `-fs-sample-file FILE`: use a CSV file of input samples instead of drawing
   random samples. Columns must correspond to the contract's distributions.
 - `-fs-only-sample`: generate samples without running the comparison.
+- `-fs-more-stats`: also print minimum, maximum, and mean absolute measured
+  differences; the default statistics output remains unchanged.
 
 ## Contracts
 

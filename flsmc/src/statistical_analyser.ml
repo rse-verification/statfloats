@@ -212,6 +212,31 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
     let bools = List.filter (fun x -> Q.leq x diff_q) qdata in
     List.length bools, List.length qdata
 
+  method print_more_stats () =
+    if MoreStats.get () then begin
+      let x = Csv.load (fmgr#get_diff_path ()) in
+      let diffs =
+        get_csv_col "diff" x
+        |> List.map (fun diff ->
+          match String.lowercase_ascii diff with
+          | "nan" | "+nan" | "-nan" | "inf" | "+inf" | "-inf"
+          | "infinity" | "+infinity" | "-infinity" ->
+            Kernel.fatal "non-finite diff value in results: %s" diff
+          | _ -> Q.abs (Q.of_string diff))
+      in
+      match diffs with
+      | [] -> Kernel.fatal "no measured differences available for statistics"
+      | first :: rest ->
+        let min_diff = List.fold_left Q.min first rest in
+        let max_diff = List.fold_left Q.max first rest in
+        let mean_diff =
+          Q.div (List.fold_left Q.add Q.zero diffs) (Q.of_int (List.length diffs))
+        in
+        Self.feedback
+          "More stats: min absolute measured diff: %g, max absolute measured diff: %g, mean absolute measured diff: %g"
+          (Q.to_float min_diff) (Q.to_float max_diff) (Q.to_float mean_diff)
+    end
+
   method analyse () =
     let n = NrExecs.get () in
     if (not (fmgr#user_has_samples ())) then self#do_samples n;
@@ -230,7 +255,7 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
           (prob_contract#get_prob ()) meas_prob n
         in
         Self.feedback "requested diff: %g" (prob_contract#get_fl_diff ());
-        match meas_conf with
+        begin match meas_conf with
           | Left c ->
               (*Want to stop includint conf level in contract*)
               Self.feedback "Success!";
@@ -255,5 +280,7 @@ class statistical_analyser fmgr (prob_contract:flteq_contract) = object (self)
                 Number of violations: %d  Executions: %d \n \
                 Measured probability: %g  Requested probability: %g \n "
                 viols tots meas_prob (prob_contract#get_prob ())
+        end;
+        self#print_more_stats ()
       end
 end
