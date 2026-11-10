@@ -95,7 +95,8 @@ let trans_func_names =
                                ("acosf", "mpfr_acos");
                                ("asinf", "mpfr_asin");
                                ("atanf", "mpfr_atan");
-                               ("atan2f", "mpfr_atan2");                               
+                               ("atan2f", "mpfr_atan2");
+                               ("fast_atan2", "mpfr_atan2");                               
                                ("fabsf", "mpfr_abs")])
 
 let make_id_pred_from_pred_node ?(names=[]) ?(loc=unknown_loc) pn =
